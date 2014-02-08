@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background2" >
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/TextView3"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="2dp"
+        android:layout_toRightOf="@+id/TextView3"
+        android:layout_weight="7"
+        android:background="@null"
+        android:ems="10"
+        android:hint="@string/reg_username_in"
+        android:maxLength="20"
+        android:paddingLeft="10dp"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/passwordcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/TextView4"
+        android:layout_below="@+id/TextView2"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="2dp"
+        android:layout_toRightOf="@+id/TextView4"
+        android:layout_weight="7"
+        android:background="@null"
+        android:ems="10"
+        android:hint="@string/reg_password_confirm_in"
+        android:inputType="textPassword"
+        android:maxLength="20"
+        android:paddingLeft="10dp"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/TextView1"
+        android:layout_below="@+id/TextView4"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="2dp"
+        android:layout_toRightOf="@+id/TextView1"
+        android:layout_weight="7"
+        android:background="@null"
+        android:ems="10"
+        android:hint="@string/reg_email_in"
+        android:inputType="textEmailAddress"
+        android:maxLength="20"
+        android:paddingLeft="10dp"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/TextView4"
+        android:layout_toRightOf="@+id/TextView1"
+        android:layout_weight="5.66"
+        android:background="@null"
+        android:ems="10"
+        android:hint="@string/reg_password_in"
+        android:inputType="textPassword"
+        android:maxLength="20"
+        android:paddingLeft="10dp"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/TextView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/Button01"
+        android:layout_below="@+id/TextView4"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="47dp"
+        android:gravity="right"
+        android:paddingLeft="15dp"
+        android:text="@string/reg_email"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/TextView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextView1"
+        android:layout_centerVertical="true"
+        android:gravity="right"
+        android:paddingLeft="15dp"
+        android:text="@string/reg_username"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/TextView2"
+        android:layout_width="58dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextView3"
+        android:layout_below="@+id/TextView3"
+        android:layout_marginTop="53dp"
+        android:gravity="right"
+        android:paddingLeft="15dp"
+        android:text="@string/reg_password"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/TextView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextView2"
+        android:layout_below="@+id/TextView2"
+        android:layout_marginTop="50dp"
+        android:gravity="right"
+        android:paddingLeft="15dp"
+        android:text="@string/reg_password＿confirm"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/reg_btn"
+        android:layout_width="76dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/TextView1"
+        android:background="@drawable/bg_selector"
+        android:text="@string/register"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/Button01"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/reg_btn"
+        android:layout_marginLeft="26dp"
+        android:background="@drawable/bg_selector"
+        android:text="@string/reg_return"
+        android:textColor="#ff0000"
+        android:textSize="18sp" />
+
+</RelativeLayout>

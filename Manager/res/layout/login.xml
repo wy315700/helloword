@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background1" >
+
+    <CheckedTextView
+        android:id="@+id/checkedTextView2"
+        android:layout_width="49dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/checkedTextView1"
+        android:layout_below="@+id/lg_username"
+        android:layout_marginTop="50dp"
+        android:text="密码" />
+
+    <EditText
+        android:id="@+id/lg_username"
+        android:layout_width="159dp"
+        android:layout_height="44dp"
+        android:layout_alignLeft="@+id/lg_remember_password"
+        android:layout_alignTop="@+id/checkedTextView1"
+        android:background="@null"
+        android:ems="10"
+        android:hint="@string/lg_username"
+        android:inputType="text"
+        android:maxLength="16"
+        android:maxLines="1"
+        android:paddingLeft="12dp"
+        android:textColor="#1d1d1d"
+        android:textColorHint="#666666"
+        android:textSize="16sp"
+        android:visibility="visible" />
+
+    <EditText
+        android:id="@+id/lg_password"
+        android:layout_width="147dp"
+        android:layout_height="44dp"
+        android:layout_alignBaseline="@+id/checkedTextView2"
+        android:layout_alignBottom="@+id/checkedTextView2"
+        android:layout_alignLeft="@+id/lg_username"
+        android:background="@null"
+        android:ems="10"
+        android:gravity="center_vertical"
+        android:hint="@string/lg_password"
+        android:inputType="textPassword"
+        android:maxLength="16"
+        android:maxLines="1"
+        android:paddingLeft="12dp"
+        android:textColor="#1d1d1d"
+        android:textColorHint="#666666"
+        android:textSize="16sp" >
+
+        <requestFocus />
+    </EditText>
+
+    <CheckBox
+        android:id="@+id/lg_remember_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/lg_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="17dp"
+        android:background="@null"
+        android:button="@null"
+        android:drawableLeft="@drawable/checkbox_bg"
+        android:drawablePadding="4dp"
+        android:paddingTop="5dp"
+        android:text="@string/lg_remember_info"
+        android:textColor="#ffffff"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/lg_btn"
+        android:layout_width="63dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/lg_reg_btn"
+        android:layout_toRightOf="@+id/lg_password"
+        android:background="@drawable/login_button_bg"
+        android:gravity="center"
+        android:paddingTop="5dp"
+        android:text="@string/login"
+        android:textColor="#ffffff"
+        android:textSize="13sp" />
+
+    <Button
+        android:id="@+id/lg_reg_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="27dp"
+        android:layout_toLeftOf="@+id/checkedTextView2"
+        android:background="@drawable/login_regist_bg"
+        android:clickable="true"
+        android:gravity="left|center"
+        android:paddingLeft="8dp"
+        android:paddingRight="18dp"
+        android:text="@string/lg_register"
+        android:textAllCaps="false"
+        android:textColor="#ff0000"
+        android:textSize="12sp" />
+
+    <CheckedTextView
+        android:id="@+id/checkedTextView1"
+        android:layout_width="46dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/lg_remember_password"
+        android:layout_marginBottom="134dp"
+        android:layout_marginRight="14dp"
+        android:layout_toLeftOf="@+id/lg_username"
+        android:text="账号" />
+
+</RelativeLayout>
