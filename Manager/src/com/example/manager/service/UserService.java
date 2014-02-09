@@ -91,6 +91,7 @@ public class UserService {
 		cursor.close();
 		return list;
 	}
+
 	
 	//根据ID查询用户信息
 	public User queryById(int id){
