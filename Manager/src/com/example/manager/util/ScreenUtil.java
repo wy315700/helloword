@@ -6,7 +6,7 @@ import android.view.WindowManager;
 
 public class ScreenUtil {
 	
-	//获取屏幕宽度
+	//鑾峰彇灞忓箷瀹藉害
 	public static int getScreenWidth(Context context) {
 		DisplayMetrics dm = new DisplayMetrics();
 		WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -14,7 +14,7 @@ public class ScreenUtil {
 		return dm.widthPixels;
 	}
 	
-	//获取屏幕高度
+	//鑾峰彇灞忓箷楂樺害
 	public static int getScreenHeight(Context context) {
 		DisplayMetrics dm = new DisplayMetrics();
 		WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -22,7 +22,7 @@ public class ScreenUtil {
 		return dm.heightPixels;
 	}
 	
-	//获取屏幕密度
+	//鑾峰彇灞忓箷瀵嗗害
 	public static float getScreenDensity(Context context) {
 		try {
 			DisplayMetrics dm = new DisplayMetrics();

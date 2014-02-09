@@ -7,12 +7,12 @@ import android.content.DialogInterface;
 public class BuilderUtil {
 	private static AlertDialog.Builder builder;
 	
-	//¹¹½¨ÌáÊ¾ĞÅÏ¢¶Ô»°¿ò
+	//æ„å»ºæç¤ºä¿¡æ¯å¯¹è¯æ¡†
 	public static void buildInfo(Activity activity,String title,String message){
 		builder = new AlertDialog.Builder(activity);
 		builder.setTitle(title);
 		builder.setMessage(message);
-		builder.setPositiveButton("È·¶¨", new DialogInterface.OnClickListener() {
+		builder.setPositiveButton("ç¡®å®š", new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
@@ -24,7 +24,7 @@ public class BuilderUtil {
 		builder.show();
 	}
 	
-	//»ñÈ¡builder
+	//è·å–builder
 	public static AlertDialog.Builder getBuilder(Activity activity,String title,String message){
 		builder = new AlertDialog.Builder(activity);
 		builder.setTitle(title);
@@ -32,9 +32,9 @@ public class BuilderUtil {
 		return builder;
 	}
 	
-	//ÉèÖÃÈ¡Ïû°´Å¥
+	//è®¾ç½®å–æ¶ˆæŒ‰é’®
 	public static void setNegativeButton(AlertDialog.Builder builder){
-		builder.setNegativeButton("È¡Ïû", new DialogInterface.OnClickListener() {
+		builder.setNegativeButton("å–æ¶ˆ", new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {

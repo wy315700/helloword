@@ -5,7 +5,7 @@ import java.lang.reflect.Field;
 import android.content.DialogInterface;
 
 /**
- * 手动控制对话框的关闭
+ * 鎵嬪姩鎺у埗瀵硅瘽妗嗙殑鍏抽棴
  * 
  * @author Administrator
  * 

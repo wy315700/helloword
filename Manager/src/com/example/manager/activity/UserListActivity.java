@@ -13,7 +13,7 @@ import com.example.manager.util.BuilderUtil;
 public class UserListActivity extends Activity {
 
 
-	// Õñ¶¯Æ÷
+	// æŒ¯åŠ¨å™¨
 	private Vibrator vibrator;
 
 
@@ -33,15 +33,15 @@ public class UserListActivity extends Activity {
 
 	@Override
 	public void onBackPressed() {
-		Builder builder = BuilderUtil.getBuilder(UserListActivity.this, "", "·µ»Ø»òÍË³ö");
-		builder.setPositiveButton("ÇĞ»»ÓÃ»§", new DialogInterface.OnClickListener() {
+		Builder builder = BuilderUtil.getBuilder(UserListActivity.this, "", "è¿”å›æˆ–é€€å‡º");
+		builder.setPositiveButton("åˆ‡æ¢ç”¨æˆ·", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				finish();
 				goLoginActivity();
 			}
 		});
-		builder.setNeutralButton("ÍË³ö", new DialogInterface.OnClickListener() {
+		builder.setNeutralButton("é€€å‡º", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				finish();
@@ -53,7 +53,7 @@ public class UserListActivity extends Activity {
 	@Override
 	protected void onStop() {
 		super.onStop();
-		// ¹Ø±ÕÕñ¶¯Æ÷
+		// å…³é—­æŒ¯åŠ¨å™¨
 		if (vibrator != null) {
 			vibrator.cancel();
 		}
