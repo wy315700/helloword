@@ -16,13 +16,13 @@ public class UserService {
 		dbHelper = new DBHelper(context);
 	}
 	
-	//ÑéÖ¤µÇÂ½
+	//éªŒè¯ç™»é™†
 	public boolean login(String username,String userpwd){
 		SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
 		String sql = "select * from user where username = ? and userpwd = ?";
-		//Ïàµ±ÓÚJDBCÖĞµÄResultSet,rawÔ­²ÄÁÏ
+		//ç›¸å½“äºJDBCä¸­çš„ResultSet,rawåŸææ–™
 		Cursor cursor = sqLiteDatabase.rawQuery(sql, new String[]{username,userpwd});
-		//moveToFirst()·½·¨£¬Èç¹ûCursorÎª¿Õ£¬½«»á·µ»Øfalse
+		//moveToFirst()æ–¹æ³•ï¼Œå¦‚æœCursorä¸ºç©ºï¼Œå°†ä¼šè¿”å›false
 		if(cursor.moveToFirst()==true){
 			cursor.close();
 			return true;
@@ -30,7 +30,7 @@ public class UserService {
 		return false;
 	}
 	
-	//ÑéÖ¤×¢²áÊÇ·ñÎªÒÑ´æÔÚµÄÓÃ»§Ãû
+	//éªŒè¯æ³¨å†Œæ˜¯å¦ä¸ºå·²å­˜åœ¨çš„ç”¨æˆ·å
 	public boolean registerName(String userName){
 		SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
 		Cursor cursor = sqLiteDatabase.query("user",new String[]{"username"}, 
@@ -46,7 +46,7 @@ public class UserService {
 		return true;
 	} 
 	
-	//×¢²á
+	//æ³¨å†Œ
 	public boolean register(User user){
 		SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
 		String sql = "insert into user(username,userpwd,useremail) values(?,?,?)";
@@ -55,7 +55,7 @@ public class UserService {
 		return true;
 	}
 	
-	//É¾³ı
+	//åˆ é™¤
 	public boolean delete(int id){
 		SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
 		String sql = "delete from user where userid = ?";
@@ -64,7 +64,7 @@ public class UserService {
 		return true;
 	}
 	
-	//ĞŞ¸Ä
+	//ä¿®æ”¹
 	public boolean update(String[] values){
 		SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
 		String sql = "update user set userpwd = ?,useremail = ? where userid = ?";
@@ -73,7 +73,7 @@ public class UserService {
 		return true;
 	}
 	
-	//²éÑ¯³öÁĞ±í
+	//æŸ¥è¯¢å‡ºåˆ—è¡¨
 	public ArrayList<User> queryAll(){
 		ArrayList<User> list = new ArrayList<User>();
 		SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
@@ -92,7 +92,7 @@ public class UserService {
 		return list;
 	}
 	
-	//¸ù¾İID²éÑ¯ÓÃ»§ĞÅÏ¢
+	//æ ¹æ®IDæŸ¥è¯¢ç”¨æˆ·ä¿¡æ¯
 	public User queryById(int id){
 		SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
 		String sql = "select * from user where userid = ?";
