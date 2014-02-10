@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background_login" >
+    
+    <RelativeLayout
+        android:layout_width="fill_parent"
+    	android:layout_height="0dp"
+        android:layout_weight="4">
+        
+    </RelativeLayout>
+    
+	
+	    
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+		android:layout_height="0dp"
+    	android:layout_weight="1"
+    	android:gravity="center" >
+        
+        <TextView
+    		android:id="@+id/textView_account"
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:text="@string/lg_account_text" />
+        
+        <EditText
+            android:id="@+id/lg_username"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:layout_toRightOf="@id/textView_account"
+            android:layout_alignBaseline="@id/textView_account"
+            android:hint="@string/lg_username"
+            android:inputType="text"
+            android:maxLength="16"
+            android:maxLines="1"
+            android:paddingLeft="12dp"
+            android:textColor="#1d1d1d"
+            android:textColorHint="#666666"
+            android:textSize="16sp"
+            android:background="@null" />
+        
+    </RelativeLayout>
+    
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/textView_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lg_password_text" />
+        
+        <EditText
+            android:id="@+id/lg_password"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:layout_alignBaseline="@id/textView_password"
+            android:layout_toRightOf="@id/textView_password"
+            android:paddingLeft="12dp"
+            android:hint="@string/lg_password"
+            android:inputType="textPassword"
+            android:maxLength="16"
+            android:maxLines="1"
+            android:textColor="#1d1d1d"
+            android:textColorHint="#666666"
+            android:textSize="16sp"
+            android:background="@null" />
+            
+    </RelativeLayout>
+    
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+		android:layout_height="0dp"
+    	android:layout_weight="1" >
+        
+        <CheckBox
+    		android:id="@+id/lg_remember_password"
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:layout_centerHorizontal="true"
+    		android:background="@null"
+    		android:button="@null"
+   			android:drawableLeft="@drawable/checkbox_bg"
+    		android:text="@string/lg_remember_info"
+    		android:textColor="#ffffff"
+    		android:textSize="12sp" />
+        
+    </RelativeLayout>
+    
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+        
+        <Button
+    		android:id="@+id/lg_login_btn"
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:background="@drawable/login_button_bg"
+    		android:layout_centerVertical="true"
+    		android:layout_alignParentLeft="true"
+    		android:layout_marginLeft="30dp"
+    		android:text="@string/login"
+    		android:textColor="#ffffff"
+    		android:textSize="13sp"
+    		android:onClick="loginHandler" />
+        
+        <Button
+    		android:id="@+id/lg_register_btn"
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:layout_centerVertical="true"
+    		android:layout_alignParentRight="true"
+    		android:layout_marginRight="30dp"
+    		android:background="@drawable/login_regist_bg"
+    		android:text="@string/lg_register"
+    		android:textColor="#ff0000"
+    		android:textSize="12sp"
+    		android:onClick="registerHandler" />
+        
+    </RelativeLayout>
+    
+</LinearLayout>
