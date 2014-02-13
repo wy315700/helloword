@@ -2,6 +2,8 @@ package com.helloword.protocolTransmission;
 
 import java.util.Arrays;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.helloword.gsonObject.ChangeUserInfoResponseProtocol;
 import com.helloword.gsonObject.GlobalResponseProtocol;
@@ -12,10 +14,12 @@ import com.helloword.gsonObject.UpdateTokenResponseProtocol;
 
 /**
  * @author Liletta
- * 璇ョ被涓寘鍚簡瀵瑰悇绉嶆湇鍔″櫒淇℃伅鐨勫弽搴忓垪鍖栫殑鏂规硶
+ * Deserialize the responses from the server
  */
 public class DeserializeResponse {
     
+    private static final String DEBUG_TAG = null;
+
     public void mainHandler(String toExtract) {
         String[] availableHandlers = {
             "/user/login.json",
@@ -32,14 +36,14 @@ public class DeserializeResponse {
         DeserializeResponse response = new DeserializeResponse();
         
         switch (Arrays.asList(availableHandlers).indexOf(request)) {
-        // 璇ュ鐞嗘柟娉曞緢涓存椂锛屼細鏍规嵁鍚庣画鐨勯渶姹傝繘琛屼慨鏀�
+        // will expand with further development to cater to different situation
             case 0: response.loginResponse(toExtract); break;
             case 1: response.logoutResponse(toExtract); break;
             case 2: response.registerResponse(toExtract); break;
             case 3: response.changeUserInfoResponse(toExtract); break;
             case 4: response.updateTokenResponse(toExtract); break;
             default: System.out.println("No handlers available");
-            // Log.e(DEBUG_TAG, "No handlers available");
+                 Log.e(DEBUG_TAG, "No handlers available");
             
         }
     }
