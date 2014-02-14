@@ -4,16 +4,30 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
-import com.helloword.gsonObject.ChangeUserInfoResponseProtocol;
-import com.helloword.gsonObject.LoginResponseProtocol;
-import com.helloword.gsonObject.LogoutResponseProtocol;
-import com.helloword.gsonObject.RegisterResponseProtocol;
-import com.helloword.gsonObject.UpdateTokenResponseProtocol;
+import com.helloword.gsonObject.responseProtocol.ChangeUserInfoResponseProtocol;
+import com.helloword.gsonObject.responseProtocol.LoginResponseProtocol;
+import com.helloword.gsonObject.responseProtocol.LogoutResponseProtocol;
+import com.helloword.gsonObject.responseProtocol.RegisterResponseProtocol;
+import com.helloword.gsonObject.responseProtocol.UpdateTokenResponseProtocol;
+import com.helloword.gsonObject.responseProtocol.VagueResponseProtocol;
 import com.helloword.protocolTransmission.DeserializeResponse;
 
 
 
 public class ResponseGsonTest extends TestCase {
+    
+    @Test
+    public void testVagueResponse() {
+        String jsonData = "{\"request\":\"/user/register.json\",";
+        jsonData += "\"result\":\"success\",";
+        jsonData += "\"details\":{\"userInfo\":{\"userID\":\"userID\",\"userName\":\"userName\",";
+        jsonData += "\"userNickname\":\"userNickname\",\"userEmail\":\"userEmail\"},\"sessionID\":\"111aaa111\"}}";
+
+        DeserializeResponse response = new DeserializeResponse();
+        VagueResponseProtocol vagueResponse = response.vagueResponse(jsonData);
+        assertEquals(vagueResponse.getRequest(), "/user/register.json");
+        assertEquals(vagueResponse.getResult(), "success");
+    }
     
     @Test
     public void testLoginResponse() {

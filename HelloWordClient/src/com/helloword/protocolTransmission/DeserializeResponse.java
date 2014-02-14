@@ -1,16 +1,12 @@
 package com.helloword.protocolTransmission;
 
-import java.util.Arrays;
-
-import android.util.Log;
-
 import com.google.gson.Gson;
-import com.helloword.gsonObject.ChangeUserInfoResponseProtocol;
-import com.helloword.gsonObject.GlobalResponseProtocol;
-import com.helloword.gsonObject.LoginResponseProtocol;
-import com.helloword.gsonObject.LogoutResponseProtocol;
-import com.helloword.gsonObject.RegisterResponseProtocol;
-import com.helloword.gsonObject.UpdateTokenResponseProtocol;
+import com.helloword.gsonObject.responseProtocol.ChangeUserInfoResponseProtocol;
+import com.helloword.gsonObject.responseProtocol.LoginResponseProtocol;
+import com.helloword.gsonObject.responseProtocol.LogoutResponseProtocol;
+import com.helloword.gsonObject.responseProtocol.RegisterResponseProtocol;
+import com.helloword.gsonObject.responseProtocol.UpdateTokenResponseProtocol;
+import com.helloword.gsonObject.responseProtocol.VagueResponseProtocol;
 
 /**
  * @author Liletta
@@ -20,34 +16,40 @@ public class DeserializeResponse {
     
     private static final String DEBUG_TAG = null;
 
-    public void mainHandler(String toExtract) {
-        String[] availableHandlers = {
-            "/user/login.json",
-            "/user/logout.json",
-            "/user/register.json",
-            "/user/change_userinfo.json",
-            "/user/update_token.json"
-        };
-        
-        Gson gson = new Gson();
-        GlobalResponseProtocol responseData = new GlobalResponseProtocol();
-        responseData = gson.fromJson(toExtract, GlobalResponseProtocol.class);
-        String request = responseData.getRequest();
-        DeserializeResponse response = new DeserializeResponse();
-        
-        switch (Arrays.asList(availableHandlers).indexOf(request)) {
-        // will expand with further development to cater to different situation
-            case 0: response.loginResponse(toExtract); break;
-            case 1: response.logoutResponse(toExtract); break;
-            case 2: response.registerResponse(toExtract); break;
-            case 3: response.changeUserInfoResponse(toExtract); break;
-            case 4: response.updateTokenResponse(toExtract); break;
-            default: System.out.println("No handlers available");
-                 Log.e(DEBUG_TAG, "No handlers available");
-            
-        }
-    }
+//    public void mainHandler(String toExtract) {
+//        String[] availableHandlers = {
+//            "/user/login.json",
+//            "/user/logout.json",
+//            "/user/register.json",
+//            "/user/change_userinfo.json",
+//            "/user/update_token.json"
+//        };
+//        
+//        Gson gson = new Gson();
+//        GlobalResponseProtocol responseData = new GlobalResponseProtocol();
+//        responseData = gson.fromJson(toExtract, GlobalResponseProtocol.class);
+//        String request = responseData.getRequest();
+//        DeserializeResponse response = new DeserializeResponse();
+//        
+//        switch (Arrays.asList(availableHandlers).indexOf(request)) {
+//        // will expand with further development to cater to different situation
+//            case 0: response.loginResponse(toExtract); break;
+//            case 1: response.logoutResponse(toExtract); break;
+//            case 2: response.registerResponse(toExtract); break;
+//            case 3: response.changeUserInfoResponse(toExtract); break;
+//            case 4: response.updateTokenResponse(toExtract); break;
+//            default: System.out.println("No handlers available");
+//                 Log.e(DEBUG_TAG, "No handlers available");
+//            
+//        }
+//    }
 
+    public VagueResponseProtocol vagueResponse(String jsonData) {
+        Gson gson = new Gson();
+        VagueResponseProtocol responseData = new VagueResponseProtocol();
+        responseData = gson.fromJson(jsonData, VagueResponseProtocol.class);
+        return responseData;
+    }
 
 
 	public LoginResponseProtocol loginResponse(String jsonData) {

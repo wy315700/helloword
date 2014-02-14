@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.helloword.R;
-import com.helloword.protocolTransmission.SerializeRequest;
+import com.helloword.service.UserService;
 
 
 public class LoginActivity extends Activity {
@@ -47,13 +47,17 @@ public class LoginActivity extends Activity {
 	}
 	
 	public void loginHandler(View view) {
-	    SerializeRequest request = new SerializeRequest();
 	    String userName = userNameET.getText().toString().trim();
 	    String password = passwordET.getText().toString().trim();
-	    String jsonData = request.loginRequest(userName, password);
-	    Toast.makeText(getApplicationContext(), jsonData,
+	    UserService userService = new UserService();
+	    if (userService.login(userName, password)) {
+	        Intent intent = new Intent(this, UserListActivity.class);
+	        startActivity(intent);
+	    }
+	    else {
+	        Toast.makeText(getApplicationContext(), "False User Name or Password",
 	            Toast.LENGTH_SHORT).show();
-		Log.e(DEBUGTAG, "to login..." + jsonData);
+	    }
 	}
 
 	public void registerHandler(View view) {

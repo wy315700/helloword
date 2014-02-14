@@ -1,6 +1,6 @@
 package com.helloword.gsonObject;
 
-public class NewUserInfo extends UserInfo {
+public class NewUserInfo extends Users {
     String oldPassword;
     String newPassword;
 

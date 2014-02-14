@@ -1,13 +1,13 @@
 package com.helloword.protocolTransmission;
 
 import com.google.gson.Gson;
-import com.helloword.gsonObject.ChangeUserInfoRequestProtocol;
-import com.helloword.gsonObject.LoginRequestProtocol;
-import com.helloword.gsonObject.LogoutRequestProtocol;
 import com.helloword.gsonObject.NewUserInfo;
-import com.helloword.gsonObject.RegisterRequestProtocol;
-import com.helloword.gsonObject.UpdateTokenRequestProtocol;
-import com.helloword.gsonObject.UserInfo;
+import com.helloword.gsonObject.UserFullInfo;
+import com.helloword.gsonObject.requestProtocol.ChangeUserInfoRequestProtocol;
+import com.helloword.gsonObject.requestProtocol.LoginRequestProtocol;
+import com.helloword.gsonObject.requestProtocol.LogoutRequestProtocol;
+import com.helloword.gsonObject.requestProtocol.RegisterRequestProtocol;
+import com.helloword.gsonObject.requestProtocol.UpdateTokenRequestProtocol;
 
 public class SerializeRequest {
     
@@ -22,7 +22,7 @@ public class SerializeRequest {
         }*/
     Gson gson = new Gson();
         LoginRequestProtocol requestData = new LoginRequestProtocol();
-        UserInfo loginInfo = new UserInfo();
+        UserFullInfo loginInfo = new UserFullInfo();
 
         loginInfo.setUserName(userName);
         loginInfo.setPassword(password);
@@ -42,7 +42,7 @@ public class SerializeRequest {
             "sessionID" : "sessionID"
         }*/
         Gson gson = new Gson();
-        UserInfo logoutInfo = new UserInfo();
+        UserFullInfo logoutInfo = new UserFullInfo();
         LogoutRequestProtocol requestData = new LogoutRequestProtocol();
 
         logoutInfo.setUserName(userName);
@@ -64,7 +64,7 @@ public class SerializeRequest {
             },
             "request" : "/user/register.json"
         }*/
-        UserInfo userInfo = new UserInfo();
+        UserFullInfo userInfo = new UserFullInfo();
         userInfo.setUserName(userName);
         userInfo.setUserNickname(userNickname);
         userInfo.setPassword(password);
