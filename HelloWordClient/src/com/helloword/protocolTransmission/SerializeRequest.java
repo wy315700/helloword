@@ -1,9 +1,9 @@
 package com.helloword.protocolTransmission;
 
 import com.google.gson.Gson;
-import com.helloword.gsonObject.NewUserInfo;
 import com.helloword.gsonObject.UserFullInfo;
 import com.helloword.gsonObject.requestProtocol.ChangeUserInfoRequestProtocol;
+import com.helloword.gsonObject.requestProtocol.ChangeUserInfoRequestProtocol.NewUserInfo;
 import com.helloword.gsonObject.requestProtocol.LoginRequestProtocol;
 import com.helloword.gsonObject.requestProtocol.LogoutRequestProtocol;
 import com.helloword.gsonObject.requestProtocol.RegisterRequestProtocol;
@@ -90,13 +90,14 @@ public class SerializeRequest {
             "request" : "/user/change_userinfo.json",
             "sessionID" : "sessionID"
         }*/
-        NewUserInfo userInfo = new NewUserInfo();
+
+        ChangeUserInfoRequestProtocol requestData = new ChangeUserInfoRequestProtocol();
+        ChangeUserInfoRequestProtocol.NewUserInfo userInfo = new NewUserInfo();
         userInfo.setUserName(userName);
         userInfo.setUserNickname(userNickname);
         userInfo.setOldPassword(oldPassword);
         userInfo.setNewPassword(newPassword);
-
-        ChangeUserInfoRequestProtocol requestData = new ChangeUserInfoRequestProtocol();
+        
         requestData.setUserInfo(userInfo);
         requestData.setRequest("/user/change_userinfo.json");
         requestData.setSessionID(sessionID);

@@ -1,9 +1,9 @@
 package com.helloword.service;
 
 import com.helloword.gsonObject.responseProtocol.LoginResponseProtocol;
-import com.helloword.httpConnection.HttpLinker;
 import com.helloword.protocolTransmission.DeserializeResponse;
 import com.helloword.protocolTransmission.SerializeRequest;
+import com.helloword.util.HttpLinker;
 
 /**
  * wrap the function of login, register and logout, etc

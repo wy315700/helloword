@@ -1,16 +1,16 @@
 package com.helloword.gsonObject.responseProtocol;
 
-import com.helloword.gsonObject.GlobalDetails;
+import com.helloword.gsonObject.GlobalUserDetails;
 
 public class ChangeUserInfoResponseProtocol extends GlobalResponseProtocol {
     
-    private GlobalDetails details;
+    private GlobalUserDetails details;
 
-    public GlobalDetails getDetails() {
+    public GlobalUserDetails getDetails() {
         return details;
     }
 
-    public void setDetails(GlobalDetails details) {
+    public void setDetails(GlobalUserDetails details) {
         this.details = details;
     }
 

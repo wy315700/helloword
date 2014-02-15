@@ -2,8 +2,6 @@ package com.helloword.gsonObject.requestProtocol.gameProtocol;
 
 import java.util.List;
 
-import com.helloword.gsonObject.UserAnswer;
-
 public class AnswersRequestProtocol extends GlobalGameRequestProtocol {
 
     List<UserAnswer> userAnswer;
@@ -13,5 +11,25 @@ public class AnswersRequestProtocol extends GlobalGameRequestProtocol {
     }
     public void setUserAnswer(List<UserAnswer> userAnswer) {
         this.userAnswer = userAnswer;
+    }
+    
+    public static class UserAnswer {
+        
+        String chosen = null;
+        String time = null;
+        
+        public String getChosen() {
+            return chosen;
+        }
+        public void setChosen(String string) {
+            this.chosen = string;
+        }
+        
+        public String getTime() {
+            return time;
+        }
+        public void setTime(String string) {
+            this.time = string;
+        }
     }
 }

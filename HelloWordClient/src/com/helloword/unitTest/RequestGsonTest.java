@@ -36,7 +36,9 @@ public class RequestGsonTest {
         SerializeRequest request = new SerializeRequest();
         String result = request.logoutRequest("1234567", "Nana");
         String rightResult = "{\"logoutInfo\":{\"userName\":\"Nana\"},";
-        rightResult += "\"request\":\"/user/logout.json\",\"sessionID\":\"1234567\"}";
+        rightResult += "\"sessionID\":\"1234567\",";
+        rightResult += "\"request\":\"/user/logout.json\"}";
+        System.out.println("logout: " + result);
         assertEquals(rightResult, result);
     }
 
@@ -71,7 +73,9 @@ public class RequestGsonTest {
         String result = request.changeUserInfoRequest(sessionID, userName, userNickname, oldPassword, newPassword);
         String rightResult = "{\"userInfo\":{\"oldPassword\":\"123456\",\"newPassword\":\"654321\",";
         rightResult += "\"userName\":\"Nana\",\"userNickname\":\"Ruby\"},";
-        rightResult += "\"request\":\"/user/change_userinfo.json\",\"sessionID\":\"111aaa111\"}";
+        rightResult += "\"sessionID\":\"111aaa111\",";
+        rightResult += "\"request\":\"/user/change_userinfo.json\"}";
+        System.out.println("change: " + result);
         assertEquals(rightResult, result);
     }
 
@@ -82,7 +86,9 @@ public class RequestGsonTest {
     public void testUpdateTokenRequest() {
         SerializeRequest request = new SerializeRequest();
         String result = request.updateTokenRequest("111aaa111");
-        String rightResult = "{\"request\":\"/user/update_token.json\",\"sessionID\":\"111aaa111\"}";
+        String rightResult = "{\"sessionID\":\"111aaa111\",";
+        rightResult += "\"request\":\"/user/update_token.json\"}";
+        System.out.println("updatetoken: " + result);
         assertEquals(rightResult, result);
     }
 

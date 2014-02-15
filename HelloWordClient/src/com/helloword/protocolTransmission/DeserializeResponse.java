@@ -14,7 +14,7 @@ import com.helloword.gsonObject.responseProtocol.VagueResponseProtocol;
  */
 public class DeserializeResponse {
     
-    private static final String DEBUG_TAG = null;
+//    private static final String DEBUG_TAG = null;
 
 //    public void mainHandler(String toExtract) {
 //        String[] availableHandlers = {
