@@ -1,8 +1,12 @@
 package com.helloword.activity;
 
 
+import java.io.UnsupportedEncodingException;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +25,8 @@ public class LoginActivity extends Activity {
 	
 	 private EditText userNameET;
 	 private EditText passwordET;
+	 
+	 
 	// private CheckBox remember;
 
 	// private Dialog dialog;
@@ -49,21 +55,47 @@ public class LoginActivity extends Activity {
 	public void loginHandler(View view) {
 	    String userName = userNameET.getText().toString().trim();
 	    String password = passwordET.getText().toString().trim();
-	    UserService userService = new UserService();
-	    if (userService.login(userName, password)) {
-	        Intent intent = new Intent(this, UserListActivity.class);
-	        startActivity(intent);
+	    UserService userService = new UserService(this);
+	    
+	    if (userService.isConnected()) {
+	        new LoginInBackground().execute(userName, password);
+//	        Toast.makeText(getApplicationContext(), "num is " + loginResult,
+//                  Toast.LENGTH_SHORT).show();
+//	        
+//	        }
 	    }
 	    else {
-	        Toast.makeText(getApplicationContext(), "False User Name or Password",
-	            Toast.LENGTH_SHORT).show();
-	    }
+	        Toast.makeText(getApplicationContext(), "Please connect to the internet",
+	                Toast.LENGTH_SHORT).show();
+        }
+	    
 	}
-
+	
 	public void registerHandler(View view) {
 	    Intent intent = new Intent(this, RegisterActivity.class);
 	    startActivity(intent);
 		Log.e(DEBUGTAG, "to register...");
+	}
+	
+	private class LoginInBackground extends AsyncTask<String, Void, String> {
+	    @Override
+	    protected String doInBackground(String... params) {
+	        UserService userService = new UserService();
+            
+            return userService.login(params[0], params[1]);
+            
+        }
+        // onPostExecute displays the results of the AsyncTask.
+        @Override
+        protected void onPostExecute(String result) {
+//          if (result.equals("success")) {
+////              Intent intent = new Intent(this, UserListActivity.class);
+////              startActivity(intent);
+//          }
+//          else {
+              Toast.makeText(getApplicationContext(), result,
+                      Toast.LENGTH_SHORT).show();
+        }
 	}
 	
 

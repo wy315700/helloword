@@ -1,5 +1,12 @@
 package com.helloword.service;
 
+import java.io.UnsupportedEncodingException;
+
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.widget.Toast;
+
 import com.helloword.gsonObject.responseProtocol.LoginResponseProtocol;
 import com.helloword.protocolTransmission.DeserializeResponse;
 import com.helloword.protocolTransmission.SerializeRequest;
@@ -10,18 +17,46 @@ import com.helloword.util.HttpLinker;
  *
  */
 public class UserService {
+    
+    // not completed
+    
+    Context context = null;
+    
+    public UserService() {
+        
+    }
+    
+    public UserService(Context context) {
+        this.context = context;
+    }
 
-	public boolean login(String userName,String password){
+    public boolean isConnected() {
+        ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    
+	public String login(String userName,String password) {
 		SerializeRequest request = new SerializeRequest();
 		String stringUpload = request.loginRequest(userName, password);
 		String httpUrl = "http://halloword.sinaapp.com/user/login.json";
+		
 		HttpLinker httpLinker = new HttpLinker();
 		String stringDownload = httpLinker.stringPost(httpUrl, stringUpload);
-		
-		DeserializeResponse response = new DeserializeResponse();
-		LoginResponseProtocol loginResponse = response.loginResponse(stringDownload);
-		if (loginResponse.getResult().equals("success")) return true;
-		else return false;
+		if (stringDownload != null) {
+//		    DeserializeResponse response = new DeserializeResponse();
+//	        LoginResponseProtocol loginResponse = response.loginResponse(stringDownload);
+//	        System.out.println("login service " + loginResponse.getResult());
+//	        if (loginResponse.getResult().equals("success")) return "success";
+//	        else return "false username or password";
+		    return stringDownload;
+		}
+		return "data post error";
 	}
 	
 //	public boolean registerName(String userName){
