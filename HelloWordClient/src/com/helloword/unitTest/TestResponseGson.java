@@ -2,11 +2,11 @@ package com.helloword.unitTest;
 
 import junit.framework.TestCase;
 
-import com.helloword.gsonObject.ChangeUserInfoResponseProtocol;
-import com.helloword.gsonObject.LoginResponseProtocol;
-import com.helloword.gsonObject.LogoutResponseProtocol;
-import com.helloword.gsonObject.RegisterResponseProtocol;
-import com.helloword.gsonObject.UpdateTokenResponseProtocol;
+import com.helloword.gsonObject.responseProtocol.ChangeUserInfoResponseProtocol;
+import com.helloword.gsonObject.responseProtocol.LoginResponseProtocol;
+import com.helloword.gsonObject.responseProtocol.LogoutResponseProtocol;
+import com.helloword.gsonObject.responseProtocol.RegisterResponseProtocol;
+import com.helloword.gsonObject.responseProtocol.UpdateTokenResponseProtocol;
 import com.helloword.protocolTransmission.DeserializeResponse;
 
 public class TestResponseGson extends TestCase {
