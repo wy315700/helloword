@@ -1,0 +1,93 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@drawable/main_interface_background" >
+    
+    <RelativeLayout
+        android:layout_width="fill_parent"
+    	android:layout_height="0dp"
+        android:layout_weight="1">
+        
+        <Button
+        	android:id="@+id/main_backbutton"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_alignParentRight="true"
+        	android:layout_alignParentTop="true"
+        	android:background="@drawable/back_bell" />
+        
+        <Button
+        	android:id="@+id/main_photo"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_centerInParent="true"
+        	android:background="@drawable/main_panda" />
+        
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+    	android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/main_pk"
+            
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            
+            android:background="@drawable/button"
+            android:text="@string/word_mypk"
+            android:textColor="#ffffff"
+            android:onClick="goChooseModeActivity" />
+
+        <Button
+            android:id="@+id/main_word"
+            
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            
+            android:layout_toRightOf="@id/main_pk"
+            android:layout_marginBottom="20dp"
+            
+            android:background="@drawable/button"
+            android:text="@string/word_myword"
+            android:textColor="#ffffff"
+            android:onClick="goMyWordActivity" />
+
+        <Button
+            android:id="@+id/main_score"
+            
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            
+            android:layout_below="@id/main_pk"
+            android:layout_marginRight="20dp"
+            
+            android:background="@drawable/button"
+            android:text="@string/word_myscore"
+            android:textColor="#ffffff"
+            android:onClick="goMyScoreActivity" />
+
+        <Button
+            android:id="@+id/main_card"
+            
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            
+            android:layout_below="@id/main_word"
+            android:layout_toRightOf="@id/main_score"
+            
+            android:background="@drawable/button"
+            android:text="@string/word_mycard"
+            android:textColor="#ffffff"
+            android:onClick="goMyCardAcivity" />
+
+    </RelativeLayout>
+
+</LinearLayout>
