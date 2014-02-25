@@ -2,13 +2,13 @@ package com.helloword.util;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-
-import android.util.Base64;
 
 
 
@@ -23,9 +23,12 @@ public class HttpLinker {
      * @param httpUrl
      * @param stringUpload
      * @return the outputstream data wraped in string
-     * @throws UnsupportedEncodingException 
      */
     public String stringPost(String httpUrl, String stringUpload) {
+        return stringPost(httpUrl, stringUpload, 0);
+    }
+    
+    public String stringPost(String httpUrl, String stringUpload, int flag) {
         String stringDownload = null;
         try {
             URL url = new URL(httpUrl);
@@ -33,21 +36,28 @@ public class HttpLinker {
             
             byte[] bytesUpload = stringUpload.getBytes();
             
-            byte[] bytesDownload = byteArrayPost(url, bytesUpload);
+//            Log.e("http link", "" + bytesUpload);
+            
+            byte[] bytesDownload = byteArrayPost(url, bytesUpload, flag);
+            
+//            Log.e("http link", "" + bytesDownload);
             
             stringDownload = new String(bytesDownload);
-//            System.out.println(stringDownload);
+            
+//            Log.e("http link", stringDownload);
+            
         }
         catch (MalformedURLException e) {
             e.printStackTrace();
         }
-//        System.out.println("" + stringDownload.trim().length());
-//        int tempint = stringDownload.trim().length();
-//        String tempString = "" + tempint;
+        
         return stringDownload;
     }
 
-    public byte[] byteArrayPost(URL url, byte[] bytesUpload) {
+    public byte[] byteArrayPost(URL url, byte[] bytesUpload, int flag) {
+        // if flag = 0 (default), short connection, if flag = 1 long connection
+        final int TIMELIMIT = 250;
+        
         try {
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             try {
@@ -56,10 +66,15 @@ public class HttpLinker {
                 urlConnection.setDoInput(true);
                 
                 urlConnection.setUseCaches(false);
-                urlConnection.setConnectTimeout(15000);
-                urlConnection.setReadTimeout(10000);
+                
+                if (flag == 0)
+                    urlConnection.setConnectTimeout(15000);
+                else
+                    urlConnection.setConnectTimeout(TIMELIMIT * 1000);
                 
                 urlConnection.connect();
+                
+                // ==================output data==================================
 
                 BufferedOutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
 
@@ -67,9 +82,26 @@ public class HttpLinker {
                 out.flush();
                 out.close();
                 
-                BufferedInputStream in = new BufferedInputStream(urlConnection.getInputStream());
-                byte[] bytesDownload = new byte[in.available()];
-                in.read(bytesDownload);
+                // =======================read input data=================================
+                
+                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+                
+                int size = 1024;
+                int len;
+                byte[] bytesDownload;
+                
+                if (in instanceof ByteArrayInputStream) {
+                    size = in.available();
+                    bytesDownload = new byte[size];
+                    len = in.read(bytesDownload, 0, size);
+                  } else {
+                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                    bytesDownload = new byte[size];
+                    while ((len = in.read(bytesDownload, 0, size)) != -1)
+                      bos.write(bytesDownload, 0, len);
+                    bytesDownload = bos.toByteArray();
+                  }
+               
                 in.close();
                 
                 return bytesDownload;
@@ -89,14 +121,4 @@ public class HttpLinker {
         return null;
     }
     
-    
-//    public static void main(String args[]) {
-//        HttpLinker linker = new HttpLinker();
-//        String httpUrl = "http://halloword.sinaapp.com/user/login.json";
-//        String request = "{\"loginInfo\":{\"userName\":\"aaa\",\"password\":\"aaaaaa\"},";
-//        request += "\"request\":\"/user/login.json\"}";
-//        String result = linker.stringPost(httpUrl, request);
-//        System.out.println(result);
-//    }
-	
 } 

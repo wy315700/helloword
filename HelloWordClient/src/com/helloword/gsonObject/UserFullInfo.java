@@ -1,6 +1,6 @@
 package com.helloword.gsonObject;
 
-public class UserFullInfo extends Users {
+public class UserFullInfo extends UserInfo {
     private String userID = null;
     private String userEmail = null;
 

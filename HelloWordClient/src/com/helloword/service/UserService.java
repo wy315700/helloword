@@ -1,16 +1,15 @@
 package com.helloword.service;
 
-import java.io.UnsupportedEncodingException;
-
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.widget.Toast;
-
+import com.helloword.gsonObject.responseProtocol.ChangeUserInfoResponseProtocol;
+import com.helloword.gsonObject.responseProtocol.GetMessageResponseProtocol;
 import com.helloword.gsonObject.responseProtocol.LoginResponseProtocol;
+import com.helloword.gsonObject.responseProtocol.LogoutResponseProtocol;
+import com.helloword.gsonObject.responseProtocol.RegisterResponseProtocol;
+import com.helloword.gsonObject.responseProtocol.UpdateTokenResponseProtocol;
 import com.helloword.protocolTransmission.DeserializeResponse;
 import com.helloword.protocolTransmission.SerializeRequest;
 import com.helloword.util.HttpLinker;
+import com.helloword.util.Users;
 
 /**
  * wrap the function of login, register and logout, etc
@@ -19,28 +18,12 @@ import com.helloword.util.HttpLinker;
 public class UserService {
     
     // not completed
-    
-    Context context = null;
-    
-    public UserService() {
         
-    }
-    
-    public UserService(Context context) {
-        this.context = context;
-    }
-
-    public boolean isConnected() {
-        ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    
-    
+	/**
+	 * @param userName
+	 * @param password
+	 * @return the login result if fails return error string
+	 */
 	public String login(String userName,String password) {
 		SerializeRequest request = new SerializeRequest();
 		String stringUpload = request.loginRequest(userName, password);
@@ -49,87 +32,121 @@ public class UserService {
 		HttpLinker httpLinker = new HttpLinker();
 		String stringDownload = httpLinker.stringPost(httpUrl, stringUpload);
 		if (stringDownload != null) {
-//		    DeserializeResponse response = new DeserializeResponse();
-//	        LoginResponseProtocol loginResponse = response.loginResponse(stringDownload);
-//	        System.out.println("login service " + loginResponse.getResult());
-//	        if (loginResponse.getResult().equals("success")) return "success";
-//	        else return "false username or password";
-		    return stringDownload;
+		    DeserializeResponse response = new DeserializeResponse();
+	        LoginResponseProtocol loginResponse = response.loginResponse(stringDownload);
+	        if (loginResponse.getResult().equals("success")) {
+	            Users.sessionID = loginResponse.getDetails().getSessionID();
+	            Users.userName = loginResponse.getDetails().getUserInfo().getUserName();
+	            Users.userNickname = loginResponse.getDetails().getUserInfo().getUserNickname();
+	            return "success";
+	        }
+	        else return loginResponse.getDetails().getError();
 		}
-		return "data post error";
+		return "cannot receive data";
 	}
 	
-//	public boolean registerName(String userName){
-//		SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
-//		Cursor cursor = sqLiteDatabase.query("user",new String[]{"username"}, 
-//				null,null,null,null,null);
-//		cursor.moveToFirst();
-//		for(int i=0;i<cursor.getCount();i++){
-//			String name = cursor.getString(0);
-//			if(name.equals(userName)){
-//				cursor.close();
-//				return false;
-//			}
-//		}
-//		return true;
-//	} 
+	public String logout() {
+	    return logout(Users.sessionID, Users.userName);
+	}
 	
-//	public boolean register(User user){
-//		SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
-//		String sql = "insert into user(username,userpwd,useremail) values(?,?,?)";
-//		Object[] obj = {user.getUserName(),user.getUserPwd(),user.getUserEmail()};
-//		sqLiteDatabase.execSQL(sql, obj);
-//		return true;
-//	}
+	public String logout(String sessionID, String userName) {
+	    SerializeRequest request = new SerializeRequest();
+        String stringUpload = request.logoutRequest(sessionID, userName);
+        String httpUrl = "http://halloword.sinaapp.com/user/logout.json";
+        
+        HttpLinker httpLinker = new HttpLinker();
+        String stringDownload = httpLinker.stringPost(httpUrl, stringUpload);
+        if (stringDownload != null) {
+            DeserializeResponse response = new DeserializeResponse();
+            LogoutResponseProtocol logoutResponse = response.logoutResponse(stringDownload);
+            if (logoutResponse.getResult().equals("success")) return "success";
+            else return logoutResponse.getDetails().getError();
+        }
+        return "cannot receive data";
+	}
 	
-//	public boolean delete(int id){
-//		SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
-//		String sql = "delete from user where userid = ?";
-//		Object[] obj = {id};
-//		sqLiteDatabase.execSQL(sql, obj);
-//		return true;
-//	}
+	public String register(String userName, String password, String userNickname) {
+	    SerializeRequest request = new SerializeRequest();
+	    String stringUpload = request.registerRequest(userName, userNickname, password);
+	    String httpUrl = "http://halloword.sinaapp.com/user/register.json";
+	    
+	    HttpLinker httpLinker = new HttpLinker();
+	    String stringDownload = httpLinker.stringPost(httpUrl, stringUpload);
+	    if (stringDownload != null) {
+            DeserializeResponse response = new DeserializeResponse();
+            RegisterResponseProtocol registerResponse = response.registerResponse(stringDownload);
+            if (registerResponse.getResult().equals("success")) return "success";
+            else return registerResponse.getDetails().getError();
+        }
+        return "cannot receive data";
+	}
 	
-//	public boolean update(String[] values){
-//		SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
-//		String sql = "update user set userpwd = ?,useremail = ? where userid = ?";
-//		Object[] obj = {values[0],values[1],values[2]};
-//		sqLiteDatabase.execSQL(sql, obj);
-//		return true;
-//	}
+	public String changeUserInfo(String userName, String userNickname, 
+	        String oldPassword, String newPassword) {
+	    return changeUserInfo(Users.sessionID, userName,
+	            userNickname, oldPassword, newPassword);
+	}
 	
-//	public ArrayList<User> queryAll(){
-//		ArrayList<User> list = new ArrayList<User>();
-//		SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
-//		Cursor cursor = sqLiteDatabase.query("user", 
-//				new String[]{"userid","username","userpwd","useremail"},
-//				null, null, null, null, "userid");
-//		while(cursor.moveToNext()){
-//			String id = cursor.getString(0);
-//			String name = cursor.getString(1);
-//			String pwd = cursor.getString(2);
-//			String email = cursor.getString(3);
-//			User user = new User(Integer.parseInt(id), name, pwd, email);
-//			list.add(user);
-//		}
-//		cursor.close();
-//		return list;
-//	}
-	
-//	public User queryById(int id){
-//		SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
-//		String sql = "select * from user where userid = ?";
-//		Cursor cursor = sqLiteDatabase.rawQuery(sql, new String[]{String.valueOf(id)});
-//		User user = null;
-//		while(cursor.moveToNext()){
-//			String userid = cursor.getString(0);
-//			String name = cursor.getString(1);
-//			String pwd = cursor.getString(2);
-//			String email = cursor.getString(3);
-//			user = new User(Integer.parseInt(userid), name, pwd, email);
-//		}
-//		cursor.close();
-//		return user;
-//	}
-	
+	public String changeUserInfo(String sessionID, String userName,
+        String userNickname, String oldPassword, String newPassword) {
+
+        SerializeRequest request = new SerializeRequest();
+        String stringUpload = request.changeUserInfoRequest(sessionID, userName,
+            userNickname, oldPassword, newPassword);
+        String httpUrl = "http://halloword.sinaapp.com/user/change_userinfo.json";
+        
+        HttpLinker httpLinker = new HttpLinker();
+        String stringDownload = httpLinker.stringPost(httpUrl, stringUpload);
+        if (stringDownload != null) {
+            DeserializeResponse response = new DeserializeResponse();
+            ChangeUserInfoResponseProtocol changeUserInfoResponse = response.changeUserInfoResponse(stringDownload);
+            if (changeUserInfoResponse.getResult().equals("success")) {
+                Users.userName = changeUserInfoResponse.getDetails().getUserInfo().getUserName();
+                Users.userNickname = changeUserInfoResponse.getDetails().getUserInfo().getUserNickname();
+                return "success";
+            }
+            else return changeUserInfoResponse.getDetails().getError();
+        }
+        return "cannot receive data";
+    }
+
+    public String updateToken(String sessionID) {
+        SerializeRequest request = new SerializeRequest();
+        String stringUpload = request.updateTokenRequest(sessionID);
+        String httpUrl = "http://halloword.sinaapp.com/user/update_token.json";
+        
+        HttpLinker httpLinker = new HttpLinker();
+        String stringDownload = httpLinker.stringPost(httpUrl, stringUpload);
+        if (stringDownload != null) {
+            DeserializeResponse response = new DeserializeResponse();
+            UpdateTokenResponseProtocol updateTokenResponse = response.updateTokenResponse(stringDownload);
+            if (updateTokenResponse.getResult().equals("success")) {
+                Users.sessionID = updateTokenResponse.getDetails().getSessionID();
+                return "success";
+            }
+            else return updateTokenResponse.getDetails().getError();
+        }
+        return "cannot receive data";
+    }
+    
+    public String getMessage() {
+        return getMessage(Users.sessionID);
+    }
+    
+    public String getMessage(String sessionID) {
+        SerializeRequest request = new SerializeRequest();
+        String stringUpload = request.getMessageRequest(sessionID);
+        String httpUrl = "http://halloword.sinaapp.com/helloword/get_message.json";
+        
+        HttpLinker httpLinker = new HttpLinker();
+        String stringDownload = httpLinker.stringPost(httpUrl, stringUpload, 1);
+        if (stringDownload != null) {
+            DeserializeResponse response = new DeserializeResponse();
+            GetMessageResponseProtocol getMessageResponse = response.getMessageResponse(stringDownload);
+            if (getMessageResponse.getResult().equals("success")) return "success";
+            else return getMessageResponse.getDetails().getError();
+        }
+        return "cannot receive data";
+        
+    }
 }

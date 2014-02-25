@@ -106,4 +106,17 @@ public class ResponseGsonTest extends TestCase {
         assertEquals(updateTokenResponse.getResult(), "success");
         assertEquals(updateTokenResponse.getDetails().getSessionID(), "111aaa111");
     }
+
+    @Test
+    public void testGetMessageResponse() {
+        DeserializeResponse response = new DeserializeResponse();
+        String jsonData = "{\"request\":\"/helloword/get_message.json\",";
+        jsonData += "\"result\":\"success\",";
+        jsonData += "\"details\":{\"sessionID\":\"111aaa111\"}}";
+
+        UpdateTokenResponseProtocol updateTokenResponse = response.updateTokenResponse(jsonData);
+        assertEquals(updateTokenResponse.getRequest(), "/helloword/get_message.json");
+        assertEquals(updateTokenResponse.getResult(), "success");
+        assertEquals(updateTokenResponse.getDetails().getSessionID(), "111aaa111");
+    }
 }

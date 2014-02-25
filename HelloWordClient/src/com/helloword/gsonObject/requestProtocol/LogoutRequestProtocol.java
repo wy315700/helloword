@@ -1,15 +1,15 @@
 package com.helloword.gsonObject.requestProtocol;
 
-import com.helloword.gsonObject.Users;
+import com.helloword.gsonObject.UserInfo;
 
 public class LogoutRequestProtocol extends GlobalRequestProtocol {
-    private Users logoutInfo;
+    private UserInfo logoutInfo;
     
-    public Users getLogoutInfo() {
+    public UserInfo getLogoutInfo() {
         return logoutInfo;
     }
     
-    public void setLogoutInfo(Users logoutInfo) {
+    public void setLogoutInfo(UserInfo logoutInfo) {
         this.logoutInfo = logoutInfo;
     }
 }

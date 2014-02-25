@@ -13,8 +13,9 @@ public class AnswersResponseProtocol extends GlobalGameResponseProtocol {
         this.details = details;
     }
     
-    class AnswerResultDetails extends GlobalGameDetails {
-
+    public class AnswerResultDetails extends GlobalGameDetails {
+//    public class AnswerResultDetails {
+        
         String correct = null;
         String incorrect = null;
         String thisScore = null;

@@ -16,9 +16,10 @@ public class PuzzlesResponseProtocol extends GlobalGameResponseProtocol {
         this.details = details;
     }
     
-    class PuzzlesDetails extends GlobalGameDetails {
+    public class PuzzlesDetails extends GlobalGameDetails {
         
         String num = null;
+        String gameID = null;
         List<Puzzles> games;
         
         public String getNum() {
@@ -26,6 +27,13 @@ public class PuzzlesResponseProtocol extends GlobalGameResponseProtocol {
         }
         public void setNum(String string) {
             this.num = string;
+        }
+        
+        public String getGameID() {
+            return gameID;
+        }
+        public void setGameID(String string) {
+            this.gameID = string;
         }
         
         public List<Puzzles> getGames() {

@@ -1,6 +1,6 @@
 package com.helloword.gsonObject.requestProtocol;
 
-import com.helloword.gsonObject.Users;
+import com.helloword.gsonObject.UserInfo;
 
 public class ChangeUserInfoRequestProtocol extends GlobalRequestProtocol {
     private NewUserInfo userInfo;
@@ -12,7 +12,7 @@ public class ChangeUserInfoRequestProtocol extends GlobalRequestProtocol {
         this.userInfo = userInfo;
     }
     
-    public static class NewUserInfo extends Users {
+    public static class NewUserInfo extends UserInfo {
         String oldPassword;
         String newPassword;
 

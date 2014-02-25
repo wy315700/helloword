@@ -2,8 +2,10 @@ package com.helloword.protocolTransmission;
 
 import com.google.gson.Gson;
 import com.helloword.gsonObject.UserFullInfo;
+import com.helloword.gsonObject.UserInfo;
 import com.helloword.gsonObject.requestProtocol.ChangeUserInfoRequestProtocol;
 import com.helloword.gsonObject.requestProtocol.ChangeUserInfoRequestProtocol.NewUserInfo;
+import com.helloword.gsonObject.requestProtocol.GetMessageRequestProtocol;
 import com.helloword.gsonObject.requestProtocol.LoginRequestProtocol;
 import com.helloword.gsonObject.requestProtocol.LogoutRequestProtocol;
 import com.helloword.gsonObject.requestProtocol.RegisterRequestProtocol;
@@ -22,7 +24,7 @@ public class SerializeRequest {
         }*/
     Gson gson = new Gson();
         LoginRequestProtocol requestData = new LoginRequestProtocol();
-        UserFullInfo loginInfo = new UserFullInfo();
+        UserInfo loginInfo = new UserInfo();
 
         loginInfo.setUserName(userName);
         loginInfo.setPassword(password);
@@ -115,5 +117,16 @@ public class SerializeRequest {
         Gson gson = new Gson();
         String requestJson = gson.toJson(requestData);
         return requestJson;
+    }
+
+    public String getMessageRequest(String sessionID) {
+        String request = "/helloword/get_message.json";
+        GetMessageRequestProtocol requestData = new GetMessageRequestProtocol();
+        requestData.setRequest(request);
+        requestData.setSessionID(sessionID);
+
+        Gson gson = new Gson();
+        String requestJson = gson.toJson(requestData);
+        return requestJson;        
     }
 }

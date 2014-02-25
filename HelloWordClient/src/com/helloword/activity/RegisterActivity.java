@@ -2,6 +2,7 @@ package com.helloword.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,10 +10,17 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.helloword.R;
-import com.helloword.protocolTransmission.SerializeRequest;
+import com.helloword.service.NetworkService;
+import com.helloword.service.UserService;
 
 
 
+/**
+ * @author Liletta
+ * register activity
+ * all the strings displayed are waiting to be put into string XML for universal management
+ *
+ */
 public class RegisterActivity extends Activity {
 
 private static final String DEBUG = "register activity";
@@ -30,12 +38,7 @@ private static final String DEBUG = "register activity";
 	private String passwordConfirm;
 	private String userNickname;
 	
-//	//�ж��û����Ƿ�ͨ����֤
-//	private boolean userNamePass = false;
-//	//�ж������Ƿ�ͨ����֤
-//	private boolean passwordPass = false;
-//	//�ж������Ƿ�ͨ����֤
-//	private boolean emailPass = false;
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,16 +52,16 @@ private static final String DEBUG = "register activity";
 	}
 	
 	public void registerHandler(View view) {
+	    NetworkService networkService = new NetworkService(this);
 	    boolean format = verifyFormat();
-	    if (format) {
-	        SerializeRequest request = new SerializeRequest();
-	        String jsonData = request.registerRequest(userName, userNickname, password);
-	        Toast.makeText(getApplicationContext(), jsonData,
-                    Toast.LENGTH_SHORT).show();
-	        Log.e(DEBUG, jsonData);
-	        Intent intent = new Intent(this, UserListActivity.class);
-	        startActivity(intent);
-	    }
+	    if (format)
+	        if(networkService.isConnected()) {
+	            new RegisterInBackground().execute(userName, password, userNickname);
+	        }
+	        else {
+	            Toast.makeText(getApplicationContext(), "please connect to internet",
+	                    Toast.LENGTH_SHORT).show();
+	        }
 	}
 	
 	public void goback(View view) {
@@ -101,5 +104,26 @@ private static final String DEBUG = "register activity";
 	    formatQuality = true;
 	    return formatQuality;
 	}
+	
+	private class RegisterInBackground extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            UserService userService = new UserService();
+            return userService.register(params[0], params[1], params[2]);
+            
+        }
+        // onPostExecute displays the results of the AsyncTask.
+        @Override
+        protected void onPostExecute(String result) {
+            if (result.equals("success")) {
+                Intent intent = new Intent(getApplicationContext(), MainInterfaceActivity.class);
+                startActivity(intent);
+            }
+            else {
+                Toast.makeText(getApplicationContext(), result,
+                      Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 
 }

@@ -1,10 +1,7 @@
 package com.helloword.activity;
 
 
-import java.io.UnsupportedEncodingException;
-
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.helloword.R;
+import com.helloword.service.NetworkService;
 import com.helloword.service.UserService;
 
 
@@ -42,31 +40,31 @@ public class LoginActivity extends Activity {
 		// registerBtn = (Button) findViewById(R.id.lg_register_btn);
 		// loginBtn = (Button) findViewById(R.id.lg_login_btn);
 		
-		 userNameET = (EditText) findViewById(R.id.lg_username);
-		 passwordET = (EditText) findViewById(R.id.lg_password);
+		 userNameET = (EditText) findViewById(R.id.login_username);
+		 passwordET = (EditText) findViewById(R.id.login_password);
 		// rememberPassword = (CheckBox) findViewById(R.id.lg_remember_password);
 
-		// regBtn.setOnClickListener(this);
-		// loginBtn.setOnClickListener(this);
 		
-		// initConfig();
 	}
 	
 	public void loginHandler(View view) {
 	    String userName = userNameET.getText().toString().trim();
 	    String password = passwordET.getText().toString().trim();
-	    UserService userService = new UserService(this);
 	    
-	    if (userService.isConnected()) {
-	        new LoginInBackground().execute(userName, password);
-//	        Toast.makeText(getApplicationContext(), "num is " + loginResult,
-//                  Toast.LENGTH_SHORT).show();
-//	        
-//	        }
-	    }
-	    else {
-	        Toast.makeText(getApplicationContext(), "Please connect to the internet",
-	                Toast.LENGTH_SHORT).show();
+        if (userName.equals("") || password.equals("")) {
+            Toast.makeText(getApplicationContext(), "please input your username or password",
+                  Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Log.d(DEBUGTAG, userName + " " + password);
+            NetworkService networkService = new NetworkService(this);
+            if (networkService.isConnected()) {
+                new LoginInBackground().execute(userName, password);
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "Please connect to the internet",
+                        Toast.LENGTH_SHORT).show();
+            }
         }
 	    
 	}
@@ -81,20 +79,20 @@ public class LoginActivity extends Activity {
 	    @Override
 	    protected String doInBackground(String... params) {
 	        UserService userService = new UserService();
-            
             return userService.login(params[0], params[1]);
             
         }
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
-//          if (result.equals("success")) {
-////              Intent intent = new Intent(this, UserListActivity.class);
-////              startActivity(intent);
-//          }
-//          else {
-              Toast.makeText(getApplicationContext(), result,
+            if (result.equals("success")) {
+                Intent intent = new Intent(getApplicationContext(), MainInterfaceActivity.class);
+                startActivity(intent);
+            }
+            else {
+                Toast.makeText(getApplicationContext(), result,
                       Toast.LENGTH_SHORT).show();
+            }
         }
 	}
 	

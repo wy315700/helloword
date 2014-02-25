@@ -2,6 +2,7 @@ package com.helloword.protocolTransmission;
 
 import com.google.gson.Gson;
 import com.helloword.gsonObject.responseProtocol.ChangeUserInfoResponseProtocol;
+import com.helloword.gsonObject.responseProtocol.GetMessageResponseProtocol;
 import com.helloword.gsonObject.responseProtocol.LoginResponseProtocol;
 import com.helloword.gsonObject.responseProtocol.LogoutResponseProtocol;
 import com.helloword.gsonObject.responseProtocol.RegisterResponseProtocol;
@@ -85,6 +86,13 @@ public class DeserializeResponse {
         Gson gson = new Gson();
         responseData = gson.fromJson(jsonData, UpdateTokenResponseProtocol.class);
         return responseData;
-    }    
+    }
+
+     public GetMessageResponseProtocol getMessageResponse(String jsonData) {
+        GetMessageResponseProtocol responseData = new GetMessageResponseProtocol();
+        Gson gson = new Gson();
+        responseData = gson.fromJson(jsonData, GetMessageResponseProtocol.class);
+        return responseData;
+    }   
     
 }

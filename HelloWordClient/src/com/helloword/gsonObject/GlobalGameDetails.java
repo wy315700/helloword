@@ -1,6 +1,6 @@
 package com.helloword.gsonObject;
 
-public class GlobalGameDetails {
+public class GlobalGameDetails extends GlobalDetails {
     String totalScore = null;
     String userRank = null;
     
