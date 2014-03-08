@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.helloword.R;
-import com.helloword.service.NetworkService;
 import com.helloword.service.UserService;
 
 
@@ -52,23 +51,28 @@ private static final String DEBUG = "register activity";
 	}
 	
 	public void registerHandler(View view) {
-	    NetworkService networkService = new NetworkService(this);
+//	    NetworkService networkService = new NetworkService(this);
 	    boolean format = verifyFormat();
 	    if (format)
-	        if(networkService.isConnected()) {
-	            new RegisterInBackground().execute(userName, password, userNickname);
-	        }
-	        else {
-	            Toast.makeText(getApplicationContext(), "please connect to internet",
-	                    Toast.LENGTH_SHORT).show();
-	        }
+	        // =========test test=========
+	        goOnline();
+	        // ======================
+	    
+//	        if(networkService.isConnected()) {
+//	            new RegisterInBackground().execute(userName, password, userNickname);
+//	        }
+//	        else {
+//	            Toast.makeText(getApplicationContext(), "please connect to internet",
+//	                    Toast.LENGTH_SHORT).show();
+//	        }
 	}
 	
-	public void goback(View view) {
-	    Intent intent = new Intent(this, LoginActivity.class);
+	private void goOnline() {
+	    Intent intent = new Intent(this, OnLineActivity.class);
 	    startActivity(intent);
+	    finish();
 	}
-	
+		
 	private boolean verifyFormat() {
 	    boolean formatQuality = false;
 	    
@@ -105,10 +109,14 @@ private static final String DEBUG = "register activity";
 	    return formatQuality;
 	}
 	
+	public void getBack(View view) {
+        onBackPressed();
+    }
+	
 	private class RegisterInBackground extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
-            UserService userService = new UserService();
+            UserService userService = new UserService(getApplication());
             return userService.register(params[0], params[1], params[2]);
             
         }
@@ -118,6 +126,7 @@ private static final String DEBUG = "register activity";
             if (result.equals("success")) {
                 Intent intent = new Intent(getApplicationContext(), MainInterfaceActivity.class);
                 startActivity(intent);
+                finish();
             }
             else {
                 Toast.makeText(getApplicationContext(), result,

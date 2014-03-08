@@ -25,6 +25,7 @@ public class LoginActivity extends Activity {
 	 private EditText passwordET;
 	 
 	 
+	 
 	// private CheckBox remember;
 
 	// private Dialog dialog;
@@ -42,6 +43,7 @@ public class LoginActivity extends Activity {
 		
 		 userNameET = (EditText) findViewById(R.id.login_username);
 		 passwordET = (EditText) findViewById(R.id.login_password);
+		 
 		// rememberPassword = (CheckBox) findViewById(R.id.lg_remember_password);
 
 		
@@ -56,29 +58,39 @@ public class LoginActivity extends Activity {
                   Toast.LENGTH_SHORT).show();
         }
         else {
-            Log.d(DEBUGTAG, userName + " " + password);
-            NetworkService networkService = new NetworkService(this);
-            if (networkService.isConnected()) {
-                new LoginInBackground().execute(userName, password);
-            }
-            else {
-                Toast.makeText(getApplicationContext(), "Please connect to the internet",
-                        Toast.LENGTH_SHORT).show();
-            }
+            
+            // ==========test test===========
+            Intent intent = new Intent(this, OnLineActivity.class);
+            startActivity(intent);
+            finish();
+            //================================
+            
+//            Log.d(DEBUGTAG, userName + " " + password);
+//            NetworkService networkService = new NetworkService(this);
+//            if (networkService.isConnected()) {
+//                new LoginInBackground().execute(userName, password);
+//            }
+//            else {
+//                Toast.makeText(getApplicationContext(), "Please connect to the internet",
+//                        Toast.LENGTH_SHORT).show();
+//            }
         }
 	    
+	}
+	
+	public void getBack(View view) {
+	    onBackPressed();
 	}
 	
 	public void registerHandler(View view) {
 	    Intent intent = new Intent(this, RegisterActivity.class);
 	    startActivity(intent);
-		Log.e(DEBUGTAG, "to register...");
 	}
 	
 	private class LoginInBackground extends AsyncTask<String, Void, String> {
 	    @Override
 	    protected String doInBackground(String... params) {
-	        UserService userService = new UserService();
+	        UserService userService = new UserService(getApplication());
             return userService.login(params[0], params[1]);
             
         }
@@ -88,6 +100,7 @@ public class LoginActivity extends Activity {
             if (result.equals("success")) {
                 Intent intent = new Intent(getApplicationContext(), MainInterfaceActivity.class);
                 startActivity(intent);
+                finish();
             }
             else {
                 Toast.makeText(getApplicationContext(), result,

@@ -6,9 +6,12 @@ import java.util.Iterator;
 
 import org.junit.Test;
 
+import com.helloword.gsonObject.PKPuzzles;
 import com.helloword.gsonObject.Puzzles;
 import com.helloword.gsonObject.responseProtocol.gameProtocol.AnswersResponseProtocol;
 import com.helloword.gsonObject.responseProtocol.gameProtocol.DroppedOutResponseProtocol;
+import com.helloword.gsonObject.responseProtocol.gameProtocol.PKAnswersResponseProtocol;
+import com.helloword.gsonObject.responseProtocol.gameProtocol.PKPuzzlesResponseProtocol;
 import com.helloword.gsonObject.responseProtocol.gameProtocol.PuzzlesResponseProtocol;
 import com.helloword.gsonObject.responseProtocol.gameProtocol.RankResponseProtocol;
 import com.helloword.protocolTransmission.DeserializeGameResponse;
@@ -113,5 +116,87 @@ public class GameResponseGsonTest {
         DroppedOutResponseProtocol droppedOutResponse = response.droppedOutResponse(jsonData);
         assertEquals(droppedOutResponse.getRequest(), "/helloword/user_logout.json");
         assertEquals(droppedOutResponse.getResult(), "success");
+    }
+
+    @Test
+    public void testPKAnswersResponse() {
+        String jsonData = "{\"request\":\"/helloword/upload_pk_result.json\",";
+        jsonData += "\"result\":\"success\",";
+        jsonData += "\"details\":{";
+        jsonData += "\"correct\":\"2\",";
+        jsonData += "\"incorrect\":\"3\",";
+        jsonData += "\"totalExp\":\"22\",";
+        jsonData += "\"userLevel\":\"23\"}}";
+        
+        DeserializeGameResponse response = new DeserializeGameResponse();
+        PKAnswersResponseProtocol pkAnswersResponse = response.pkAnswersResponse(jsonData);
+        
+        assertEquals(pkAnswersResponse.getRequest(), "/helloword/upload_pk_result.json");
+        assertEquals(pkAnswersResponse.getResult(), "success"); 
+        assertEquals(pkAnswersResponse.getDetails().getCorrect(), "2");
+        assertEquals(pkAnswersResponse.getDetails().getIncorrect(), "3");
+        assertEquals(pkAnswersResponse.getDetails().getTotalExp(), "22");
+        assertEquals(pkAnswersResponse.getDetails().getUserLevel(), "23");
+    }
+
+    @Test
+    public void testPKPuzzlesResponse() {
+        String jsonData = "{\"request\":\"/helloword/request_pk_game.json\",";
+        jsonData += "\"result\":\"success\",";
+        jsonData += "\"details\":{";
+        jsonData += "\"num\":\"10\",";
+        jsonData += "\"gameID\":\"123456\",";
+        jsonData += "\"games\":[";
+        
+        for (int i = 0; i < 40; i++) {
+            jsonData += "{\"description\":\"i am a description\",";
+            jsonData += "\"ans1\":\"a\",";
+            jsonData += "\"ans2\":\"b\",";
+            jsonData += "\"ans3\":\"c\",";
+            jsonData += "\"ans4\":\"d\",";
+            jsonData += "\"point\":\"5\",";
+            jsonData += "\"ans\":\"b\",";
+            jsonData += "\"time\":\"10\",";
+            jsonData += "\"enemyTime\":\"8\",";
+            jsonData += "\"enemyAns\":\"c\"}";
+            if (i != 39) jsonData += ",";
+        }
+        jsonData += "]}}";
+
+//        System.out.println(jsonData);
+        
+        DeserializeGameResponse response = new DeserializeGameResponse();
+        PKPuzzlesResponseProtocol puzzlesResponse = response.pkPuzzlesResponse(jsonData);
+        assertEquals(puzzlesResponse.getRequest(), "/helloword/request_pk_game.json");
+        assertEquals(puzzlesResponse.getResult(), "success"); 
+        assertEquals(puzzlesResponse.getDetails().getNum(), "10");
+        assertEquals(puzzlesResponse.getDetails().getGameID(), "123456");
+
+        PKPuzzles pkPuzzle = new PKPuzzles();
+        pkPuzzle.setDescription("i am a description");
+        pkPuzzle.setAns1("a");
+        pkPuzzle.setAns2("b");
+        pkPuzzle.setAns3("c");
+        pkPuzzle.setAns4("d");
+        pkPuzzle.setPoint("5");
+        pkPuzzle.setAns("b");
+        pkPuzzle.setTime("10");
+        pkPuzzle.setEnemyTime("8");
+        pkPuzzle.setEnemyAns("c");
+
+        Iterator<PKPuzzles> iterator = puzzlesResponse.getDetails().getGames().iterator();
+        while (iterator.hasNext()) {
+            PKPuzzles puzzlesGet = iterator.next();
+            assertEquals(puzzlesGet.getDescription(), pkPuzzle.getDescription());
+            assertEquals(puzzlesGet.getAns1(), pkPuzzle.getAns1());
+            assertEquals(puzzlesGet.getAns2(), pkPuzzle.getAns2());
+            assertEquals(puzzlesGet.getAns3(), pkPuzzle.getAns3());
+            assertEquals(puzzlesGet.getAns4(), pkPuzzle.getAns4());
+            assertEquals(puzzlesGet.getPoint(), pkPuzzle.getPoint());
+            assertEquals(puzzlesGet.getAns(), pkPuzzle.getAns());
+            assertEquals(puzzlesGet.getTime(), pkPuzzle.getTime());
+            assertEquals(puzzlesGet.getEnemyTime(), pkPuzzle.getEnemyTime());
+            assertEquals(puzzlesGet.getEnemyAns(), pkPuzzle.getEnemyAns());
+        }
     }
 } 

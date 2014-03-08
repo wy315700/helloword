@@ -7,65 +7,81 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
-    <uses-permission android:name="android.permission.READ"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.VIBRATE"/>
+
+    <uses-permission android:name="android.permission.READ" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-	
-	
-	<instrumentation android:name="android.test.InstrumentationTestRunner"
-        android:targetPackage="com.helloword.unitTest"
-        android:label="Tests for my App" />
-	
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+
+    <instrumentation
+        android:name="android.test.InstrumentationTestRunner"
+        android:label="Tests for my App"
+        android:targetPackage="com.helloword.unitTest" />
 
     <application
+        android:name="com.helloword.util.Users"
         android:allowBackup="true"
         android:icon="@drawable/icon"
-        android:label="@string/app_name" >
-        
-        <service 
+        android:label="@string/app_name"
+        android:launchMode="singleTop" >
+        <service
             android:name="com.helloword.service.LongPollingService"
             android:exported="false" />
-        
-        <receiver 
+
+        <receiver
             android:name="com.helloword.service.MessageReceiver"
             android:exported="false" >
             <intent-filter>
                 <action android:name="com.helloword.service.LONGPOLLING" />
             </intent-filter>
-            
         </receiver>
-           
+
+        <!--
+            please add the following settings to every activity
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="landscape"
+        -->
+
         <activity
-            android:name="com.helloword.activity.MainActivity"
-            android:theme="@style/AppBaseTheme" >
+            android:name="com.helloword.activity.OpenActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity 
+        <activity
             android:name="com.helloword.activity.LoginActivity"
-            android:theme="@style/AppTheme">
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
-        <activity 
+        <activity
             android:name="com.helloword.activity.RegisterActivity"
-            android:theme="@style/AppTheme">
+            android:parentActivityName="com.helloword.activity.LoginActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
-        <activity 
+        <activity
             android:name="com.helloword.activity.MainInterfaceActivity"
-            android:theme="@style/AppTheme">
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
-        
-        <activity android:name="com.helloword.activity.ChooseModeActivity"></activity>
-        <activity android:name="com.helloword.activity.MyCardActivity"></activity>
-        <activity android:name="com.helloword.activity.ChooseWordActivity"></activity>
-        <activity android:name="com.helloword.activity.ChooseTimeActivity"></activity>
-        <activity android:name="com.helloword.activity.LoadQuestionActivity"></activity>
-        <activity android:name="com.helloword.activity.QuestionActivity"></activity>
-        <uses-library
-            android:name="android.test.runner" >
+
+        <uses-library android:name="android.test.runner" >
         </uses-library>
+
+        <activity
+            android:name="com.helloword.activity.OffLineActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name="com.helloword.activity.OnLineActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
     </application>
+
 </manifest>

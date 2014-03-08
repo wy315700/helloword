@@ -5,6 +5,8 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.helloword.gsonObject.requestProtocol.gameProtocol.AnswersRequestProtocol;
 import com.helloword.gsonObject.requestProtocol.gameProtocol.DroppedOutRequestProtocol;
+import com.helloword.gsonObject.requestProtocol.gameProtocol.PKAnswersRequestProtocol;
+import com.helloword.gsonObject.requestProtocol.gameProtocol.PKPuzzlesRequestProtocol;
 import com.helloword.gsonObject.requestProtocol.gameProtocol.PuzzlesRequestProtocol;
 import com.helloword.gsonObject.requestProtocol.gameProtocol.RankRequestProtocol;
 
@@ -64,4 +66,34 @@ public class SerializeGameRequest {
         String jsonData = gson.toJson(droppedOutRequest);
         return jsonData;
     }
+    
+    public String pkPuzzlesRequest(String sessionID, String gameType) {
+        String request = "/helloword/request_pk_game.json";
+        PKPuzzlesRequestProtocol pkPuzzlesRequest = new PKPuzzlesRequestProtocol();
+        
+        pkPuzzlesRequest.setRequest(request);
+        pkPuzzlesRequest.setSessionID(sessionID);
+        pkPuzzlesRequest.setGameType(gameType);
+        
+        Gson gson = new Gson();
+        String jsonData = gson.toJson(pkPuzzlesRequest);
+        return jsonData;
+    }
+    
+    public String pkAnswersRequest(String sessionID, String gameID, 
+            List<PKAnswersRequestProtocol.UserAnswer> userAnswer) {
+
+        String request = "/helloword/upload_pk_result.json";
+        PKAnswersRequestProtocol pkAnswersRequest = new PKAnswersRequestProtocol();
+        
+        pkAnswersRequest.setRequest(request);
+        pkAnswersRequest.setSessionID(sessionID);
+        pkAnswersRequest.setGameID(gameID);
+        pkAnswersRequest.setUserAnswer(userAnswer);
+        
+        Gson gson = new Gson();
+        String jsonData = gson.toJson(pkAnswersRequest);
+        return jsonData;
+    }
+    
 }

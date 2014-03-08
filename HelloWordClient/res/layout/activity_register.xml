@@ -2,57 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/register_background" >
+    android:orientation="vertical" >
     
-    <RelativeLayout 
-        android:layout_width="fill_parent"
-    	android:layout_height="0dp"
-    	android:layout_weight="7" >
-    	
-        <Button
-        android:id="@+id/register_backbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/back_bell"
-        android:onClick="goback" />
-        
-    </RelativeLayout>
+    
 
-    <RelativeLayout 
-        android:layout_width="fill_parent"
-    	android:layout_height="0dp"
-    	android:layout_weight="1.5" >
+    
         
-	    <Button
-        	android:id="@+id/register_regbtn"
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:layout_alignParentRight="true"
-        	android:layout_marginRight="15dp"
-        	android:background="@drawable/register_submit"
-        	android:textColor="#ffffff"
-        	android:textSize="18sp"
-        	android:onClick="registerHandler" />
 	    
-    </RelativeLayout>
+	    
     
-    
-    <RelativeLayout 
-        android:layout_width="fill_parent"
-    	android:layout_height="0dp"
-    	android:layout_weight="1"
-    	android:gravity="center" >
     	
         <TextView
             android:id="@+id/register_TextView_account"
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
-        	android:layout_centerVertical="true"
-        	android:paddingLeft="15dp"
-        	android:text="@string/word_account"
+        	android:text="@string/button_account"
         	android:textColor="@color/white"
         	android:textSize="18sp" />
         
@@ -60,38 +24,19 @@
         	android:id="@+id/register_username"
         	android:layout_width="160dp"
         	android:layout_height="40dp"
-        	android:layout_alignBaseline="@id/register_TextView_account"
-        	android:layout_toRightOf="@id/register_TextView_account"
         	android:background="@null"
-        	android:hint="@string/sentence_set_username"
+        	android:hint="@string/hint_set_username"
         	android:maxLength="20"
-        	android:paddingLeft="10dp"
-        	android:layout_centerVertical="true"
         	android:textColor="@color/white"
         	android:textSize="16sp" />
         
-        <ImageView
-            android:layout_width="240dp"
-            android:layout_height="30dp"
-            android:background="@drawable/round_rectangle"
-            android:layout_centerVertical="true"
-            android:contentDescription="@string/app_name" />
         
-    </RelativeLayout>
     
-    <RelativeLayout 
-        android:layout_width="fill_parent"
-    	android:layout_height="0dp"
-    	android:layout_weight="1"
-    	android:gravity="center" >
-        
         <TextView
         	android:id="@+id/TextView_password"
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
-        	android:paddingLeft="15dp"
-        	android:layout_centerVertical="true"
-        	android:text="@string/word_password"
+        	android:text="@string/button_password"
         	android:textColor="@color/white"
         	android:textSize="18sp" />
         
@@ -99,39 +44,20 @@
         	android:id="@+id/register_password"
         	android:layout_width="140dp"
         	android:layout_height="40dp"
-        	android:layout_alignBaseline="@id/TextView_password"
-        	android:layout_toRightOf="@id/TextView_password"
-        	android:layout_centerVertical="true"
         	android:background="@null"
-        	android:hint="@string/sentence_set_password"
+        	android:hint="@string/hint_set_password"
         	android:inputType="textPassword"
         	android:maxLength="20"
-        	android:paddingLeft="10dp"
         	android:textColor="@color/white"
         	android:textSize="16sp" />
         
-        <ImageView
-            android:layout_width="240dp"
-            android:layout_height="30dp"
-            android:background="@drawable/round_rectangle"
-            android:layout_centerVertical="true"
-            android:contentDescription="@string/app_name" />
         
-    </RelativeLayout>
-    
-    <RelativeLayout 
-        android:layout_width="fill_parent"
-    	android:layout_height="0dp"
-    	android:layout_weight="1"
-    	android:gravity="center" >
 
         <TextView
         	android:id="@+id/register_TextView_password_confirm"
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
-        	android:layout_centerVertical="true"
-        	android:paddingLeft="15dp"
-        	android:text="@string/word_repeatpassword"
+        	android:text="@string/button_repeatpassword"
         	android:textColor="@color/white"
         	android:textSize="18sp" />
         
@@ -139,39 +65,22 @@
         	android:id="@+id/register_password_confirm"
         	android:layout_width="140dp"
         	android:layout_height="40dp"
-        	android:layout_alignBaseline="@id/register_TextView_password_confirm"
-	        android:layout_toRightOf="@id/register_TextView_password_confirm"
-	        android:layout_centerVertical="true"
         	android:background="@null"
-        	android:hint="@string/sentence_confirm_password"
+        	android:hint="@string/hint_confirm_password"
         	android:inputType="textPassword"
         	android:maxLength="20"
-        	android:paddingLeft="10dp"
         	android:textColor="@color/white"
         	android:textSize="16sp" />
         	
-        <ImageView
-            android:layout_width="240dp"
-            android:layout_height="30dp"
-            android:background="@drawable/round_rectangle"
-            android:layout_centerVertical="true"
-            android:contentDescription="@string/app_name" />
+     
         
-    </RelativeLayout>
     
-    <RelativeLayout 
-        android:layout_width="fill_parent"
-    	android:layout_height="0dp"
-    	android:layout_weight="1"
-    	android:gravity="center" >
         
         <TextView
         	android:id="@+id/register_TextView_user_nickname"
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
-        	android:layout_centerVertical="true"
-        	android:paddingLeft="15dp"
-        	android:text="@string/word_nickname"
+        	android:text="@string/button_nickname"
         	android:textColor="@color/white"
         	android:textSize="18sp" />
         
@@ -179,32 +88,21 @@
         	android:id="@+id/register_user_nickname"
         	android:layout_width="140dp"
         	android:layout_height="40dp"
-        	android:layout_centerVertical="true"
-        	android:layout_alignBaseline="@id/register_TextView_user_nickname"
-	        android:layout_toRightOf="@id/register_TextView_user_nickname"
        		android:background="@null"
-	        android:hint="@string/sentence_set_nickname"
+	        android:hint="@string/hint_set_nickname"
 	        android:inputType="text"
 	        android:maxLength="20"
-        	android:paddingLeft="10dp"
         	android:textColor="@color/white"
         	android:textSize="16sp" />
         
-        <ImageView
-            android:layout_width="240dp"
-            android:layout_height="30dp"
-            android:background="@drawable/round_rectangle"
-            android:layout_centerVertical="true"
-            android:contentDescription="@string/app_name" />
+      
         
-    </RelativeLayout>
-    
-	<RelativeLayout 
-        android:layout_width="fill_parent"
-    	android:layout_height="0dp"
-    	android:layout_weight="2" >
-        
-	</RelativeLayout>
-    
+   <Button
+        	android:id="@+id/register_regbtn"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="@string/temp_register"
+        	android:textSize="18sp"
+        	android:onClick="registerHandler" /> 
 
 </LinearLayout>

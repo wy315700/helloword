@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">一起玩单词</string>
-    <string name="action_settings">Settings</string>
-    <string name="contentDescription">contentDescription</string>
-    <string name="word_account">账户</string>
-    <string name="sentence_enter_username">请输入邮箱地址</string>
-    <string name="word_password">密码</string>
-    <string name="word_repeatpassword">确认密码</string>
-    <string name="sentence_enter_password">请输入密码</string>
-    <string name="sentence_remember_info">记住登录信息</string>
-    <string name="sentence_set_username">请输入常用邮箱地址</string>
-    <string name="sentence_set_password">请输入至少六位密码</string>
-    <string name="sentence_confirm_password">请重新输入密码</string>
-    <string name="word_nickname">昵称</string>
-    <string name="sentence_set_nickname">起个名字吧</string>
-    <string name="word_mypk">我的比赛</string>
-    <string name="word_myword">我的生词</string>
-    <string name="word_myscore">我的成绩</string>
-    <string name="word_mycard">我的名片</string>
+    <string name="action_settings">设置</string>
+    <string name="contentDescription">图片描述</string>
+    <string name="button_account">账户</string>
+    <string name="hint_enter_username">请输入邮箱地址</string>
+    <string name="button_password">密码</string>
+    <string name="button_repeatpassword">确认密码</string>
+    <string name="hint_enter_password">请输入密码</string>
+    <string name="hint_remember_info">记住登录信息</string>
+    <string name="hint_set_username">请输入常用邮箱地址</string>
+    <string name="hint_set_password">请输入至少六位密码</string>
+    <string name="hint_confirm_password">请重新输入密码</string>
+    <string name="button_nickname">昵称</string>
+    <string name="hint_set_nickname">起个名字吧</string>
+    <string name="button_mypk">我的比赛</string>
+    <string name="button_myword">我的生词</string>
+    <string name="button_myscore">我的成绩</string>
+    <string name="button_mycard">我的名片</string>
+    <string name="temp_open_state">我是启动页，1500ms后跳转</string>
+    <string name="temp_login">登录</string>
+    <string name="temp_register">注册</string>
+    <string name="toast_quit_app">再按一次返回将退出程序</string>
+    <string name="button_offline">离线模式</string>
+    <string name="button_online">在线模式</string>
+    <string name="temp_offline">我是离线模式，我还没有漂漂的界面</string>
+    <string name="title_activity_on_line">OnLineActivity</string>
+    <string name="temp_online">我是在线模式，快点来打扮我!</string>
+
 </resources>

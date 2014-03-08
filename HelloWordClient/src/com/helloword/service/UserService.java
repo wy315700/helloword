@@ -1,5 +1,7 @@
 package com.helloword.service;
 
+import android.app.Application;
+
 import com.helloword.gsonObject.responseProtocol.ChangeUserInfoResponseProtocol;
 import com.helloword.gsonObject.responseProtocol.GetMessageResponseProtocol;
 import com.helloword.gsonObject.responseProtocol.LoginResponseProtocol;
@@ -16,6 +18,12 @@ import com.helloword.util.Users;
  *
  */
 public class UserService {
+    
+    private Users user;
+    
+    public UserService(Application application) {
+        user = (Users) application;
+    }
     
     // not completed
         
@@ -35,9 +43,9 @@ public class UserService {
 		    DeserializeResponse response = new DeserializeResponse();
 	        LoginResponseProtocol loginResponse = response.loginResponse(stringDownload);
 	        if (loginResponse.getResult().equals("success")) {
-	            Users.sessionID = loginResponse.getDetails().getSessionID();
-	            Users.userName = loginResponse.getDetails().getUserInfo().getUserName();
-	            Users.userNickname = loginResponse.getDetails().getUserInfo().getUserNickname();
+	            user.setSessionID(loginResponse.getDetails().getSessionID());
+	            user.setUserName(loginResponse.getDetails().getUserInfo().getUserName());
+	            user.setUserNickname(loginResponse.getDetails().getUserInfo().getUserNickname());
 	            return "success";
 	        }
 	        else return loginResponse.getDetails().getError();
@@ -46,7 +54,7 @@ public class UserService {
 	}
 	
 	public String logout() {
-	    return logout(Users.sessionID, Users.userName);
+	    return logout(user.getSessionID(), user.getUserName());
 	}
 	
 	public String logout(String sessionID, String userName) {
@@ -83,7 +91,8 @@ public class UserService {
 	
 	public String changeUserInfo(String userName, String userNickname, 
 	        String oldPassword, String newPassword) {
-	    return changeUserInfo(Users.sessionID, userName,
+	    
+	    return changeUserInfo(user.getSessionID(), userName,
 	            userNickname, oldPassword, newPassword);
 	}
 	
@@ -101,8 +110,8 @@ public class UserService {
             DeserializeResponse response = new DeserializeResponse();
             ChangeUserInfoResponseProtocol changeUserInfoResponse = response.changeUserInfoResponse(stringDownload);
             if (changeUserInfoResponse.getResult().equals("success")) {
-                Users.userName = changeUserInfoResponse.getDetails().getUserInfo().getUserName();
-                Users.userNickname = changeUserInfoResponse.getDetails().getUserInfo().getUserNickname();
+                user.setUserName(changeUserInfoResponse.getDetails().getUserInfo().getUserName());
+                user.setUserNickname(changeUserInfoResponse.getDetails().getUserInfo().getUserNickname());
                 return "success";
             }
             else return changeUserInfoResponse.getDetails().getError();
@@ -121,7 +130,7 @@ public class UserService {
             DeserializeResponse response = new DeserializeResponse();
             UpdateTokenResponseProtocol updateTokenResponse = response.updateTokenResponse(stringDownload);
             if (updateTokenResponse.getResult().equals("success")) {
-                Users.sessionID = updateTokenResponse.getDetails().getSessionID();
+                user.setSessionID(updateTokenResponse.getDetails().getSessionID());
                 return "success";
             }
             else return updateTokenResponse.getDetails().getError();
@@ -130,7 +139,7 @@ public class UserService {
     }
     
     public String getMessage() {
-        return getMessage(Users.sessionID);
+        return getMessage(user.getSessionID());
     }
     
     public String getMessage(String sessionID) {
