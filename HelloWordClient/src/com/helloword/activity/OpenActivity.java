@@ -1,14 +1,12 @@
 package com.helloword.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Window;
 
 import com.helloword.R;
 
-public class OpenActivity extends Activity {
+public class OpenActivity extends BaseActivity {
     
     Handler handler;
 

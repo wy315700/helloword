@@ -1,12 +1,10 @@
 package com.helloword.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
 
 import com.helloword.R;
 
-public class OffLineActivity extends Activity {
+public class OffLineActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,8 +13,6 @@ public class OffLineActivity extends Activity {
        
     }
 
-    public void getBack(View view) {
-        onBackPressed();
-    }
+    
 
 }

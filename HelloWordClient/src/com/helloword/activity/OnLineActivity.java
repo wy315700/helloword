@@ -1,13 +1,11 @@
 package com.helloword.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import com.helloword.R;
 
-public class OnLineActivity extends Activity {
+public class OnLineActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,9 +13,7 @@ public class OnLineActivity extends Activity {
         setContentView(R.layout.activity_online);
     }
     
-    public void getBack(View view) {
-        onBackPressed();
-    }
+   
     
     @Override
     public void onBackPressed() {

@@ -1,7 +1,6 @@
 package com.helloword.activity;
 
 
-import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +10,7 @@ import android.widget.Toast;
 
 import com.helloword.R;
 
-public class MainInterfaceActivity extends Activity {
+public class MainInterfaceActivity extends BaseActivity {
     
     private long firstBackTime;
     

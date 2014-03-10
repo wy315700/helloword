@@ -2,7 +2,7 @@ package com.helloword.util;
 
 import android.app.Application;
 
-public class Users extends Application {
+public class UsersApplication extends Application {
     // store global variable of user's information to save IPC time
     private String sessionID;
     private String userName;

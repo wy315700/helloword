@@ -11,7 +11,7 @@ import com.helloword.gsonObject.responseProtocol.UpdateTokenResponseProtocol;
 import com.helloword.protocolTransmission.DeserializeResponse;
 import com.helloword.protocolTransmission.SerializeRequest;
 import com.helloword.util.HttpLinker;
-import com.helloword.util.Users;
+import com.helloword.util.UsersApplication;
 
 /**
  * wrap the function of login, register and logout, etc
@@ -19,10 +19,10 @@ import com.helloword.util.Users;
  */
 public class UserService {
     
-    private Users user;
+    private UsersApplication user;
     
     public UserService(Application application) {
-        user = (Users) application;
+        user = (UsersApplication) application;
     }
     
     // not completed

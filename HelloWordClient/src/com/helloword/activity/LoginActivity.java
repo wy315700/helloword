@@ -1,21 +1,18 @@
 package com.helloword.activity;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.helloword.R;
-import com.helloword.service.NetworkService;
 import com.helloword.service.UserService;
 
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends BaseActivity {
 
 	// private Button loginBtn;
 	// private Button regBtn;
@@ -31,7 +28,7 @@ public class LoginActivity extends Activity {
 	// private Dialog dialog;
 	// private SharedPreferences sp;
 
-	private static final String DEBUGTAG = "LoginActivity";
+//	private static final String DEBUGTAG = "LoginActivity";
 
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -78,9 +75,7 @@ public class LoginActivity extends Activity {
 	    
 	}
 	
-	public void getBack(View view) {
-	    onBackPressed();
-	}
+	
 	
 	public void registerHandler(View view) {
 	    Intent intent = new Intent(this, RegisterActivity.class);
@@ -98,7 +93,7 @@ public class LoginActivity extends Activity {
         @Override
         protected void onPostExecute(String result) {
             if (result.equals("success")) {
-                Intent intent = new Intent(getApplicationContext(), MainInterfaceActivity.class);
+                Intent intent = new Intent(getApplicationContext(), OnLineActivity.class);
                 startActivity(intent);
                 finish();
             }

@@ -1,6 +1,5 @@
 package com.helloword.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -20,7 +19,7 @@ import com.helloword.service.UserService;
  * all the strings displayed are waiting to be put into string XML for universal management
  *
  */
-public class RegisterActivity extends Activity {
+public class RegisterActivity extends BaseActivity {
 
 private static final String DEBUG = "register activity";
 //	private Button registerBtn;
@@ -109,9 +108,7 @@ private static final String DEBUG = "register activity";
 	    return formatQuality;
 	}
 	
-	public void getBack(View view) {
-        onBackPressed();
-    }
+	
 	
 	private class RegisterInBackground extends AsyncTask<String, Void, String> {
         @Override
