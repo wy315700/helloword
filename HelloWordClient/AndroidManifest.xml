@@ -16,7 +16,7 @@
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"
         android:label="Tests for my App"
-        android:targetPackage="com.helloword.unitTest" />
+        android:targetPackage="com.helloword" />
 
     <application
         android:name="com.helloword.util.UsersApplication"
