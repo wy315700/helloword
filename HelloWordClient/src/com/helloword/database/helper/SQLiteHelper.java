@@ -35,7 +35,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
-		db.execSQL(CREATE_TABLE_NEW_WORD);//创建聊天朋友表
+		db.execSQL(CREATE_TABLE_NEW_WORD);
 	}
 	
 	/**
