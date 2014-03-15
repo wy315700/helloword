@@ -39,8 +39,7 @@
         <!--
             please add the following settings to every activity
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:screenOrientation="landscape"
-        -->
+            android:screenOrientation="landscape"        -->
 
         <activity
             android:name="com.helloword.activity.OpenActivity"
@@ -80,6 +79,16 @@
             android:name="com.helloword.activity.OnLineActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name="com.helloword.activity.PVPModeActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.helloword.activity.PVPGameActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="landscape" >
         </activity>
     </application>
 

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pvp_game_bg_mountain" >
+    
+    <ImageView
+        android:id="@+id/pvp_game_message"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        
+        android:scaleType="centerInside"
+        android:contentDescription="@string/content_description" />
+    
+    <!-- left user -->
+    
+    <ProgressBar
+        android:id="@+id/pvp_game_userleft_score"
+        android:layout_width="180dp"
+        android:layout_height="10dp"
+        
+        android:layout_alignBottom="@id/pvp_game_message"
+        android:layout_toLeftOf="@id/pvp_game_message"
+
+        style="?android:attr/progressBarStyleHorizontal"
+        android:indeterminateOnly="false"
+        android:progress="30"
+        android:progressDrawable="@drawable/progress_bar"
+        android:background="@drawable/rectangle" />
+    
+    <ImageView
+        android:id="@+id/pvp_game_userleft_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        
+        android:layout_alignBottom="@id/pvp_game_userleft_score"
+        android:layout_toLeftOf="@id/pvp_game_userleft_score"
+        
+        android:src="@drawable/pvp_game_ic_girl"
+        android:contentDescription="@string/content_description" />
+    
+    <TextView
+        android:id="@+id/pvp_game_userleft_name"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        
+        android:layout_below="@id/pvp_game_userleft_img"
+        android:layout_alignLeft="@id/pvp_game_userleft_img"
+        
+        android:gravity="center"
+        android:textSize="12sp" />
+    
+    <!-- right user -->
+        
+    <ProgressBar
+        android:id="@+id/pvp_game_userright_score"
+        android:layout_width="180dp"
+        android:layout_height="10dp"
+        
+        android:layout_alignBottom="@id/pvp_game_message"
+        android:layout_toRightOf="@id/pvp_game_message"
+
+        style="?android:attr/progressBarStyleHorizontal"
+        android:indeterminateOnly="false"
+        android:progress="30"
+        android:progressDrawable="@drawable/progress_bar"
+        android:background="@drawable/rectangle" />
+    
+    <ImageView
+        android:id="@+id/pvp_game_userright_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        
+        android:layout_alignBottom="@id/pvp_game_userright_score"
+        android:layout_toRightOf="@id/pvp_game_userright_score"
+        
+        android:src="@drawable/pvp_game_ic_boy"
+        android:contentDescription="@string/content_description" />
+    
+    <TextView
+        android:id="@+id/pvp_game_userright_name"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        
+        android:layout_below="@id/pvp_game_userright_img"
+        android:layout_alignLeft="@id/pvp_game_userright_img"
+        
+        android:gravity="center"
+        android:textSize="12sp" />
+    
+    <!-- puzzles -->
+    
+    <TextView
+        android:id="@+id/pvp_game_word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        
+        android:layout_below="@+id/pvp_game_message"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        
+        android:textColor="#0000FF"
+        android:textSize="30sp" />
+    
+    <Button
+        android:id="@+id/pvp_game_btnA"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        
+        android:layout_toLeftOf="@id/pvp_game_message"
+        android:layout_below="@id/pvp_game_word"
+        android:layout_marginTop="20dp"
+        
+        android:gravity="center"
+        android:background="@drawable/button" />
+
+    <Button
+        android:id="@+id/pvp_game_btnB"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        
+        android:layout_toRightOf="@id/pvp_game_message"
+        android:layout_below="@id/pvp_game_word"
+        android:layout_marginTop="20dp"
+        
+        android:background="@drawable/button"
+        android:gravity="center" />
+
+    <Button
+        android:id="@+id/pvp_game_btnC"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        
+        android:layout_toLeftOf="@id/pvp_game_message"
+        android:layout_below="@id/pvp_game_word"
+        android:layout_marginTop="80dp"
+        
+        android:background="@drawable/button"
+        android:gravity="center" />
+
+    <Button
+        android:id="@+id/pvp_game_btnD"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        
+        android:layout_toRightOf="@id/pvp_game_message"
+        android:layout_below="@id/pvp_game_word"
+        android:layout_marginTop="80dp"
+        
+        android:background="@drawable/button"
+        android:gravity="center" />
+    
+    <!-- time progress -->
+
+    <ProgressBar
+        android:id="@+id/pvp_game_time_progress"
+        android:layout_width="400dp"
+        android:layout_height="13dp"
+        
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/pvp_game_btnC"
+        android:layout_marginTop="30dp"
+
+        style="?android:attr/progressBarStyleHorizontal"
+        android:indeterminateOnly="false"
+        android:progressDrawable="@drawable/progress_bar"
+        android:background="@drawable/rectangle" />
+    
+    <TextView
+        android:id="@+id/pvp_game_puzzleno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        
+        android:layout_toRightOf="@id/pvp_game_time_progress"
+        android:layout_alignTop="@id/pvp_game_time_progress"
+        android:layout_marginLeft="8dp"
+        
+        android:textSize="12sp"
+        android:gravity="center"
+        android:textColor="@color/black" />
+    
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        
+        android:layout_toRightOf="@id/pvp_game_time_progress"
+        android:layout_alignTop="@id/pvp_game_time_progress"
+        
+        android:src="@drawable/pvp_game_ic_puzzleno"
+        android:contentDescription="@string/content_description" />
+    
+    <TextView 
+        android:id="@+id/pvp_game_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        
+        android:layout_centerInParent="true"
+        
+        android:textSize="50sp"
+        android:textColor="@color/red"
+        android:visibility="gone"
+        />
+		    
+</RelativeLayout>

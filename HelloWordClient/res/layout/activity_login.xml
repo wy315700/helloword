@@ -5,18 +5,17 @@
     android:orientation="vertical" >
         
         <TextView
-            android:id="@+id/login_textView_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="15dp"
-            android:text="@string/button_account" />
+            android:text="@string/account" />
         
         <EditText
             android:id="@+id/login_username"
             android:layout_width="140dp"
             android:layout_height="40dp"
             android:background="@null"
-            android:hint="@string/hint_enter_username"
+            android:hint="@string/enter_username"
             android:inputType="text"
             android:maxLength="16"
             android:maxLines="1"
@@ -26,18 +25,17 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/login_textView_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="15dp"
-            android:text="@string/button_password" />
+            android:text="@string/password" />
 
         <EditText
             android:id="@+id/login_password"
             android:layout_width="140dp"
             android:layout_height="40dp"
             android:background="@null"
-            android:hint="@string/hint_enter_password"
+            android:hint="@string/enter_password"
             android:inputType="textPassword"
             android:maxLength="16"
             android:maxLines="1"

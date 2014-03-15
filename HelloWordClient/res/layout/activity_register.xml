@@ -16,8 +16,7 @@
             android:id="@+id/register_TextView_account"
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
-        	android:text="@string/button_account"
-        	android:textColor="@color/white"
+        	android:text="@string/account"
         	android:textSize="18sp" />
         
         <EditText
@@ -25,9 +24,8 @@
         	android:layout_width="160dp"
         	android:layout_height="40dp"
         	android:background="@null"
-        	android:hint="@string/hint_set_username"
+        	android:hint="@string/set_username"
         	android:maxLength="20"
-        	android:textColor="@color/white"
         	android:textSize="16sp" />
         
         
@@ -36,8 +34,7 @@
         	android:id="@+id/TextView_password"
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
-        	android:text="@string/button_password"
-        	android:textColor="@color/white"
+        	android:text="@string/password"
         	android:textSize="18sp" />
         
         <EditText
@@ -45,10 +42,9 @@
         	android:layout_width="140dp"
         	android:layout_height="40dp"
         	android:background="@null"
-        	android:hint="@string/hint_set_password"
+        	android:hint="@string/set_password"
         	android:inputType="textPassword"
         	android:maxLength="20"
-        	android:textColor="@color/white"
         	android:textSize="16sp" />
         
         
@@ -57,8 +53,7 @@
         	android:id="@+id/register_TextView_password_confirm"
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
-        	android:text="@string/button_repeatpassword"
-        	android:textColor="@color/white"
+        	android:text="@string/repeatpassword"
         	android:textSize="18sp" />
         
         <EditText
@@ -66,10 +61,9 @@
         	android:layout_width="140dp"
         	android:layout_height="40dp"
         	android:background="@null"
-        	android:hint="@string/hint_confirm_password"
+        	android:hint="@string/confirm_password"
         	android:inputType="textPassword"
         	android:maxLength="20"
-        	android:textColor="@color/white"
         	android:textSize="16sp" />
         	
      
@@ -80,8 +74,7 @@
         	android:id="@+id/register_TextView_user_nickname"
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
-        	android:text="@string/button_nickname"
-        	android:textColor="@color/white"
+        	android:text="@string/nickname"
         	android:textSize="18sp" />
         
         <EditText
@@ -89,10 +82,9 @@
         	android:layout_width="140dp"
         	android:layout_height="40dp"
        		android:background="@null"
-	        android:hint="@string/hint_set_nickname"
+	        android:hint="@string/set_nickname"
 	        android:inputType="text"
 	        android:maxLength="20"
-        	android:textColor="@color/white"
         	android:textSize="16sp" />
         
       

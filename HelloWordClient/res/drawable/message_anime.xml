@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<animation-list 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/have_message" android:oneshot="false">
+    <item android:drawable="@drawable/pvp_game_ic_message0" android:duration="100" />
+    <item android:drawable="@drawable/pvp_game_ic_message90" android:duration="100" />
+    <item android:drawable="@drawable/pvp_game_ic_message180" android:duration="100" />
+    <item android:drawable="@drawable/pvp_game_ic_message270" android:duration="100" />
+</animation-list>

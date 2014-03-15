@@ -2,6 +2,8 @@ package com.helloword.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import com.helloword.R;
 
@@ -15,6 +17,15 @@ public class OnLineActivity extends BaseActivity {
     
    
     
+    public void goPVE(View view) {
+        Toast.makeText(this, "UI not available yet", Toast.LENGTH_SHORT).show();
+    }
+    
+    public void goPVP(View view) {
+        Intent intent = new Intent(this, PVPModeActivity.class);
+        startActivity(intent);
+    }
+    
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, MainInterfaceActivity.class);
@@ -23,5 +34,4 @@ public class OnLineActivity extends BaseActivity {
         finish();
     }
     
-   
 }

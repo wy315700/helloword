@@ -1,8 +1,6 @@
 package com.helloword.activity;
 
 
-import android.app.ActivityManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -30,10 +28,11 @@ public class MainInterfaceActivity extends BaseActivity {
             firstBackTime = System.currentTimeMillis();
 
         } else {
-            // TODO add cache clean code   
-            ActivityManager activityManager = (ActivityManager) this.getSystemService(Context.ACTIVITY_SERVICE);
-            activityManager.killBackgroundProcesses(getPackageName());
-            finish();
+            // TODO add cache clean code
+            // FIXME quit error with the activitymanager
+//            ActivityManager activityManager = (ActivityManager) this.getSystemService(Context.ACTIVITY_SERVICE);
+//            activityManager.killBackgroundProcesses(getPackageName());
+            System.exit(0);
         }
     }
 	
