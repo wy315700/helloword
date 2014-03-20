@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    
+
+    
+        
+	    
+	    
+    
+    	
+        <TextView
+            android:id="@+id/register_TextView_account"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="@string/account"
+        	android:textSize="18sp" />
+        
+        <EditText
+        	android:id="@+id/register_username"
+        	android:layout_width="160dp"
+        	android:layout_height="40dp"
+        	android:background="@null"
+        	android:hint="@string/set_username"
+        	android:maxLength="20"
+        	android:textSize="16sp" />
+        
+        
+    
+        <TextView
+        	android:id="@+id/TextView_password"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="@string/password"
+        	android:textSize="18sp" />
+        
+        <EditText
+        	android:id="@+id/register_password"
+        	android:layout_width="140dp"
+        	android:layout_height="40dp"
+        	android:background="@null"
+        	android:hint="@string/set_password"
+        	android:inputType="textPassword"
+        	android:maxLength="20"
+        	android:textSize="16sp" />
+        
+        
+
+        <TextView
+        	android:id="@+id/register_TextView_password_confirm"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="@string/repeatpassword"
+        	android:textSize="18sp" />
+        
+        <EditText
+        	android:id="@+id/register_password_confirm"
+        	android:layout_width="140dp"
+        	android:layout_height="40dp"
+        	android:background="@null"
+        	android:hint="@string/confirm_password"
+        	android:inputType="textPassword"
+        	android:maxLength="20"
+        	android:textSize="16sp" />
+        	
+     
+        
+    
+        
+        <TextView
+        	android:id="@+id/register_TextView_user_nickname"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="@string/nickname"
+        	android:textSize="18sp" />
+        
+        <EditText
+        	android:id="@+id/register_user_nickname"
+        	android:layout_width="140dp"
+        	android:layout_height="40dp"
+       		android:background="@null"
+	        android:hint="@string/set_nickname"
+	        android:inputType="text"
+	        android:maxLength="20"
+        	android:textSize="16sp" />
+        
+      
+        
+   <Button
+        	android:id="@+id/register_regbtn"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="@string/temp_register"
+        	android:textSize="18sp"
+        	android:onClick="registerHandler" /> 
+
+</LinearLayout>
