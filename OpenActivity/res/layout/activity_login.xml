@@ -1,62 +1,170 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+<?xml version="1.0" encoding="utf-8" ?> 
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent" 
+	android:background="@color/white"
+	android:orientation="vertical">
+	
+   <ImageView
+        android:id="@+id/login_bluebar_up"
         
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="15dp"
-            android:text="@string/account" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
         
-        <EditText
-            android:id="@+id/login_username"
-            android:layout_width="140dp"
-            android:layout_height="40dp"
-            android:background="@null"
-            android:hint="@string/enter_username"
-            android:inputType="text"
-            android:maxLength="16"
-            android:maxLines="1"
-            android:paddingLeft="12dp"
-            android:textColor="#1d1d1d"
-            android:textColorHint="#666666"
-            android:textSize="16sp" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        
+        android:src="@drawable/bg_blue_bar" 
+        android:contentDescription="@string/content_description"/>
+   
+   <ImageView
+       android:id="@+id/login_tixiao_single"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       
+       android:layout_alignParentRight="true"
+       android:layout_below="@+id/login_bluebar_up"
+       android:layout_marginRight="10dp"
+       android:layout_marginTop="10dp"
+       
+       android:contentDescription="@string/content_description"
+       android:src="@drawable/bg_tixiao_single" />
+        
+      
+  <EditText 
+      android:id="@+id/login_username" 
+      android:layout_width="140dp" 
+      android:layout_height="40dp" 
+      
+      android:layout_below="@+id/login_tixiao_single"
+      android:layout_alignRight="@+id/login_tixiao_single"
+      android:layout_alignLeft="@+id/login_tixiao_single"
+      android:layout_marginTop="1dp"
+      
+      android:background="@drawable/register_rectangle"
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="15dp"
-            android:text="@string/password" />
+      android:hint="@string/enter_username" 
+      android:gravity="right"
+      android:inputType="text" 
+      android:maxLength="16" 
+      android:maxLines="1" 
+      android:paddingLeft="12dp" 
+      android:textColor="#1d1d1d" 
+      android:textColorHint="#666666" 
+      android:textSize="16sp" /> 
+      
+    <TextView 
+      android:layout_width="wrap_content" 
+      android:layout_height="wrap_content" 
+      
+      android:layout_alignBaseline="@+id/login_username"
+      android:layout_alignBottom="@+id/login_username"
+      android:layout_alignLeft="@+id/login_username"
+        	
+      android:paddingLeft="15dp" 
+      android:text="@string/account" 
+      android:textColor="#1d1d1d" /> 
+      
 
-        <EditText
-            android:id="@+id/login_password"
-            android:layout_width="140dp"
-            android:layout_height="40dp"
-            android:background="@null"
-            android:hint="@string/enter_password"
-            android:inputType="textPassword"
-            android:maxLength="16"
-            android:maxLines="1"
-            android:paddingLeft="12dp"
-            android:textColor="#1d1d1d"
-            android:textColorHint="#666666"
-            android:textSize="16sp" />
+  <EditText 
+      android:id="@+id/login_password" 
+      android:layout_width="140dp" 
+      android:layout_height="40dp" 
+      
+      android:layout_below="@+id/login_username"
+      android:layout_alignLeft="@+id/login_username"
+      android:layout_alignRight="@+id/login_username"
+      android:layout_marginTop="15dp"
+        	
+      android:background="@drawable/register_rectangle" 
+      android:hint="@string/enter_password" 
+      android:gravity="right"
+      android:inputType="textPassword" 
+      android:maxLength="16" 
+      android:maxLines="1" 
+      android:paddingLeft="12dp" 
+      android:textColor="#1d1d1d" 
+      android:textColorHint="#666666" 
+      android:textSize="16sp" /> 
+      
+    <TextView 
+      android:layout_width="wrap_content" 
+      android:layout_height="wrap_content" 
+      
+      android:layout_alignBaseline="@+id/login_password"
+      android:layout_alignBottom="@+id/login_password"
+      android:layout_alignLeft="@+id/login_password"
+        	
+      android:paddingLeft="15dp" 
+      android:text="@string/password" 
+      android:textColor="#1d1d1d"/> 
+  
+     <CheckBox
+       android:id="@+id/lg_remember_password"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+            
+       android:layout_marginTop="5dp"
+       android:layout_below="@+id/login_password"
+       android:layout_alignLeft="@+id/login_username"
+       android:layout_marginLeft="40dp"       
+       
+       android:text="@string/remember_account_password"
+       android:textColor="#000000" />
+     
+  <Button 
+      android:id="@+id/login_loginbutton" 
+      android:layout_width="wrap_content" 
+      android:layout_height="wrap_content" 
+      
+      android:layout_below="@+id/lg_remember_password"
+      android:layout_alignLeft="@+id/login_username"
+      android:layout_marginTop="5dp"
+        	
+      android:background="@drawable/register_rectangle"
+      android:text="@string/temp_login" 
+      android:onClick="loginHandler" /> 
+   
+  <Button 
+      android:id="@+id/login_registerbutton" 
+      android:layout_width="wrap_content" 
+      android:layout_height="wrap_content" 
+      
+      android:layout_below="@+id/lg_remember_password"
+	  android:layout_toRightOf="@+id/login_loginbutton"
+	  android:layout_marginTop="5dp"
+	  android:layout_marginLeft="30dp"
+      
+      android:background="@drawable/register_rectangle"
+      android:text="@string/temp_register" 
+      android:onClick="registerHandler" /> 
+ 
+     <ImageView
+       android:id="@+id/login_monkey"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       
+       android:layout_alignParentLeft="true"
+       android:layout_below="@+id/login_bluebar_up"
+       android:layout_marginTop="40dp"
+       
+       android:src="@drawable/bg_monkey" 
+       android:contentDescription="@string/content_description"/>
+     
+   <ImageView
+        android:id="@+id/login_bluebar_down"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        
+        android:src="@drawable/bg_blue_bar" 
+        android:contentDescription="@string/content_description"/>
 
-        <Button
-    		android:id="@+id/login_loginbutton"
-    		android:layout_width="wrap_content"
-    		android:layout_height="wrap_content"
-    		android:text="@string/temp_login"
-    		android:onClick="loginHandler" />
-        
-        <Button
-    		android:id="@+id/login_registerbutton"
-    		android:layout_width="wrap_content"
-    		android:layout_height="wrap_content"
-    		android:text="@string/temp_register"
-    		android:onClick="registerHandler" />
-        
-    
-</LinearLayout>
+
+  </RelativeLayout>

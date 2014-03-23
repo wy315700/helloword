@@ -358,7 +358,7 @@ public class PVPGameActivity extends BaseActivity implements AnimationListener{
 						// TODO Auto-generated catch block  
 					e.printStackTrace();  
 					} //显示答案暂停2秒
-	        		if(tempquestionNo==2){
+	        		if(tempquestionNo==6){
 	        			mHandler.post(showRoundResult);
 	        			progressbarState=0;
 	        			tempisRound=false;

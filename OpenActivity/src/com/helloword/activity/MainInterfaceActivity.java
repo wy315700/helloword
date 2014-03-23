@@ -51,4 +51,9 @@ public class MainInterfaceActivity extends BaseActivity {
 	    Intent intent = new Intent(this, OffLineActivity.class);
         startActivity(intent);
 	}
+	
+	public void goBook(View view) {
+	    Intent intent = new Intent(this, OffLineActivity.class);
+        startActivity(intent);
+	}
 }

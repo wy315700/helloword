@@ -90,6 +90,12 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:screenOrientation="landscape" >
         </activity>
+        <activity
+            android:name="com.helloword.activity.PVPBook"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity android:name=".activity.PVPLoadActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>

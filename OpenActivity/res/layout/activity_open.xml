@@ -2,13 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:background="@drawable/bg_cushion"
     tools:context=".activity.OpenActivity" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/temp_open_state" />
+    <ImageView
+        android:id="@+id/open_cushion_shade"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@drawable/bg_cushion_shade" 
+        android:visibility="invisible"
+        android:contentDescription="@string/content_description" />
 
 </LinearLayout>
