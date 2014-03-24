@@ -57,7 +57,6 @@
         </activity>
         <activity
             android:name="com.helloword.activity.RegisterActivity"
-            android:parentActivityName="com.helloword.activity.LoginActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>

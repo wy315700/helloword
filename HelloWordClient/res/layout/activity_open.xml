@@ -6,9 +6,12 @@
     android:orientation="horizontal"
     tools:context=".activity.OpenActivity" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/temp_open_state" />
+	<ImageView
+	    android:id="@+id/open_bg"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    
+	    android:src="@drawable/open_bg_buffer"
+	    android:contentDescription="@string/content_description" />
 
 </LinearLayout>

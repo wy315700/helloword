@@ -150,5 +150,14 @@ public class PVPGameActivity extends BaseActivity {
             }
         }
     };
+    
+    // the crossfade animation of puzzles
+    public void showPuzzles () {
+        
+    }
+    
+    public void fadePuzzles() {
+        
+    }
 
 }
