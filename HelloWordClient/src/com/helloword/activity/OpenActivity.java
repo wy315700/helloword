@@ -34,13 +34,4 @@ public class OpenActivity extends BaseActivity {
 		startActivity(intent);
 		finish();
 	}
-	
-	
-	
-	
-	
-	
-    
-	
-	
 }

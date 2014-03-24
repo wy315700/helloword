@@ -1,18 +1,30 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:background="@drawable/bg_mountain" >
     
         
-
-    
-        <Button
-            android:id="@+id/main_offline"
-            
+		<ImageView
+            android:id="@+id/main_tixiao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             
-            android:text="@string/offline"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            
+            android:src="@drawable/main_img_tixiao" 
+            android:contentDescription="@string/content_description"/>
+    
+        <Button
+            android:id="@+id/main_offline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/main_tixiao"
+            android:layout_marginTop="30dp"
+            
+            android:background="@drawable/main_btn_biguan"
             android:onClick="goOffline" />
 
         <Button
@@ -20,10 +32,13 @@
             
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             
-            android:text="@string/online"
+            android:layout_below="@id/main_offline"
+            android:layout_marginTop="20dp"
+            
+            android:background="@drawable/main_btn_zhengzhan"
             android:onClick="goOnline" />
-
        
 
-</LinearLayout>
+</RelativeLayout>
