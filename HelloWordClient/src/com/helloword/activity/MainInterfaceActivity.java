@@ -20,7 +20,7 @@ public class MainInterfaceActivity extends BaseActivity {
 		firstBackTime = 0;
 	}
     
- // when back-key pressed twice, quit the app
+ // when press back-key twice, quit the app
     @Override
     public void onBackPressed() {
         if ((System.currentTimeMillis() - firstBackTime) > 1500) {
