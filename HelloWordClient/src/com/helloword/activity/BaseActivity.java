@@ -1,12 +1,15 @@
 package com.helloword.activity;
 
 import android.animation.AnimatorListenerAdapter;
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.os.Build;
 import android.view.View;
 
 public abstract class BaseActivity extends Activity {
 
     //========UI interaction effect=============
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
     public void fadeIn(View animView, int durationTime, AnimatorListenerAdapter animListener) {
         animView.setVisibility(View.GONE);
         animView.setAlpha(0f);
@@ -17,6 +20,7 @@ public abstract class BaseActivity extends Activity {
             .setListener(animListener);
     }
     
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
     public void fadeOut(View animView, int durationTime, AnimatorListenerAdapter animListener) {
         animView.animate()
             .alpha(0f)
