@@ -1,9 +1,9 @@
 package com.helloword.activity;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
 import android.widget.ImageView;
 
 import com.helloword.R;
@@ -19,14 +19,38 @@ public class OpenActivity extends BaseActivity {
 		setContentView(R.layout.activity_open);
 		
 		background = (ImageView) findViewById(R.id.open_bg);
-		AnimatorListenerAdapter animEnd = new AnimatorListenerAdapter() {
-		    @Override
-		    public void onAnimationEnd(Animator animation) {
-		        goMainInterfaceActivity();
-		    }
+	}
+	
+	@Override
+	protected void onStart() {
+	    super.onStart();		
+		AnimationListener animEnd = new AnimationListener() {
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                // TODO Auto-generated method stub
+                goMainInterfaceActivity();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // TODO Auto-generated method stub
+                
+            }
+
+            @Override
+            public void onAnimationStart(Animation animation) {
+                // TODO Auto-generated method stub
+                
+            }
 		};
 		fadeIn(background, OPEN_DURATION, animEnd);
 		
+	}
+	
+	@Override
+	protected void onStop() {
+	    super.onStop();
+	    clearAnim(background);
 	}
 	
 	public void goMainInterfaceActivity() {

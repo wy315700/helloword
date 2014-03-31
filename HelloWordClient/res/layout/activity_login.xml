@@ -1,62 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
-        
-        <TextView
-            android:layout_width="wrap_content"
+    android:background="@color/white" >
+
+    <!-- blue bar up and down -->
+
+    <ImageView
+        android:id="@+id/login_bluebar_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:contentDescription="@string/content_description"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_bluebar" />
+
+    <ImageView
+        android:id="@+id/login_bluebar_down"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:contentDescription="@string/content_description"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_bluebar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/login_bluebar_down"
+        android:layout_below="@id/login_bluebar_up"
+        android:baselineAligned="false"
+        android:orientation="horizontal" >
+
+        <!-- Imagine left -->
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2" >
+
+            <ImageView
+                android:id="@+id/login_monkey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:contentDescription="@string/content_description"
+                android:src="@drawable/login_img_monkey" />
+        </RelativeLayout>
+
+        <!-- UI right -->
+
+        <RelativeLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingLeft="15dp"
-            android:text="@string/account" />
-        
-        <EditText
-            android:id="@+id/login_username"
-            android:layout_width="140dp"
-            android:layout_height="40dp"
-            android:background="@null"
-            android:hint="@string/enter_username"
-            android:inputType="text"
-            android:maxLength="16"
-            android:maxLines="1"
-            android:paddingLeft="12dp"
-            android:textColor="#1d1d1d"
-            android:textColorHint="#666666"
-            android:textSize="16sp" />
+            android:layout_weight="3" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="15dp"
-            android:text="@string/password" />
+            <ImageView
+                android:id="@+id/login_tixiao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/content_description"
+                android:src="@drawable/img_tixiao_word" />
 
-        <EditText
-            android:id="@+id/login_password"
-            android:layout_width="140dp"
-            android:layout_height="40dp"
-            android:background="@null"
-            android:hint="@string/enter_password"
-            android:inputType="textPassword"
-            android:maxLength="16"
-            android:maxLines="1"
-            android:paddingLeft="12dp"
-            android:textColor="#1d1d1d"
-            android:textColorHint="#666666"
-            android:textSize="16sp" />
+            <RelativeLayout
+                android:id="@+id/login_account_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/login_tixiao"
+                android:layout_alignRight="@+id/login_tixiao"
+                android:layout_below="@+id/login_tixiao"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/round_rectangle" >
 
-        <Button
-    		android:id="@+id/login_loginbutton"
-    		android:layout_width="wrap_content"
-    		android:layout_height="wrap_content"
-    		android:text="@string/temp_login"
-    		android:onClick="loginHandler" />
-        
-        <Button
-    		android:id="@+id/login_registerbutton"
-    		android:layout_width="wrap_content"
-    		android:layout_height="wrap_content"
-    		android:text="@string/temp_register"
-    		android:onClick="registerHandler" />
-        
-    
-</LinearLayout>
+                <EditText
+                    android:id="@+id/login_username"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:hint="@string/enter_username"
+                    android:inputType="text"
+                    android:maxLength="16"
+                    android:maxLines="1"
+                    android:textColor="#1d1d1d"
+                    android:textColorHint="#666666"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/login_username"
+                    android:text="@string/account"
+                    android:textColor="#1d1d1d"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/login_pass_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/login_account_area"
+                android:layout_alignRight="@+id/login_account_area"
+                android:layout_below="@+id/login_account_area"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/round_rectangle" >
+
+                <EditText
+                    android:id="@+id/login_password"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:hint="@string/enter_password"
+                    android:inputType="textPassword"
+                    android:maxLength="16"
+                    android:maxLines="1"
+                    android:textColor="#1d1d1d"
+                    android:textColorHint="#666666"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/login_password"
+                    android:text="@string/password"
+                    android:textColor="#1d1d1d"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignLeft="@id/login_pass_area"
+                android:layout_alignRight="@id/login_pass_area"
+                android:layout_below="@id/login_pass_area" >
+
+                <CheckBox
+                    android:id="@+id/login_auto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:button="@drawable/checkbox"
+                    android:checked="false"
+                    android:paddingLeft="10dp"
+                    android:text="@string/auto_login"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <!-- login and register button -->
+
+            <Button
+                android:id="@+id/login_loginbutton"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/login_pass_area"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/blue_button"
+                android:onClick="loginHandler"
+                android:text="@string/login" />
+
+            <Button
+                android:id="@+id/login_registerbutton"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/login_loginbutton"
+                android:layout_alignRight="@+id/login_pass_area"
+                android:background="@drawable/blue_button"
+                android:onClick="registerHandler"
+                android:text="@string/register" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

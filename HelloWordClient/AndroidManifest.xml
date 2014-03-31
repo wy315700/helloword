@@ -5,9 +5,9 @@
     android:versionName="1.0" >
 
     <uses-sdk
+        android:maxSdkVersion="19"
         android:minSdkVersion="8"
-        android:targetSdkVersion="17"
-        android:maxSdkVersion="19" />
+        android:targetSdkVersion="17" />
 
     <uses-permission android:name="android.permission.READ" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -40,7 +40,8 @@
         <!--
             please add the following settings to every activity
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:screenOrientation="landscape"        -->
+            android:screenOrientation="landscape"
+        -->
 
         <activity
             android:name="com.helloword.activity.OpenActivity"
@@ -48,6 +49,7 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -58,7 +60,6 @@
         </activity>
         <activity
             android:name="com.helloword.activity.RegisterActivity"
-            android:parentActivityName="com.helloword.activity.LoginActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
@@ -83,13 +84,18 @@
         </activity>
         <activity
             android:name="com.helloword.activity.PVPModeActivity"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity
             android:name="com.helloword.activity.PVPGameActivity"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name="com.helloword.activity.PVPEndActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
     </application>
 

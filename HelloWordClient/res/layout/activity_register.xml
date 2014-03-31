@@ -1,100 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
-    
+    android:layout_height="wrap_content"
+    android:background="@drawable/register_bg" >
 
-    
-        
-	    
-	    
-    
-    	
-        <TextView
-            android:id="@+id/register_TextView_account"
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:text="@string/account"
-        	android:textSize="18sp" />
-        
-        <EditText
-        	android:id="@+id/register_username"
-        	android:layout_width="160dp"
-        	android:layout_height="40dp"
-        	android:background="@null"
-        	android:hint="@string/set_username"
-        	android:maxLength="20"
-        	android:textSize="16sp" />
-        
-        
-    
-        <TextView
-        	android:id="@+id/TextView_password"
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:text="@string/password"
-        	android:textSize="18sp" />
-        
-        <EditText
-        	android:id="@+id/register_password"
-        	android:layout_width="140dp"
-        	android:layout_height="40dp"
-        	android:background="@null"
-        	android:hint="@string/set_password"
-        	android:inputType="textPassword"
-        	android:maxLength="20"
-        	android:textSize="16sp" />
-        
-        
+    <!-- blue bar up and down -->
+
+    <ImageView
+        android:id="@+id/register_bluebar_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:contentDescription="@string/content_description"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_bluebar" />
+
+    <ImageView
+        android:id="@+id/register_bluebar_down"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:contentDescription="@string/content_description"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_bluebar" />
+
+    <!-- form below -->
+
+    <ImageView
+        android:id="@+id/register_tixiao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_bluebar_up"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/content_description"
+        android:src="@drawable/img_tixiao_word" />
+
+    <Button
+        android:id="@+id/register_regbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/register_bluebar_down"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/blue_button"
+        android:onClick="registerHandler"
+        android:text="@string/register"
+        android:textSize="14sp" />
+
+    <RelativeLayout
+        android:id="@+id/register_account_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/register_regbtn"
+        android:layout_below="@+id/register_tixiao"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/round_rectangle"
+        android:padding="10dp" >
 
         <TextView
-        	android:id="@+id/register_TextView_password_confirm"
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:text="@string/repeatpassword"
-        	android:textSize="18sp" />
-        
-        <EditText
-        	android:id="@+id/register_password_confirm"
-        	android:layout_width="140dp"
-        	android:layout_height="40dp"
-        	android:background="@null"
-        	android:hint="@string/confirm_password"
-        	android:inputType="textPassword"
-        	android:maxLength="20"
-        	android:textSize="16sp" />
-        	
-     
-        
-    
-        
-        <TextView
-        	android:id="@+id/register_TextView_user_nickname"
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:text="@string/nickname"
-        	android:textSize="18sp" />
-        
-        <EditText
-        	android:id="@+id/register_user_nickname"
-        	android:layout_width="140dp"
-        	android:layout_height="40dp"
-       		android:background="@null"
-	        android:hint="@string/set_nickname"
-	        android:inputType="text"
-	        android:maxLength="20"
-        	android:textSize="16sp" />
-        
-      
-        
-   <Button
-        	android:id="@+id/register_regbtn"
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:text="@string/temp_register"
-        	android:textSize="18sp"
-        	android:onClick="registerHandler" /> 
+            android:id="@+id/register_username_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/account"
+            android:textColor="#1d1d1d"
+            android:textSize="14sp" />
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/register_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/register_username_textview"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/enter_username"
+            android:inputType="text"
+            android:maxLength="16"
+            android:maxLines="1"
+            android:textColor="#1d1d1d"
+            android:textColorHint="#666666"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/register_pass_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/register_account_area"
+        android:layout_alignRight="@+id/register_account_area"
+        android:layout_below="@+id/register_account_area"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_rectangle"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/register_password_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/password"
+            android:textColor="#1d1d1d"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/register_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/register_password_textview"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/enter_password"
+            android:inputType="textPassword"
+            android:maxLength="16"
+            android:maxLines="1"
+            android:textColor="#1d1d1d"
+            android:textColorHint="#666666"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/register_nickname_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/register_regbtn"
+        android:layout_alignTop="@id/register_account_area"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        android:background="@drawable/round_rectangle"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/register_nickname_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/nickname"
+            android:textColor="#1d1d1d"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/register_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/register_nickname_textview"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/set_nickname"
+            android:inputType="textPassword"
+            android:maxLength="16"
+            android:maxLines="1"
+            android:textColor="#1d1d1d"
+            android:textColorHint="#666666"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/register_repeatpass_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/register_nickname_area"
+        android:layout_alignRight="@+id/register_nickname_area"
+        android:layout_alignTop="@+id/register_pass_area"
+        android:background="@drawable/round_rectangle"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/register_repassword_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/password"
+            android:textColor="#1d1d1d"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/register_repassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/register_repassword_textview"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/enter_password"
+            android:inputType="textPassword"
+            android:maxLength="16"
+            android:maxLines="1"
+            android:textColor="#1d1d1d"
+            android:textColorHint="#666666"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_above="@id/register_regbtn"
+        android:layout_centerHorizontal="true" >
+
+        <CheckBox
+            android:id="@+id/register_auto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:button="@drawable/checkbox"
+            android:checked="false"
+            android:paddingLeft="10dp"
+            android:text="@string/auto_login"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+</RelativeLayout>
