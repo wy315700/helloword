@@ -49,7 +49,7 @@ public class GameResponseGsonTest {
         jsonData += "\"num\":\"10\",";
         jsonData += "\"gameID\":\"123456\",";
         jsonData += "\"games\":[";
-        for (int i = 0; i < 40; i++) {
+        for (int i = 0; i < 20; i++) {
             jsonData += "{\"description\":\"i am a description\",";
             jsonData += "\"ans1\":\"a\",";
             jsonData += "\"ans2\":\"b\",";
@@ -57,7 +57,7 @@ public class GameResponseGsonTest {
             jsonData += "\"ans4\":\"d\",";
             jsonData += "\"point\":\"5\",";
             jsonData += "\"time\":\"10\"}";
-            if (i != 39) jsonData += ",";
+            if (i != 19) jsonData += ",";
         }
         jsonData += "]}}";
 

@@ -20,8 +20,8 @@
     <string name="myscore">我的成绩</string>
     <string name="mycard">我的名片</string>
     <string name="temp_open_state">我是启动页，1500ms后跳转</string>
-    <string name="temp_login">登录</string>
-    <string name="temp_register">注册</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
     <string name="toast_quit_app">再按一次返回将退出程序</string>
     <string name="offline">离线模式</string>
     <string name="online">在线模式</string>
@@ -32,5 +32,14 @@
     <string name="temp_mode">我是模式，点我</string>
     <string name="temp_english">hello</string>
     <string name="temp_chinese">你好</string>
+    <string name="auto_login">允许自动登录</string>
+    <string name="cet4_pk">四级对战</string>
+    <string name="cet6_pk">六级对战</string>
+    <string name="ielts_pk">雅思对战</string>
+    <string name="toefl_pk">托福对战</string>
+    <string name="gre_pk">GRE对战</string>
+    <string name="more_pk">更多对战</string>
+    <string name="title_activity_pvpend">PVPEndActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

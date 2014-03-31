@@ -1,17 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".PVPModeActivity" >
+    android:background="@color/white" >
 
-    <Button
-        android:layout_width="wrap_content"
+    <!-- blue bar up and down -->
+
+    <ImageView
+        android:id="@+id/pvp_mode_bluebar_up"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/temp_mode"
-        android:onClick="goPVPGame" />
+        android:layout_alignParentTop="true"
+        android:contentDescription="@string/content_description"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_bluebar" />
+
+    <ImageView
+        android:id="@+id/pvp_mode_bluebar_down"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:contentDescription="@string/content_description"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_bluebar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/pvp_mode_bluebar_down"
+        android:layout_below="@id/pvp_mode_bluebar_up"
+        android:baselineAligned="false"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/content_description"
+                android:src="@drawable/pvp_mode_img_warrior" />
+        </RelativeLayout>
+
+        <!-- List Right -->
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2" >
+
+            <ImageView
+                android:id="@+id/pvp_mode_tixiao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/content_description"
+                android:src="@drawable/img_tixiao_word" />
+
+            <!-- Right -->
+
+
+            <!-- 托福对战 -->
+
+            <ImageView
+                android:id="@+id/pvp_mode_ic_toefl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/pvp_mode_tixiao"
+                android:layout_below="@+id/pvp_mode_tixiao"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/content_description"
+                android:onClick="goToeflPK"
+                android:src="@drawable/img_books" />
+
+            <Button
+                android:id="@+id/pvp_mode_toefl"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/pvp_mode_ic_toefl"
+                android:layout_alignTop="@+id/pvp_mode_ic_toefl"
+                android:layout_below="@+id/pvp_mode_tixiao"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/pvp_mode_ic_toefl"
+                android:background="@drawable/blue_button"
+                android:gravity="center"
+                android:onClick="goToeflPK"
+                android:text="@string/toefl_pk"
+                android:textColor="#1d1d1d" />
+
+            <!-- GRE对战 -->
+
+            <ImageView
+                android:id="@+id/pvp_mode_ic_gre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/pvp_mode_ic_toefl"
+                android:layout_below="@+id/pvp_mode_ic_toefl"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/content_description"
+                android:onClick="goGrePK"
+                android:src="@drawable/img_books"
+                android:text="@string/gre_pk" />
+
+            <Button
+                android:id="@+id/pvp_mode_gre"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/pvp_mode_ic_gre"
+                android:layout_alignTop="@+id/pvp_mode_ic_gre"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/pvp_mode_ic_gre"
+                android:background="@drawable/blue_button"
+                android:gravity="center"
+                android:onClick="goGrePK"
+                android:text="@string/gre_pk"
+                android:textColor="#1d1d1d" />
+
+            <!-- 更多对战 -->
+
+            <ImageView
+                android:id="@+id/pvp_mode_ic_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/pvp_mode_ic_gre"
+                android:layout_below="@+id/pvp_mode_ic_gre"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/content_description"
+                android:onClick="goMorePK"
+                android:src="@drawable/img_books" />
+
+            <Button
+                android:id="@+id/pvp_mode_more"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/pvp_mode_ic_more"
+                android:layout_alignTop="@+id/pvp_mode_ic_more"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/pvp_mode_ic_more"
+                android:background="@drawable/blue_button"
+                android:gravity="center"
+                android:onClick="goMorePK"
+                android:text="@string/more_pk"
+                android:textColor="#1d1d1d" />
+
+            <!-- Left -->
+
+
+            <!-- 四级对战 -->
+
+            <Button
+                android:id="@+id/pvp_mode_cet4"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/pvp_mode_toefl"
+                android:layout_alignRight="@id/pvp_mode_tixiao"
+                android:layout_alignTop="@+id/pvp_mode_toefl"
+                android:layout_marginRight="100dp"
+                android:background="@drawable/blue_button"
+                android:gravity="center"
+                android:onClick="goCet4PK"
+                android:text="@string/cet4_pk"
+                android:textColor="#1d1d1d" />
+
+            <ImageView
+                android:id="@+id/pvp_mode_ic_cet4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/pvp_mode_ic_toefl"
+                android:layout_toLeftOf="@id/pvp_mode_cet4"
+                android:contentDescription="@string/content_description"
+                android:onClick="goCet4PK"
+                android:src="@drawable/img_books_dark" />
+
+            <!-- 六级对战 -->
+
+            <Button
+                android:id="@+id/pvp_mode_cet6"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/pvp_mode_gre"
+                android:layout_alignRight="@id/pvp_mode_cet4"
+                android:layout_alignTop="@+id/pvp_mode_gre"
+                android:background="@drawable/blue_button"
+                android:gravity="center"
+                android:onClick="goCet6PK"
+                android:text="@string/cet6_pk"
+                android:textColor="#1d1d1d" />
+
+            <ImageView
+                android:id="@+id/pvp_mode_ic_cet6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/pvp_mode_ic_gre"
+                android:layout_toLeftOf="@id/pvp_mode_cet6"
+                android:contentDescription="@string/content_description"
+                android:onClick="goCet6PK"
+                android:src="@drawable/img_books_dark" />
+
+            <!-- 雅思秘籍 -->
+
+            <Button
+                android:id="@+id/pvp_mode_ielts"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/pvp_mode_more"
+                android:layout_alignRight="@id/pvp_mode_cet6"
+                android:layout_alignTop="@+id/pvp_mode_more"
+                android:layout_below="@+id/pvp_mode_ic_gre"
+                android:background="@drawable/blue_button"
+                android:gravity="center"
+                android:onClick="goMorePK"
+                android:text="@string/ielts_pk"
+                android:textColor="#1d1d1d" />
+
+            <ImageView
+                android:id="@+id/pvp_mode_ic_ielts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/pvp_mode_ic_more"
+                android:layout_toLeftOf="@+id/pvp_mode_ielts"
+                android:contentDescription="@string/content_description"
+                android:onClick="goMorePK"
+                android:src="@drawable/img_books_dark" />
+        </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>

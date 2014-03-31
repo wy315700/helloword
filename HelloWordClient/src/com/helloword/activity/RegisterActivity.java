@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.helloword.R;
+import com.helloword.service.NetworkService;
 import com.helloword.service.UserService;
 
 
@@ -45,29 +46,29 @@ private static final String DEBUG = "register activity";
 		
 		userNameET = (EditText) findViewById(R.id.register_username);
 		passwordET = (EditText) findViewById(R.id.register_password);
-		passwordConfirmET = (EditText) findViewById(R.id.register_password_confirm);
-		userNicknameET = (EditText) findViewById(R.id.register_user_nickname);
+		passwordConfirmET = (EditText) findViewById(R.id.register_repassword);
+		userNicknameET = (EditText) findViewById(R.id.register_nickname);
 	}
 	
 	public void registerHandler(View view) {
-//	    NetworkService networkService = new NetworkService(this);
+	    NetworkService networkService = new NetworkService(this);
 	    boolean format = verifyFormat();
 	    if (format)
 	        // =========test test=========
-	        goOnline();
+//	        goOnline();
 	        // ======================
 	    
-//	        if(networkService.isConnected()) {
-//	            new RegisterInBackground().execute(userName, password, userNickname);
-//	        }
-//	        else {
-//	            Toast.makeText(getApplicationContext(), "please connect to internet",
-//	                    Toast.LENGTH_SHORT).show();
-//	        }
+	        if(networkService.isConnected()) {
+	            new RegisterInBackground().execute(userName, password, userNickname);
+	        }
+	        else {
+	            Toast.makeText(getApplicationContext(), "please connect to internet",
+	                    Toast.LENGTH_SHORT).show();
+	        }
 	}
 	
 	private void goOnline() {
-	    Intent intent = new Intent(this, OnLineActivity.class);
+	    Intent intent = new Intent(this, PVPModeActivity.class);
 	    startActivity(intent);
 	    finish();
 	}
@@ -121,9 +122,7 @@ private static final String DEBUG = "register activity";
         @Override
         protected void onPostExecute(String result) {
             if (result.equals("success")) {
-                Intent intent = new Intent(getApplicationContext(), MainInterfaceActivity.class);
-                startActivity(intent);
-                finish();
+                goOnline();
             }
             else {
                 Toast.makeText(getApplicationContext(), result,
