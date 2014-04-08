@@ -1,59 +1,35 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical" 
-    android:background="@drawable/bg_mountain_leaf">
-    
-        
-        <ImageView
-            android:id="@+id/main_tixiao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            
-            android:layout_marginTop="10dp"
-            android:layout_centerHorizontal="true"
-            
-            android:src="@drawable/bg_tixiao" 
-            android:contentDescription="@string/content_description"/>
-    
-        <Button
-            android:id="@+id/main_offline"
-            
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            
-            android:layout_below="@+id/main_tixiao"
-            android:layout_marginTop="10dp"
-            
-            android:background="@drawable/btn_biguan"
-            android:onClick="goOffline" />
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg_mountain" >
 
-        <Button
-            android:id="@+id/main_online"
-            
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            
-            android:layout_below="@+id/main_offline"
-            android:layout_marginTop="10dp"
-            
-            android:background="@drawable/btn_zhengzhan"
-            android:onClick="goOnline" />
-        
-        <Button
-            android:id="@+id/main_book"
-            
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            
-            android:layout_below="@+id/main_online"
-            android:layout_marginTop="10dp"
-            
-            android:background="@drawable/btn_miji"
-            android:onClick="goBook" />
+    <ImageView
+        android:id="@+id/main_tixiao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/content_description"
+        android:src="@drawable/main_img_tixiao" />
 
+    <Button
+        android:id="@+id/main_offline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/main_tixiao"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/main_btn_biguan"
+        android:onClick="goOffline" />
+
+    <Button
+        android:id="@+id/main_online"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/main_offline"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/main_btn_zhengzhan"
+        android:onClick="goOnline" />
 
 </RelativeLayout>

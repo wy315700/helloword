@@ -9,9 +9,9 @@
 		<clip>
 			<shape>
    		    	<gradient
-   		    		android:startColor="@drawable/red" 
-   		    		android:centerColor="@drawable/red"          
-   		    		android:endColor="@drawable/red" 
+   		    		android:startColor="@drawable/black" 
+   		    		android:centerColor="@drawable/black"          
+   		    		android:endColor="@drawable/black" 
    		    		android:angle="270" 
    		    		android:centerY="0.75" />
 			</shape>
