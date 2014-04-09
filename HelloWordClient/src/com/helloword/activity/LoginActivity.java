@@ -3,6 +3,7 @@ package com.helloword.activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -22,8 +23,8 @@ public class LoginActivity extends BaseActivity {
     private EditText passwordET;
 
     private CheckBox remember;
-    private boolean isRememberd;
-    
+    private boolean isRemembered;
+
     UserService userService;
     String userName;
     String password;
@@ -31,48 +32,52 @@ public class LoginActivity extends BaseActivity {
     // private Dialog dialog;
     // private SharedPreferences sp;
 
-     private static final String DEBUGTAG = "LoginActivity";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // registerBtn = (Button) findViewById(R.id.lg_register_btn);
-        // loginBtn = (Button) findViewById(R.id.lg_login_btn);
-        
         userNameET = (EditText) findViewById(R.id.login_username);
         passwordET = (EditText) findViewById(R.id.login_password);
 
         remember = (CheckBox) findViewById(R.id.login_auto);
-        
         remember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				// TODO Auto-generated method stub
-				isRememberd = isChecked;
-			}
-		});
-        
-        userService = new UserService(getApplication());
-        
-        String[] result = userService.getUserInfo();
-        userName = result[0];
-        password = result[1];
-        
-        if(userName != null){
-        	doLogin();
-        }
-        
-        // findViewById(R.id.lg_remember_password);
-
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                    boolean isChecked) {
+                isRemembered = isChecked;
+            }
+        });
     }
 
     public void loginHandler(View view) {
-    	doLogin();
+        userName = userNameET.getText().toString().trim();
+        password = passwordET.getText().toString().trim();
+
+        if (userName.equals("") || password.equals("")) {
+            Toast.makeText(getApplicationContext(),
+                    "please input your username or password",
+                    Toast.LENGTH_SHORT).show();
+        } else {
+
+            // ==========test test===========
+            // Intent intent = new Intent(this, PVPModeActivity.class);
+            // startActivity(intent);
+            // finish();
+            // ================================
+
+            // Log.d(DEBUGTAG, userName + " " + password);
+            NetworkService networkService = new NetworkService(this);
+            if (networkService.isConnected()) {
+                new LoginInBackground().execute(userName, password);
+            } else {
+                Toast.makeText(getApplicationContext(),
+                        "Please connect to the internet", Toast.LENGTH_SHORT)
+                        .show();
+            }
+        }
     }
-    
+
     public void registerHandler(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
@@ -82,6 +87,10 @@ public class LoginActivity extends BaseActivity {
         @Override
         protected String doInBackground(String... params) {
             UserService userService = new UserService(getApplication());
+            if (isRemembered) {
+                userService.turnAutoLoginOn();
+                userService.saveUserInfo(params[0], params[1]);
+            }
             return userService.login(params[0], params[1]);
 
         }
@@ -90,9 +99,7 @@ public class LoginActivity extends BaseActivity {
         @Override
         protected void onPostExecute(String result) {
             if (result.equals("success")) {
-            	if(isRememberd){
-            		userService.saveUserInfo(userName, password);
-            	}
+                
                 Intent intent = new Intent(getApplicationContext(),
                         PVPModeActivity.class);
                 startActivity(intent);
@@ -100,36 +107,6 @@ public class LoginActivity extends BaseActivity {
             } else {
                 Toast.makeText(getApplicationContext(), result,
                         Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-    
-    private void doLogin(){
-    	if(userName == null){
-    		userName = userNameET.getText().toString().trim();
-            password = passwordET.getText().toString().trim();
-    	}
-
-        if (userName.equals("") || password.equals("")) {
-            Toast.makeText(getApplicationContext(),
-                    "please input your username or password",
-                    Toast.LENGTH_SHORT).show();
-        } else {
-
-            // ==========test test===========
-//             Intent intent = new Intent(this, PVPModeActivity.class);
-//             startActivity(intent);
-//             finish();
-            // ================================
-
-//            Log.d(DEBUGTAG, userName + " " + password);
-            NetworkService networkService = new NetworkService(this);
-            if (networkService.isConnected()) {
-                new LoginInBackground().execute(userName, password);
-            } else {
-                Toast.makeText(getApplicationContext(),
-                        "Please connect to the internet", Toast.LENGTH_SHORT)
-                        .show();
             }
         }
     }

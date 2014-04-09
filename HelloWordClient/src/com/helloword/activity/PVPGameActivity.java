@@ -1,23 +1,26 @@
 package com.helloword.activity;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.helloword.R;
 import com.helloword.gsonObject.PKPuzzles;
@@ -57,6 +60,7 @@ public class PVPGameActivity extends BaseActivity {
     private int intTimeProgress;
 
     Handler handler;
+    Animator animStack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,18 +164,10 @@ public class PVPGameActivity extends BaseActivity {
             buttonC.setText("C. " + game.getAns3());
             buttonD.setText("D. " + game.getAns4());
 
-            AnimationListener animEnd = new AnimationListener() {
+            AnimationListenerAdapter animEnd = new AnimationListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     fadeOut(resultPop, 500, null);
-                }
-
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-                }
-
-                @Override
-                public void onAnimationStart(Animation animation) {
                 }
             };
             if (puzzleNum == 1)
@@ -193,47 +189,31 @@ public class PVPGameActivity extends BaseActivity {
 
     public void displayGoodResult() {
         resultPop.setText("Good!");
-        AnimationListener animEnd = new AnimationListener() {
+        AnimationListenerAdapter animEnd = new AnimationListenerAdapter() {
             @Override
             public void onAnimationEnd(Animation animation) {
                 setPuzzles();
             }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-            }
-
-            @Override
-            public void onAnimationStart(Animation animation) {
-            }
         };
         fadeIn(resultPop, 500, animEnd);
-        scoreLeft += 2;
+        scoreLeft += 4;
         displayFraction(fractionLeft, scoreLeft);
-        displayScoreProgress(scoreLeftProgress, scoreLeft - 2, scoreLeft, 500);
+        displayScoreProgress(scoreLeftProgress, scoreLeft - 4, scoreLeft, 500);
     }
 
     public void displayBadResult() {
         resultPop.setText("Bad!");
         rightButton.setBackgroundResource(R.drawable.button_answer);
-        AnimationListener animEnd = new AnimationListener() {
+        AnimationListenerAdapter animEnd = new AnimationListenerAdapter() {
             @Override
             public void onAnimationEnd(Animation animation) {
                 setPuzzles();
             }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-            }
-
-            @Override
-            public void onAnimationStart(Animation animation) {
-            }
         };
         fadeIn(resultPop, 500, animEnd);
-        scoreLeft -= 1;
+        scoreLeft -= 2;
         displayFraction(fractionLeft, scoreLeft);
-        displayScoreProgress(scoreLeftProgress, scoreLeft + 1, scoreLeft, 500);
+        displayScoreProgress(scoreLeftProgress, scoreLeft + 2, scoreLeft, 500);
     }
 
     public void displayScoreProgress(ProgressBar progressBar, int start,
@@ -251,29 +231,20 @@ public class PVPGameActivity extends BaseActivity {
         public void onClick(View view) {
             switch (view.getId() - rightId) {
             case 0:
+                clearAnim(timeProgress);
                 displayGoodResult();
                 break;
             default:
+                clearAnim(timeProgress);
                 displayBadResult();
             }
         }
     };
 
-    // fadeOut(showResult, 500, null);
-    //
-    //
-    // countDownTime();
-    //
-    //
-    // } /*
-    // * else { }
-    // */
-    //
-    // }
-
+    @SuppressLint("NewApi")
     public void countDownTime() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            progressAnim(timeProgress, 0, 100, TIME_LIMIT);
+            progressAnim(timeProgress, 0, 100, TIME_LIMIT, 1);
         } else {
             intTimeProgress = 0;
             timeProgress.setProgress(intTimeProgress);
@@ -284,8 +255,10 @@ public class PVPGameActivity extends BaseActivity {
                     intTimeProgress++;
                     handler.post(new Runnable() {
                         public void run() {
-                            if (intTimeProgress >= 100)
+                            if (intTimeProgress >= 100) {
                                 timer.cancel();
+                                displayBadResult();
+                            }
                             timeProgress.setProgress(intTimeProgress);
                         }
                     });
@@ -299,6 +272,37 @@ public class PVPGameActivity extends BaseActivity {
         Intent intent = new Intent(this, PVPEndActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    // FIXME find a way to solve the param transmission problem
+    public void progressAnim(ProgressBar progressBar, int start, int end,
+            int durationTime) {
+        progressAnim(progressBar, start, end, durationTime, 0);
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public void progressAnim(ProgressBar progressBar, int start, int end,
+            int durationTime, int flag) {
+        ObjectAnimator anim = ObjectAnimator.ofInt(progressBar, "progress",
+                start, end);
+
+        anim.setDuration(durationTime);
+        if (flag == 1) {
+            if (puzzleNum > 2 && animStack.isRunning()) {
+                animStack.removeAllListeners();
+                animStack.cancel();
+            }
+            animStack = (Animator) anim;
+            AnimatorListenerAdapter animEnd = new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    displayBadResult();
+                }
+            };
+            anim.addListener(animEnd);
+        }
+        anim.start();
+        
     }
 
 }

@@ -1,11 +1,15 @@
 package com.helloword.activity;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.ProgressBar;
 
@@ -37,18 +41,23 @@ public abstract class BaseActivity extends Activity {
     public void clearAnim(View animView) {
         animView.clearAnimation();
     }
-    
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public void progressAnim(ProgressBar progressBar, int start, int end, int durationTime) {
-        ObjectAnimator anim = ObjectAnimator.ofInt(progressBar,
-                "progress", start, end);
-        anim.setDuration(durationTime);
-        anim.start();
-    }
 
+    
     // ===========Common button function==============
     public void getBack(View view) {
         onBackPressed();
+    }
+    
+    protected class AnimationListenerAdapter implements AnimationListener {
+        @Override
+        public void onAnimationEnd(Animation animation) {
+        }
+        @Override
+        public void onAnimationRepeat(Animation animation) {
+        }
+        @Override
+        public void onAnimationStart(Animation animation) {
+        }
     }
 
 }

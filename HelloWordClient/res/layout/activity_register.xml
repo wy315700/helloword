@@ -28,8 +28,8 @@
 
     <ImageView
         android:id="@+id/register_tixiao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
         android:layout_below="@id/register_bluebar_up"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
@@ -79,44 +79,7 @@
             android:gravity="center"
             android:hint="@string/enter_username"
             android:inputType="text"
-            android:maxLength="16"
-            android:maxLines="1"
-            android:textColor="#1d1d1d"
-            android:textColorHint="#666666"
-            android:textSize="14sp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/register_pass_area"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/register_account_area"
-        android:layout_alignRight="@+id/register_account_area"
-        android:layout_below="@+id/register_account_area"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/round_rectangle"
-        android:padding="10dp" >
-
-        <TextView
-            android:id="@+id/register_password_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="@string/password"
-            android:textColor="#1d1d1d"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/register_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_toRightOf="@id/register_password_textview"
-            android:background="@null"
-            android:gravity="center"
-            android:hint="@string/enter_password"
-            android:inputType="textPassword"
-            android:maxLength="16"
+            android:maxLength="60"
             android:maxLines="1"
             android:textColor="#1d1d1d"
             android:textColorHint="#666666"
@@ -152,6 +115,43 @@
             android:background="@null"
             android:gravity="center"
             android:hint="@string/set_nickname"
+            android:inputType="text"
+            android:maxLength="16"
+            android:maxLines="1"
+            android:textColor="#1d1d1d"
+            android:textColorHint="#666666"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/register_pass_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/register_account_area"
+        android:layout_alignRight="@+id/register_account_area"
+        android:layout_below="@+id/register_account_area"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_rectangle"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/register_password_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/password"
+            android:textColor="#1d1d1d"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/register_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/register_password_textview"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/set_password"
             android:inputType="textPassword"
             android:maxLength="16"
             android:maxLines="1"
@@ -187,7 +187,7 @@
             android:layout_toRightOf="@id/register_repassword_textview"
             android:background="@null"
             android:gravity="center"
-            android:hint="@string/enter_password"
+            android:hint="@string/confirm_password"
             android:inputType="textPassword"
             android:maxLength="16"
             android:maxLines="1"
