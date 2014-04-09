@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -19,7 +21,12 @@ public class LoginActivity extends BaseActivity {
     private EditText userNameET;
     private EditText passwordET;
 
-    // private CheckBox remember;
+    private CheckBox remember;
+    private boolean isRememberd;
+    
+    UserService userService;
+    String userName;
+    String password;
 
     // private Dialog dialog;
     // private SharedPreferences sp;
@@ -33,18 +40,75 @@ public class LoginActivity extends BaseActivity {
 
         // registerBtn = (Button) findViewById(R.id.lg_register_btn);
         // loginBtn = (Button) findViewById(R.id.lg_login_btn);
-
+        
         userNameET = (EditText) findViewById(R.id.login_username);
         passwordET = (EditText) findViewById(R.id.login_password);
 
-        // rememberPassword = (CheckBox)
+        remember = (CheckBox) findViewById(R.id.login_auto);
+        
+        remember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				// TODO Auto-generated method stub
+				isRememberd = isChecked;
+			}
+		});
+        
+        userService = new UserService(getApplication());
+        
+        String[] result = userService.getUserInfo();
+        userName = result[0];
+        password = result[1];
+        
+        if(userName != null){
+        	doLogin();
+        }
+        
         // findViewById(R.id.lg_remember_password);
 
     }
 
     public void loginHandler(View view) {
-        String userName = userNameET.getText().toString().trim();
-        String password = passwordET.getText().toString().trim();
+    	doLogin();
+    }
+    
+    public void registerHandler(View view) {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+    }
+
+    private class LoginInBackground extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            UserService userService = new UserService(getApplication());
+            return userService.login(params[0], params[1]);
+
+        }
+
+        // onPostExecute displays the results of the AsyncTask.
+        @Override
+        protected void onPostExecute(String result) {
+            if (result.equals("success")) {
+            	if(isRememberd){
+            		userService.saveUserInfo(userName, password);
+            	}
+                Intent intent = new Intent(getApplicationContext(),
+                        PVPModeActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                Toast.makeText(getApplicationContext(), result,
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    
+    private void doLogin(){
+    	if(userName == null){
+    		userName = userNameET.getText().toString().trim();
+            password = passwordET.getText().toString().trim();
+    	}
 
         if (userName.equals("") || password.equals("")) {
             Toast.makeText(getApplicationContext(),
@@ -68,35 +132,5 @@ public class LoginActivity extends BaseActivity {
                         .show();
             }
         }
-
     }
-
-    public void registerHandler(View view) {
-        Intent intent = new Intent(this, RegisterActivity.class);
-        startActivity(intent);
-    }
-
-    private class LoginInBackground extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... params) {
-            UserService userService = new UserService(getApplication());
-            return userService.login(params[0], params[1]);
-
-        }
-
-        // onPostExecute displays the results of the AsyncTask.
-        @Override
-        protected void onPostExecute(String result) {
-            if (result.equals("success")) {
-                Intent intent = new Intent(getApplicationContext(),
-                        PVPModeActivity.class);
-                startActivity(intent);
-                finish();
-            } else {
-                Toast.makeText(getApplicationContext(), result,
-                        Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
 }
