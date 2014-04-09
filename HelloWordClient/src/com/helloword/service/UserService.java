@@ -1,6 +1,11 @@
 package com.helloword.service;
 
+import java.util.ArrayList;
+
+import android.annotation.SuppressLint;
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.helloword.gsonObject.responseProtocol.ChangeUserInfoResponseProtocol;
 import com.helloword.gsonObject.responseProtocol.GetMessageResponseProtocol;
@@ -157,5 +162,30 @@ public class UserService {
         }
         return "cannot receive data";
         
+    }
+    
+    @SuppressLint("NewApi")
+	public boolean saveUserInfo(String userName, String password){
+        String STORE_NAME = "Settings";
+        SharedPreferences settings = user.getSharedPreferences(STORE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        if(userName !=null && password != null){
+        	editor.putString("userName", userName);
+        	editor.putString("password", password);
+        }
+        try{
+        	editor.apply();
+        }catch(Exception e){
+        	editor.commit();
+        }
+	    return true;
+    }
+    
+    public String[] getUserInfo(){
+        String STORE_NAME = "Settings";
+        SharedPreferences settings = user.getSharedPreferences(STORE_NAME, Context.MODE_PRIVATE);
+        String userName = settings.getString("userName", null);
+        String password = settings.getString("password", null);
+		return new String[] {userName,password};
     }
 }
