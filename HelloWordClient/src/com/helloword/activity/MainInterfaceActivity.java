@@ -2,11 +2,14 @@ package com.helloword.activity;
 
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import com.helloword.R;
+import com.helloword.service.NetworkService;
+import com.helloword.service.UserService;
 
 public class MainInterfaceActivity extends BaseActivity {
     
@@ -37,13 +40,22 @@ public class MainInterfaceActivity extends BaseActivity {
     }
 	
 	public void goOnline(View view) {
-	    boolean autoLogin = false; // ready for the auto log function, value depended on the checker
+	    UserService userService = new UserService(getApplication());
 	    
-	    if (!autoLogin) {
+	    if (userService.isAutoLoginOn()) {
+	        String[] userLoginInfo = userService.getUserInfo();
+	        NetworkService networkService = new NetworkService(this);
+            if (networkService.isConnected()) {
+                new LoginInBackground().execute(userLoginInfo);
+            } else {
+                Toast.makeText(getApplicationContext(),
+                        "Please connect to the internet", Toast.LENGTH_SHORT)
+                        .show();
+            }
+	    } else {
 	        Intent intent = new Intent(this, LoginActivity.class);
-	        startActivity(intent);
+            startActivity(intent);
 	    }
-	    // TODO add else and local user file reading
 	    
 	}
 	
@@ -51,4 +63,27 @@ public class MainInterfaceActivity extends BaseActivity {
 	    Intent intent = new Intent(this, OffLineActivity.class);
         startActivity(intent);
 	}
+	
+	private class LoginInBackground extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            UserService userService = new UserService(getApplication());
+            return userService.login(params[0], params[1]);
+
+        }
+
+        // onPostExecute displays the results of the AsyncTask.
+        @Override
+        protected void onPostExecute(String result) {
+            if (result.equals("success")) {
+                Intent intent = new Intent(getApplicationContext(),
+                        PVPModeActivity.class);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(getApplicationContext(),
+                        LoginActivity.class);
+                startActivity(intent);
+            }
+        }
+    }
 }

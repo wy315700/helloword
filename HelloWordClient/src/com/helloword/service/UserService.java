@@ -1,7 +1,5 @@
 package com.helloword.service;
 
-import java.util.ArrayList;
-
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
@@ -165,7 +163,28 @@ public class UserService {
     }
     
     @SuppressLint("NewApi")
+    public void turnAutoLoginOn() {
+        String STORE_NAME = "Settings";
+        SharedPreferences settings = user.getSharedPreferences(STORE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+            editor.putBoolean("autoLogin", true);
+        try{
+            editor.apply();
+        }catch(Exception e){
+            editor.commit();
+        }
+    }
+    
+    public boolean isAutoLoginOn() {
+        String STORE_NAME = "Settings";
+        SharedPreferences settings = user.getSharedPreferences(STORE_NAME, Context.MODE_PRIVATE);
+        boolean autoLogin = settings.getBoolean("autoLogin", false);
+        return autoLogin;
+    }
+    
+    @SuppressLint("NewApi")
 	public boolean saveUserInfo(String userName, String password){
+        // XXX try to find out the mean of boolean return
         String STORE_NAME = "Settings";
         SharedPreferences settings = user.getSharedPreferences(STORE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();

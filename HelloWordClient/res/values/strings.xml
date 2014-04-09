@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">一起玩单词</string>
+    <string name="app_name">单词江湖</string>
     <string name="action_settings">设置</string>
     <string name="content_description">图片描述</string>
     <string name="account">账户</string>
     <string name="enter_username">请输入邮箱地址</string>
     <string name="password">密码</string>
-    <string name="repeatpassword">确认密码</string>
     <string name="enter_password">请输入密码</string>
     <string name="remember_info">记住登录信息</string>
     <string name="set_username">请输入常用邮箱地址</string>
