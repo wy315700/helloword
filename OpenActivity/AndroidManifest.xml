@@ -102,6 +102,11 @@
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
+        <activity
+            android:name="com.helloword.activity.PVCEndActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
     </application>
 
 </manifest>

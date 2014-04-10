@@ -15,6 +15,16 @@
         android:scaleType="fitXY"
         android:src="@drawable/bg_bluebar" />
     
+    <ImageView 
+       android:id="@+id/offline_taichi"
+       android:contentDescription="@string/content_description"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_below="@id/offline_bluebar_up"
+       android:paddingTop="5dp"
+       android:layout_centerHorizontal="true"
+       android:src="@drawable/bg_offline_taichi"/>
+       
     <!--     闯关介绍 -->
     
     <ImageView 
@@ -31,8 +41,9 @@
         android:paddingBottom="10dp"
         
         android:scaleType="fitXY"
-        android:src="@drawable/bg_offline_introduction_round1"/>
+        android:src="@drawable/bg_offline_introduction"/>
     
+
    <!--    练功人物  -->
    
   <RelativeLayout 
@@ -49,8 +60,7 @@
            android:layout_alignParentLeft="true"
            android:src="@drawable/ic_offline_people_round1"
            android:paddingLeft="5dp"
-           android:paddingRight="5dp"
-           android:onClick="goPVCGame"/>
+           android:paddingRight="5dp"/>
 
        
        <ImageView 
@@ -62,8 +72,7 @@
            android:layout_alignBottom="@id/offline_people_round1"
            android:src="@drawable/ic_offline_people_round3"
            android:paddingLeft="5dp"
-           android:paddingRight="5dp"
-           android:onClick="goPVCGame"/>
+           android:paddingRight="5dp"/>
        
        <ImageView 
            android:id="@+id/offline_people_round2"
@@ -75,8 +84,7 @@
            android:layout_toLeftOf="@id/offline_people_round3"
            android:src="@drawable/ic_offline_people_round2"
            android:paddingLeft="5dp"
-           android:paddingRight="5dp"
-           android:onClick="goPVCGame"/>
+           android:paddingRight="5dp"/>
        
        <ImageView 
            android:id="@+id/offline_people_round5"
@@ -87,8 +95,7 @@
            android:layout_alignParentRight="true"
            android:src="@drawable/ic_offline_people_round5"
            android:paddingLeft="5dp"
-           android:paddingRight="5dp"
-           android:onClick="goPVCGame"/>
+           android:paddingRight="5dp"/>
        
        <ImageView 
            android:id="@+id/offline_people_round4"
@@ -100,10 +107,23 @@
            android:layout_toRightOf="@id/offline_people_round3"
            android:src="@drawable/ic_offline_people_round4"
            android:paddingLeft="5dp"
-           android:paddingRight="5dp"
-           android:onClick="goPVCGame"/>       
+           android:paddingRight="5dp"/>       
    </RelativeLayout>
-   
+
+   <Button 
+        android:id="@+id/offline_startup"
+        android:contentDescription="@string/content_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/offline_people_round_layout"
+        android:layout_centerHorizontal="true"
+        android:text="@string/startup"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:background="@drawable/round_rectangle"
+        android:onClick="goPVCGame"/>
+      
+      
    <!-- 进度条 -->
    
    <RelativeLayout
@@ -116,7 +136,6 @@
            android:contentDescription="@string/content_description"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:paddingTop="5dp"
            android:paddingBottom="5dp"
            android:src="@drawable/ic_offline_progress_white"/>
        
@@ -126,7 +145,6 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_alignParentLeft="true"
-           android:paddingTop="5dp"
            android:paddingBottom="5dp"
            android:src="@drawable/ic_offline_progress_blue"/>
        
@@ -136,7 +154,6 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_toRightOf="@id/offline_progress_blue"
-           android:paddingTop="5dp"
            android:paddingBottom="5dp"
            android:src="@drawable/ic_offline_progress_darkblue"/>
            
@@ -168,7 +185,7 @@
            android:layout_toRightOf="@id/offline_progress_left_number"
            android:layout_below="@id/offline_progress_white"
            android:layout_alignBottom="@id/offline_progress_left_number"
-           android:paddingLeft="3dp"
+           android:paddingLeft="23dp"
            android:src="@drawable/ic_offline_leftword"/>
        
        <TextView 
