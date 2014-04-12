@@ -40,5 +40,5 @@
     <string name="more_pk">更多对战</string>
     <string name="title_activity_pvpend">PVPEndActivity</string>
     <string name="hello_world">Hello world!</string>
-
+	<string name="startup">开始答题</string>
 </resources>
