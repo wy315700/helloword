@@ -1,6 +1,9 @@
 package com.helloword.service;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.helloword.gsonObject.responseProtocol.ChangeUserInfoResponseProtocol;
 import com.helloword.gsonObject.responseProtocol.GetMessageResponseProtocol;
@@ -157,5 +160,51 @@ public class UserService {
         }
         return "cannot receive data";
         
+    }
+    
+    @SuppressLint("NewApi")
+    public void turnAutoLoginOn() {
+        String STORE_NAME = "Settings";
+        SharedPreferences settings = user.getSharedPreferences(STORE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+            editor.putBoolean("autoLogin", true);
+        try{
+            editor.apply();
+        }catch(Exception e){
+            editor.commit();
+        }
+    }
+    
+    public boolean isAutoLoginOn() {
+        String STORE_NAME = "Settings";
+        SharedPreferences settings = user.getSharedPreferences(STORE_NAME, Context.MODE_PRIVATE);
+        boolean autoLogin = settings.getBoolean("autoLogin", false);
+        return autoLogin;
+    }
+    
+    @SuppressLint("NewApi")
+	public boolean saveUserInfo(String userName, String password){
+        // XXX try to find out the mean of boolean return
+        String STORE_NAME = "Settings";
+        SharedPreferences settings = user.getSharedPreferences(STORE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        if(userName !=null && password != null){
+        	editor.putString("userName", userName);
+        	editor.putString("password", password);
+        }
+        try{
+        	editor.apply();
+        }catch(Exception e){
+        	editor.commit();
+        }
+	    return true;
+    }
+    
+    public String[] getUserInfo(){
+        String STORE_NAME = "Settings";
+        SharedPreferences settings = user.getSharedPreferences(STORE_NAME, Context.MODE_PRIVATE);
+        String userName = settings.getString("userName", null);
+        String password = settings.getString("password", null);
+		return new String[] {userName,password};
     }
 }

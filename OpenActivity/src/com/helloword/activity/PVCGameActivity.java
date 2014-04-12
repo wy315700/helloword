@@ -101,7 +101,7 @@ public class PVCGameActivity extends BaseActivity{
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			if(puzzleNum<3){
+			if(puzzleNum<20){
 				rightButton.setBackgroundResource(R.drawable.blue_button);
 				resultPop.setText("");
 				setPuzzles();

@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.helloword.R;
 import com.helloword.service.GameService;
+import com.helloword.service.NetworkService;
 
 public class PVPModeActivity extends BaseActivity {
 
@@ -23,8 +24,14 @@ public class PVPModeActivity extends BaseActivity {
     }
 
     public void goCet4PK(View view) {
-//        goPVPGame();
-        new GetPKGamesInBackground().execute("1");
+        NetworkService networkService = new NetworkService(this);
+        if (networkService.isConnected()) {
+            new GetPKGamesInBackground().execute("1");
+        } else {
+            Toast.makeText(getApplicationContext(),
+                    "Please connect to the internet", Toast.LENGTH_SHORT)
+                    .show();
+        }
     }
 
     public void goCet6PK(View view) {
