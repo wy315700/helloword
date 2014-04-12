@@ -2,198 +2,217 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical" >
+    android:background="@drawable/register_bg" >
+
+    <!-- blue bar up and down -->
 
     <ImageView
         android:id="@+id/register_bluebar_up"
-        
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:contentDescription="@string/content_description"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_bluebar" />
+
+    <ImageView
+        android:id="@+id/register_bluebar_down"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:contentDescription="@string/content_description"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_bluebar" />
+
+    <!-- form below -->
+
+    <ImageView
+        android:id="@+id/register_tixiao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        
-        android:src="@drawable/bg_blue_bar" 
-        android:contentDescription="@string/content_description"/>
-    	
-    <ImageView
-       android:id="@+id/register_background"
-       
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:scaleType="fitXY"
-       
-       android:layout_alignParentLeft="true"
-       android:layout_alignParentRight="true"
-       android:layout_above="@+id/register_bluebar_down"
-       android:layout_below="@+id/register_bluebar_up"
-       
-       android:src="@drawable/bg_register" 
-       android:contentDescription="@string/content_description"/>
-    
-    <ImageView
-       android:id="@+id/register_tixiao_single"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       
-       android:layout_alignParentRight="true"
-       android:layout_alignTop="@+id/register_background"
-       android:layout_marginRight="10dp"
-       android:layout_marginTop="10dp"
-       
-       android:contentDescription="@string/content_description"
-       android:src="@drawable/bg_tixiao_single" />
-       
+        android:layout_below="@id/register_bluebar_up"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/content_description"
+        android:src="@drawable/img_tixiao_word" />
 
-         <EditText
-        	android:id="@+id/register_username"
-        	android:layout_width="160dp"
-        	android:layout_height="40dp"
-        	
-        	android:layout_below="@+id/register_tixiao_single"
-        	android:layout_alignRight="@+id/register_tixiao_single"
-        	android:layout_alignLeft="@+id/register_tixiao_single"
-        	android:layout_marginTop="1dp"
-        	
-        	
-        	android:background="@drawable/register_rectangle"
-        	android:hint="@string/set_username"
-        	android:gravity="right"
-        	android:maxLength="20"
-        	android:textSize="16sp" />
-        
-        <TextView
-            android:id="@+id/register_TextView_account"
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	
-        	android:layout_alignBaseline="@+id/register_username"
-        	android:layout_alignBottom="@+id/register_username"
-        	android:layout_alignLeft="@+id/register_username"
-        	
-        	android:text="@string/account"
-        	android:textSize="18sp" /> 
-    
-        
-        <EditText
-        	android:id="@+id/register_password"
-        	android:layout_width="140dp"
-        	android:layout_height="40dp"
-        	
-        	android:layout_below="@+id/register_username"
-        	android:layout_alignLeft="@+id/register_username"
-        	android:layout_alignRight="@+id/register_username"
-        	android:layout_marginTop="5dp"
-        	
-        	android:background="@drawable/register_rectangle"
-        	android:hint="@string/set_password"
-        	android:gravity="right"
-        	android:inputType="textPassword"
-        	android:maxLength="20"
-        	android:textSize="16sp" />
-        
-        <TextView
-        	android:id="@+id/TextView_password"
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	
-        	android:layout_alignBaseline="@+id/register_password"
-        	android:layout_alignBottom="@+id/register_password"
-        	android:layout_alignLeft="@+id/register_password"
-        	
-        	android:text="@string/password"
-        	android:textSize="18sp" />
-        
-        <EditText
-        	android:id="@+id/register_password_confirm"
-        	android:layout_width="140dp"
-        	android:layout_height="40dp"
-        	
-        	android:layout_below="@+id/TextView_password"
-        	android:layout_alignLeft="@+id/register_username"
-        	android:layout_alignRight="@+id/register_username"
-        	android:layout_marginTop="5dp"
-        	
-        	android:background="@drawable/register_rectangle"
-        	android:hint="@string/confirm_password"
-        	android:gravity="right"
-        	android:inputType="textPassword"
-        	android:maxLength="20"
-        	android:textSize="16sp" />        
-        	
-         <TextView
-        	android:id="@+id/register_TextView_password_confirm"
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	
-        	android:layout_alignBaseline="@+id/register_password_confirm"
-        	android:layout_alignBottom="@+id/register_password_confirm"
-        	android:layout_alignLeft="@+id/register_password_confirm"
-        	
-        	android:text="@string/repeatpassword"
-        	android:textSize="18sp" />
-               
-        <EditText
-        	android:id="@+id/register_user_nickname"
-        	android:layout_width="140dp"
-        	android:layout_height="40dp"
-        	
-        	android:layout_below="@+id/register_password_confirm"
-        	android:layout_alignLeft="@+id/register_username"
-        	android:layout_alignRight="@+id/register_username"
-        	android:layout_marginTop="5dp"
-        	
-       		android:background="@drawable/register_rectangle"
-	        android:hint="@string/set_nickname"
-	        android:gravity="right"
-	        android:inputType="text"
-	        android:maxLength="20"
-        	android:textSize="16sp" />
-        
-        <TextView
-        	android:id="@+id/register_TextView_user_nickname"
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	
-        	android:layout_alignBaseline="@+id/register_user_nickname"
-        	android:layout_alignBottom="@+id/register_user_nickname"
-        	android:layout_alignLeft="@+id/register_user_nickname"
-        	
-        	android:text="@string/nickname"
-        	android:textSize="18sp" />
-        
-      
-        
-   <Button
-        	android:id="@+id/register_regbtn"
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	
-        	android:layout_below="@+id/register_user_nickname"
-        	android:layout_alignLeft="@+id/register_username"
-        	android:layout_alignRight="@+id/register_username"
-        	android:layout_marginTop="5dp"
-        	
-        	android:text="@string/temp_register"
-        	android:background="@drawable/register_rectangle"
-        	android:textSize="18sp"
-        	android:onClick="registerHandler" /> 
-    
-   <ImageView
-        android:id="@+id/register_bluebar_down"
-        android:layout_width="fill_parent"
+    <Button
+        android:id="@+id/register_regbtn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        
-        android:src="@drawable/bg_blue_bar" 
-        android:contentDescription="@string/content_description"/>
+        android:layout_above="@id/register_bluebar_down"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/blue_button"
+        android:onClick="registerHandler"
+        android:text="@string/register"
+        android:textSize="14sp" />
 
+    <RelativeLayout
+        android:id="@+id/register_account_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/register_regbtn"
+        android:layout_below="@+id/register_tixiao"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/round_rectangle"
+        android:padding="10dp" >
 
+        <TextView
+            android:id="@+id/register_username_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/account"
+            android:textColor="#1d1d1d"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/register_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/register_username_textview"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/enter_username"
+            android:inputType="text"
+            android:maxLength="16"
+            android:maxLines="1"
+            android:textColor="#1d1d1d"
+            android:textColorHint="#666666"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/register_pass_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/register_account_area"
+        android:layout_alignRight="@+id/register_account_area"
+        android:layout_below="@+id/register_account_area"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_rectangle"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/register_password_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/password"
+            android:textColor="#1d1d1d"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/register_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/register_password_textview"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/enter_password"
+            android:inputType="textPassword"
+            android:maxLength="16"
+            android:maxLines="1"
+            android:textColor="#1d1d1d"
+            android:textColorHint="#666666"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/register_nickname_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/register_regbtn"
+        android:layout_alignTop="@id/register_account_area"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        android:background="@drawable/round_rectangle"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/register_nickname_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/nickname"
+            android:textColor="#1d1d1d"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/register_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/register_nickname_textview"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/set_nickname"
+            android:inputType="textPassword"
+            android:maxLength="16"
+            android:maxLines="1"
+            android:textColor="#1d1d1d"
+            android:textColorHint="#666666"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/register_repeatpass_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/register_nickname_area"
+        android:layout_alignRight="@+id/register_nickname_area"
+        android:layout_alignTop="@+id/register_pass_area"
+        android:background="@drawable/round_rectangle"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/register_repassword_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/password"
+            android:textColor="#1d1d1d"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/register_repassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/register_repassword_textview"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/enter_password"
+            android:inputType="textPassword"
+            android:maxLength="16"
+            android:maxLines="1"
+            android:textColor="#1d1d1d"
+            android:textColorHint="#666666"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_above="@id/register_regbtn"
+        android:layout_centerHorizontal="true" >
+
+        <CheckBox
+            android:id="@+id/register_auto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:button="@drawable/checkbox"
+            android:checked="false"
+            android:paddingLeft="10dp"
+            android:text="@string/auto_login"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+    </RelativeLayout>
 
 </RelativeLayout>

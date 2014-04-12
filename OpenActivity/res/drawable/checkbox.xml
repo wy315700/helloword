@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- This is the rating bar drawable that is used to a show a filled star. -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
 <item 
     android:state_checked="false"
-	android:state_enabled="true" />
-	<!-- android:drawable="@drawable/checkbox_off" -->
+	android:state_enabled="true"
+	android:drawable="@drawable/box_unchecked" />
 <item 
     android:state_checked="true"
-	android:state_enabled="true" />
-	<!-- android:drawable="@drawable/checkbox_on" -->
+	android:state_enabled="true"
+	android:drawable="@drawable/box_checked" />
 
 <shape
     android:height="24dp"

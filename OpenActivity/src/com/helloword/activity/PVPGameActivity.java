@@ -1,517 +1,304 @@
 package com.helloword.activity;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import android.graphics.drawable.AnimationDrawable;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
-import android.view.animation.AnimationUtils;
-import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.helloword.R;
+import com.helloword.gsonObject.PKPuzzles;
+import com.helloword.util.UsersApplication;
 
-public class PVPGameActivity extends BaseActivity implements AnimationListener{
-    
-    TextView word;
-    Button buttonA;
-    Button buttonB;
-    Button buttonC;
-    Button buttonD;
-    TextView puzzleNo;
-    TextView userLeftName;
-    TextView userRightName;
-    ProgressBar timeProgress;
-    ProgressBar userrightScore;
-    ProgressBar userleftScore;
-    ImageView message;
-    ImageView icpuzzleNo;
-    ImageView bomb;
-    ImageView blast;
-    ImageView egg;
-    ImageView flower;
-    TextView showResult;
-    Button rightButton;
-    TextView overWait;
-    TextView overScore;
-    TextView overRank;
-    Button shareButton;
-    Button exchangeButton;
-    Button seerankButton;
-    Button gcontinueButton;
-    int rightId;
-    
-    Handler mHandler = new Handler();
-    QuestionThread questionThread;
-    int mTimeProgress = 0;
-    int progressbarState = 0;
-    int temprightScore=10;
-    int templeftScore=10;
-    int tempquestionNo=1;
-    int tempshowResult=1;
-    boolean tempisBomb=false;
-    boolean tempisEgg=false;
-    boolean tempisRound=true;
-    
-	private AnimationDrawable animationBomb;
-	private AnimationDrawable animationBlast;
-	private AnimationDrawable animationEgg;
-	private AnimationDrawable animationFlower;
-	private Animation plus2Animation;
-	private Animation plus5Animation;
-	private Animation winAnimation;
-	private Animation overRankAnimation;
-    
+public class PVPGameActivity extends BaseActivity {
     final int TIME_LIMIT = 10000; // milliseconds
+
+    private UsersApplication user;
+    private Iterator<PKPuzzles> iterator;
+
+    private TextView word;
+    private TextView userLeftName;
+    private TextView userRightName;
+    private TextView fractionLeft;
+    private TextView fractionRight;
+    private TextView puzzleNo;
+    private TextView resultPop;
+
+    private Button buttonA;
+    private Button buttonB;
+    private Button buttonC;
+    private Button buttonD;
+    private Button rightButton;
+
+    private ProgressBar timeProgress;
+    private ProgressBar scoreLeftProgress;
+    private ProgressBar scoreRightProgress;
+
+    private ImageView message;
+    private RelativeLayout puzzleArea;
+
+    private int rightId;
+    private int scoreLeft;
+    private int scoreRight;
+    private int puzzleNum;
+    private int intTimeProgress;
+
+    Handler handler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pvp_game);
-        
+
+        user = (UsersApplication) getApplication();
+
         word = (TextView) findViewById(R.id.pvp_game_word);
+        userLeftName = (TextView) findViewById(R.id.pvp_game_userleft_name);
+        userRightName = (TextView) findViewById(R.id.pvp_game_userright_name);
+        puzzleNo = (TextView) findViewById(R.id.pvp_game_puzzleno);
+        resultPop = (TextView) findViewById(R.id.pvp_game_result);
+        fractionLeft = (TextView) findViewById(R.id.pvp_game_userleft_fraction);
+        fractionRight = (TextView) findViewById(R.id.pvp_game_userright_fraction);
+
         buttonA = (Button) findViewById(R.id.pvp_game_btnA);
         buttonB = (Button) findViewById(R.id.pvp_game_btnB);
         buttonC = (Button) findViewById(R.id.pvp_game_btnC);
         buttonD = (Button) findViewById(R.id.pvp_game_btnD);
-        puzzleNo = (TextView) findViewById(R.id.pvp_game_puzzleno);
-        userLeftName = (TextView) findViewById(R.id.pvp_game_userleft_name);
-        userRightName = (TextView) findViewById(R.id.pvp_game_userright_name);
+
         timeProgress = (ProgressBar) findViewById(R.id.pvp_game_time_progress);
-        userrightScore = (ProgressBar) findViewById(R.id.pvp_game_userright_score);
-        userleftScore = (ProgressBar) findViewById(R.id.pvp_game_userleft_score);
+        scoreLeftProgress = (ProgressBar) findViewById(R.id.pvp_game_userleft_score);
+        scoreRightProgress = (ProgressBar) findViewById(R.id.pvp_game_userright_score);
+
         message = (ImageView) findViewById(R.id.pvp_game_message);
-        showResult = (TextView) findViewById(R.id.pvp_game_result);
-        icpuzzleNo = (ImageView) findViewById(R.id.pvp_game_icpuzzleno);
-        bomb = (ImageView) findViewById(R.id.pvp_game_bomb);
-        blast = (ImageView) findViewById(R.id.pvp_game_blast);
-        egg = (ImageView) findViewById(R.id.pvp_game_egg);
-        flower = (ImageView) findViewById(R.id.pvp_game_flower);
-        plus2Animation =AnimationUtils.loadAnimation(this, R.anim.finalplus);
-        plus5Animation =AnimationUtils.loadAnimation(this, R.anim.finalplus);
-        winAnimation =AnimationUtils.loadAnimation(this, R.anim.finalplus);
-        overRankAnimation =AnimationUtils.loadAnimation(this, R.anim.finalrank);
-        plus2Animation.setAnimationListener(this);
-        plus5Animation.setAnimationListener(this);
-        winAnimation.setAnimationListener(this);
-        overRankAnimation.setAnimationListener(this);
-        overWait = (TextView) findViewById(R.id.pvp_game_overwait);
-        overScore = (TextView) findViewById(R.id.pvp_game_overscore);
-        overRank = (TextView) findViewById(R.id.pvp_game_overrank);
-        
-        shareButton = (Button) findViewById(R.id.pvp_game_share);
-        exchangeButton = (Button) findViewById(R.id.pvp_game_exchange);
-        seerankButton = (Button) findViewById(R.id.pvp_game_seerank);
-        gcontinueButton = (Button) findViewById(R.id.pvp_game_continue);
-        // message animation
-        message.setBackgroundResource(R.drawable.message_anime);
-        AnimationDrawable messageAnime = (AnimationDrawable) message.getBackground();
-        messageAnime.start();
-        
-        initPlayers();
-        initPuzzles();
-        countDownTime();
-        
-       
+        puzzleArea = (RelativeLayout) findViewById(R.id.pvp_game_puzzle_area);
+
+        puzzleNum = 1;
+        scoreLeft = 0;
+        scoreRight = 0;
+
+        // ========fake puzzles for test========
+        // List<PKPuzzles> fakePuzzles = new ArrayList<PKPuzzles>();
+        // for (int i = 0; i < 20; i++) {
+        // PKPuzzles pkPuzzle = new PKPuzzles();
+        // pkPuzzle.setDescription("Morning");
+        // pkPuzzle.setAns1("早上");
+        // pkPuzzle.setAns2("晚上");
+        // pkPuzzle.setAns3("中午");
+        // pkPuzzle.setAns4("凌晨");
+        // pkPuzzle.setAns("a");
+        // pkPuzzle.setPoint("2");
+        // pkPuzzle.setTime("10");
+        // pkPuzzle.setEnemyAns("a");
+        // pkPuzzle.setEnemyTime("6");
+        // fakePuzzles.add(pkPuzzle);
+        // }
+        // user.setPKPuzzles(fakePuzzles);
+        // =======================================
+
+        // initiate players display
+        userLeftName.setText(user.getUserNickname());
+        // FIXME replaced with real enemy name
+        userRightName.setText("藏剑");
+        scoreLeft = 10;
+        scoreRight = 10;
+        displayFraction(fractionLeft, scoreLeft);
+        displayFraction(fractionRight, scoreRight);
+
+        iterator = user.getPKPuzzles().iterator();
+
         buttonA.setOnClickListener(answerListener);
         buttonB.setOnClickListener(answerListener);
         buttonC.setOnClickListener(answerListener);
         buttonD.setOnClickListener(answerListener);
-        shareButton.setOnClickListener(new OnClickListener() {  
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
-			}  
-        });
-        exchangeButton.setOnClickListener(new OnClickListener() {  
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
-			}  
-        });
-        seerankButton.setOnClickListener(new OnClickListener() {  
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
-			}  
-        });
-        gcontinueButton.setOnClickListener(new OnClickListener() {  
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
-			}  
-        });
-        
-        questionThread = new QuestionThread();
-        questionThread.start();
-        
+
+        setPuzzles();
     }
 
-    public void initPlayers() {
-        userLeftName.setText("万花");
-        userRightName.setText("藏剑");
-    }
-    
-    public void initPuzzles() {
-        
-        // set puzzles
-        // TODO replace with the real puzzles
-        word.setText("Hello");
-        // TODO justify font size with option length
-        buttonA.setText("A. " + "你好");
-        buttonB.setText("B. " + "你不好");
-        buttonC.setText("C. " + "早上好");
-        buttonD.setText("D. " + "晚安");
-        showResult.setVisibility(View.INVISIBLE);//每次答题时都不显示对或错
-        puzzleNo.setText("1");
-        icpuzzleNo.startAnimation(getRotateAnimation(-360, 0, 1000));
-        
-        //set right answer
-        String rightAnswer = "a";
-        switch (rightAnswer.compareTo("a")) {
-            case 0:
+    public void setPuzzles() {
+        if (puzzleNum > 1) {
+
+            fadeOut(puzzleArea, 500, null);
+
+        }
+        if (scoreLeft > 0 && scoreRight > 0 && iterator.hasNext()) {
+            PKPuzzles game = new PKPuzzles();
+            game = iterator.next();
+            if (puzzleNum > 1)
+                rightButton.setBackgroundResource(R.drawable.blue_button);
+            // set right answer
+            String rightAnswer = game.getAns();
+            if (rightAnswer.equalsIgnoreCase(game.getAns1())) {
                 rightId = R.id.pvp_game_btnA;
                 rightButton = (Button) findViewById(R.id.pvp_game_btnA);
-                break;
-            case 1:
+            } else if (rightAnswer.equalsIgnoreCase(game.getAns2())) {
                 rightId = R.id.pvp_game_btnB;
                 rightButton = (Button) findViewById(R.id.pvp_game_btnB);
-                break;
-            case 2:
+            } else if (rightAnswer.equalsIgnoreCase(game.getAns3())) {
                 rightId = R.id.pvp_game_btnC;
                 rightButton = (Button) findViewById(R.id.pvp_game_btnC);
-                break;
-            case 3:
+            } else {
                 rightId = R.id.pvp_game_btnD;
                 rightButton = (Button) findViewById(R.id.pvp_game_btnD);
-                break;
-        }
-        
-    }
-    
-    public void countDownTime() {
-    	final Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            public void run() {
-                mTimeProgress+=2;//5秒倒计时
-                mHandler.post(new Runnable() {
-                    public void run() {
-                    	if(progressbarState==0){
-                    		if(mTimeProgress==20){
-                    			puzzleNo.setText("2");
-                    			icpuzzleNo.startAnimation(getRotateAnimation(-360, 0, 500));
-                    		}
-                    		else if(mTimeProgress==40){
-                    			puzzleNo.setText("3");
-                    			icpuzzleNo.startAnimation(getRotateAnimation(-360, 0, 500));
-                    		}
-                    		else if(mTimeProgress==60){
-                    			puzzleNo.setText("4");
-                    			icpuzzleNo.startAnimation(getRotateAnimation(-360, 0, 500));
-                    		}
-                    		else if(mTimeProgress==80){
-                    			puzzleNo.setText("5");
-                    			icpuzzleNo.startAnimation(getRotateAnimation(-360, 0, 500));
-                    		}
-                    		else if (mTimeProgress >= 100) {
-                    			showBadResult();
-                                rightButton.setBackgroundResource(R.drawable.button_answer);
-                                //炸弹题没答要爆炸
-                        		if(tempisBomb){
-                        			animationBomb = (AnimationDrawable) bomb.getDrawable();
-                        			animationBomb.stop();
-                        			bomb.setVisibility(View.INVISIBLE);
-                    	        	animationBlast = (AnimationDrawable) blast.getDrawable();
-                    				blast.setVisibility(View.VISIBLE);
-                    				animationBlast.stop();
-                    				animationBlast.start();
-                    				tempisBomb=false;
-                        		}
-                        		//彩蛋题没答没有奖励
-                        		if(tempisEgg){
-                        			animationEgg = (AnimationDrawable) egg.getDrawable();
-                        			animationEgg.stop();
-                        			egg.setVisibility(View.INVISIBLE);
-                        			tempisEgg=false;
-                        		}
-                    			progressbarState=1;
-                    		}
-                    	}
-                        if(progressbarState==1){
-                        	timer.cancel();
-                        	timeProgress.setVisibility(View.INVISIBLE);//点击或计时结束后进度条消失
-                        	puzzleNo.setVisibility(View.INVISIBLE);//计时数字消失
-                        	icpuzzleNo.setVisibility(View.INVISIBLE);
-                        }
-                        else
-                        	timeProgress.setProgress(mTimeProgress);
-                    }
-                });
-                
             }
-        }, TIME_LIMIT / 100, TIME_LIMIT / 100);
+
+            word.setText(game.getDescription());
+            buttonA.setText("A. " + game.getAns1());
+            buttonB.setText("B. " + game.getAns2());
+            buttonC.setText("C. " + game.getAns3());
+            buttonD.setText("D. " + game.getAns4());
+
+            AnimationListener animEnd = new AnimationListener() {
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    fadeOut(resultPop, 500, null);
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                }
+
+                @Override
+                public void onAnimationStart(Animation animation) {
+                }
+            };
+            if (puzzleNum == 1)
+                animEnd = null;
+            fadeIn(puzzleArea, 300, animEnd);
+            puzzleNo.setText("" + puzzleNum);
+            puzzleNum++;
+            countDownTime();
+        } else {
+            // FIXME
+            goPVPEnd();
+        }
     }
-    
-    public void showGoodResult() {
-        showResult.setText("Good!");
-        showResult.setVisibility(View.VISIBLE);
+
+    public void displayFraction(TextView scoreText, int score) {
+        if (score >= 0)
+            scoreText.setText(score + " / 50");
     }
-    
-    public void showBadResult() {
-        showResult.setText("Bad!");
-        showResult.setVisibility(View.VISIBLE);
+
+    public void displayGoodResult() {
+        resultPop.setText("Good!");
+        AnimationListener animEnd = new AnimationListener() {
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                setPuzzles();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+        };
+        fadeIn(resultPop, 500, animEnd);
+        scoreLeft += 2;
+        displayFraction(fractionLeft, scoreLeft);
+        displayScoreProgress(scoreLeftProgress, scoreLeft - 2, scoreLeft, 500);
     }
-    
-    
+
+    public void displayBadResult() {
+        resultPop.setText("Bad!");
+        rightButton.setBackgroundResource(R.drawable.button_answer);
+        AnimationListener animEnd = new AnimationListener() {
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                setPuzzles();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+        };
+        fadeIn(resultPop, 500, animEnd);
+        scoreLeft -= 1;
+        displayFraction(fractionLeft, scoreLeft);
+        displayScoreProgress(scoreLeftProgress, scoreLeft + 1, scoreLeft, 500);
+    }
+
+    public void displayScoreProgress(ProgressBar progressBar, int start,
+            int end, int duration) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            progressAnim(progressBar, start, end, duration);
+        } else {
+            progressBar.setProgress(end);
+        }
+    }
+
     // Listen the answer pressed and respond accordingly
     View.OnClickListener answerListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-        	if(progressbarState==0&&tempisRound){
-        		switch (view.getId() - rightId) {
-                	case 0:{
-                		progressbarState=1;
-                		templeftScore+=4;
-                		userleftScore.setProgress(templeftScore>100?100:templeftScore);
-                		showGoodResult();
-                		//炸弹题答对了危机解除
-                		if(tempisBomb){
-                			animationBomb = (AnimationDrawable) bomb.getDrawable();
-                			animationBomb.stop();
-                			bomb.setVisibility(View.INVISIBLE);
-                			tempisBomb=false;
-                		}
-                		//彩蛋题答对了金花四溅
-                		if(tempisEgg){
-                			animationEgg = (AnimationDrawable) egg.getDrawable();
-                			animationEgg.stop();
-                			egg.setVisibility(View.INVISIBLE);
-            	        	animationFlower = (AnimationDrawable) flower.getDrawable();
-            				flower.setVisibility(View.VISIBLE);
-            				animationFlower.stop();
-            				animationFlower.start();
-            				tempisEgg=false;
-                		}
-                		break;
-                	}
-                	default:{
-                		progressbarState=1;
-                		templeftScore-=4;
-                		userleftScore.setProgress(templeftScore<0?0:templeftScore);
-                		showBadResult();
-                		rightButton.setBackgroundResource(R.drawable.button_answer);
-                		//是炸弹题需要爆炸
-                		if(tempisBomb){
-                			animationBomb = (AnimationDrawable) bomb.getDrawable();
-                			animationBomb.stop();
-                			bomb.setVisibility(View.INVISIBLE);
-            	        	animationBlast = (AnimationDrawable) blast.getDrawable();
-            				blast.setVisibility(View.VISIBLE);
-            				animationBlast.stop();
-            				animationBlast.start();
-            				tempisBomb=false;
-                		}
-                		//彩蛋题答错了没有奖励
-                		if(tempisEgg){
-                			animationEgg = (AnimationDrawable) egg.getDrawable();
-                			animationEgg.stop();
-                			egg.setVisibility(View.INVISIBLE);
-                			tempisEgg=false;
-                		}
-                	}                
-        		}
-        		//答完一轮后
-        	}
+            switch (view.getId() - rightId) {
+            case 0:
+                displayGoodResult();
+                break;
+            default:
+                displayBadResult();
+            }
         }
     };
-    
-    //旋转动画
-	public static Animation getRotateAnimation(float fromDegrees,  
-            float toDegrees, int durationMillis) {  
-        RotateAnimation rotate = new RotateAnimation(fromDegrees, toDegrees,  
-                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,  
-                0.5f);  
-        rotate.setDuration(durationMillis);  
-        rotate.setFillAfter(true);  
-        return rotate;  
+
+    // fadeOut(showResult, 500, null);
+    //
+    //
+    // countDownTime();
+    //
+    //
+    // } /*
+    // * else { }
+    // */
+    //
+    // }
+
+    public void countDownTime() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            progressAnim(timeProgress, 0, 100, TIME_LIMIT);
+        } else {
+            intTimeProgress = 0;
+            timeProgress.setProgress(intTimeProgress);
+
+            final Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                public void run() {
+                    intTimeProgress++;
+                    handler.post(new Runnable() {
+                        public void run() {
+                            if (intTimeProgress >= 100)
+                                timer.cancel();
+                            timeProgress.setProgress(intTimeProgress);
+                        }
+                    });
+                }
+            }, TIME_LIMIT / 100, TIME_LIMIT / 100);
+        }
+
     }
-	
-	//线程用于刷新题目
-	private class QuestionThread extends Thread{
-		public void run(){
-			while(true){
-				if(progressbarState==1){
-					try{
-						Thread.sleep(2000);
-					}catch(InterruptedException e){  
-						// TODO Auto-generated catch block  
-					e.printStackTrace();  
-					} //显示答案暂停2秒
-	        		if(tempquestionNo==6){
-	        			mHandler.post(showRoundResult);
-	        			progressbarState=0;
-	        			tempisRound=false;
-	        		}
-	        		else{
-	        			progressbarState=0;
-	        			mTimeProgress=0;
-	        			mHandler.post(questionUi);
-	        			mHandler.post(runnableBackground);
-	        		}
-				}
-			}
-		}
-	}
-	
-	//刷新UI中button,时间
-	Runnable runnableBackground = new Runnable(){  
-		@Override  
-		public void run(){  
-	        buttonA.setBackgroundResource(R.drawable.button_unpressed);
-	        buttonB.setBackgroundResource(R.drawable.button_unpressed);
-	        buttonC.setBackgroundResource(R.drawable.button_unpressed);
-	        buttonD.setBackgroundResource(R.drawable.button_unpressed);
-	        puzzleNo.setText("1");
-	        timeProgress.setVisibility(View.VISIBLE);//点击或计时结束后进度条消失
-        	puzzleNo.setVisibility(View.VISIBLE);//计时数字消失
-        	icpuzzleNo.setVisibility(View.VISIBLE);
-	        countDownTime();
-			}
-	};  
-		
-	//刷新题目
-	Runnable questionUi=new Runnable(){
-		@Override
-		public void run() {
-			// TODO Auto-generated method stub
-			tempquestionNo++;
-			word.setText("Morning");
-	        // TODO justify font size with option length
-	        buttonA.setText("A. " + "早");
-	        buttonB.setText("B. " + "晚");
-	        buttonC.setText("C. " + "早上好");
-	        buttonD.setText("D. " + "晚上好");
-	        showResult.setVisibility(View.INVISIBLE);//每次答题时都不显示对或错
-	        puzzleNo.setText("1");
-	        icpuzzleNo.startAnimation(getRotateAnimation(-360, 0, 1000));
-	        
-	        //set right answer
-	        String rightAnswer = "a";
-	        switch (rightAnswer.compareTo("a")) {
-	            case 0:
-	                rightId = R.id.pvp_game_btnA;
-	                rightButton = (Button) findViewById(R.id.pvp_game_btnA);
-	                break;
-	            case 1:
-	                rightId = R.id.pvp_game_btnB;
-	                rightButton = (Button) findViewById(R.id.pvp_game_btnB);
-	                break;
-	            case 2:
-	                rightId = R.id.pvp_game_btnC;
-	                rightButton = (Button) findViewById(R.id.pvp_game_btnC);
-	                break;
-	            case 3:
-	                rightId = R.id.pvp_game_btnD;
-	                rightButton = (Button) findViewById(R.id.pvp_game_btnD);
-	                break;
-	        }
-	        //如果是炸弹题需要显示炸弹
-	        if(tempquestionNo%2==0&&tempquestionNo%3!=0){
-	        	tempisBomb=true;
-	        	animationBomb = (AnimationDrawable) bomb.getDrawable();
-				bomb.setVisibility(View.VISIBLE);
-				animationBomb.start();
-	        }
-	        //如果是彩蛋题要显示彩蛋
-	        if(tempquestionNo%3==0&&tempquestionNo%2!=0){
-	        	tempisEgg=true;
-	        	animationEgg = (AnimationDrawable) egg.getDrawable();
-	        	egg.setVisibility(View.VISIBLE);
-				animationEgg.start();
-	        }
-		}
-		
-	};
-	
-	Runnable showRoundResult= new Runnable(){
-		@Override
-		public void run() {
-			// TODO Auto-generated method stub
-			//先使得北京的一些内容不可见
-			buttonA.setVisibility(View.INVISIBLE);
-			buttonB.setVisibility(View.INVISIBLE);
-			buttonC.setVisibility(View.INVISIBLE);
-			buttonD.setVisibility(View.INVISIBLE);
-			puzzleNo.setVisibility(View.INVISIBLE);
-			showResult.setVisibility(View.INVISIBLE);
-			word.setVisibility(View.INVISIBLE);
-			icpuzzleNo.setVisibility(View.INVISIBLE);
-			
-			String text="恭喜，您已经完成本轮答题"+'\n'+'\n'+"用时152秒，获得时间积分加成+2";
-			overWait.setText(text);
-			overWait.setVisibility(View.VISIBLE);
-	    	ImageView plus2 = (ImageView) findViewById(R.id.pvp_game_plus2);
-	    	plus2.startAnimation(plus2Animation);
-	    	tempshowResult=2;
-		}		
-	};
-	@Override
-	public void onAnimationEnd(Animation arg0) {
-		// TODO Auto-generated method stub
-		while(tempshowResult==1);
-		if(tempshowResult==2){
-			overWait.setVisibility(View.INVISIBLE);
-			String text="江小鱼共获得29分，花儿共获得26分"+'\n'+'\n'+"江小鱼获胜！获得胜利积分加成+5";
-			overScore.setText(text);
-			overScore.setVisibility(View.VISIBLE);
-			ImageView plus5 = (ImageView) findViewById(R.id.pvp_game_plus5);
-			plus5.startAnimation(plus5Animation);
-			tempshowResult=3;//可以显示胜
-		}
-		else if(tempshowResult==3){
-			ImageView win = (ImageView) findViewById(R.id.pvp_game_win);
-			win.startAnimation(winAnimation);
-			tempshowResult=4;
-		}
-		else if(tempshowResult==4){
-			overScore.setVisibility(View.INVISIBLE);
-			String text="世界排名+23,当前世界排名第12位!";
-			overRank.setText(text);
-			overRank.setVisibility(View.VISIBLE);
-			
-		    shareButton.setVisibility(View.VISIBLE);
-		    exchangeButton.setVisibility(View.VISIBLE);
-		    seerankButton.setVisibility(View.VISIBLE);
-		    gcontinueButton.setVisibility(View.VISIBLE);
-		    shareButton.startAnimation(overRankAnimation);
-		    exchangeButton.startAnimation(overRankAnimation);
-		    seerankButton.startAnimation(overRankAnimation);
-		    gcontinueButton.startAnimation(overRankAnimation);
-			tempshowResult=1;
-		}
-	}
 
-	@Override
-	public void onAnimationRepeat(Animation arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onAnimationStart(Animation arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void goPVPEnd() {
+        Intent intent = new Intent(this, PVPEndActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
 }
