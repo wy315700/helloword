@@ -59,6 +59,11 @@ public class PVPModeActivity extends BaseActivity {
                 .show();
     }
 
+    public void goPVPModify(View view){
+    	Intent intent = new Intent(this, PVPModifyActivity.class);
+        startActivity(intent);
+    }
+    
     private class GetPKGamesInBackground extends
             AsyncTask<String, Void, String> {
         @Override

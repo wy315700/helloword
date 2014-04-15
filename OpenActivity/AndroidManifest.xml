@@ -103,7 +103,12 @@
         <activity android:name="com.helloword.activity.PVCEndActivity" 
             android:screenOrientation="landscape" 
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" /> 
-        
+        <activity android:name="com.helloword.activity.PVPModifyActivity" 
+            android:screenOrientation="landscape" 
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" /> 
+        <activity android:name="com.helloword.activity.PVPModifyPhotoActivity" 
+            android:screenOrientation="landscape" 
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" /> 
     </application>
 
 </manifest>

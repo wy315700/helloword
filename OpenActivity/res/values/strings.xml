@@ -39,7 +39,13 @@
     <string name="gre_pk">GRE对战</string>
     <string name="more_pk">更多对战</string>
     <string name="startup">开始答题</string> 
-    
+    <string name="modify">修改名片</string> 
+    <string name="hero_file">英雄档案</string> 
+    <string name="choose_photo">请选择头像</string>
+    <string name="modify_">修改</string> 
+    <string name="college">大学</string> 
+    <string name="modify_college">请输入学校名称</string>
+    <string name="modify_photo">点击头像，选择自己喜欢的头像吧</string>  
     <string name="title_activity_pvpend">PVPEndActivity</string>
     <string name="hello_world">Hello world!</string>
 
