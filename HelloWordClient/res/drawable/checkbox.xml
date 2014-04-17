@@ -11,8 +11,8 @@
 	android:drawable="@drawable/box_checked" />
 
 <shape
-    android:height="24dp"
-    android:width="24dp" />
+    android:height="12dp"
+    android:width="12dp" />
     
 
 </selector>

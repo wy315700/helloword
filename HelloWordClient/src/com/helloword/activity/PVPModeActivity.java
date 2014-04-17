@@ -35,8 +35,12 @@ public class PVPModeActivity extends BaseActivity {
     }
 
     public void goCet6PK(View view) {
-        Toast.makeText(getApplicationContext(), "你就不能点四级的？", Toast.LENGTH_SHORT)
-                .show();
+//        Toast.makeText(getApplicationContext(), "你就不能点四级的？", Toast.LENGTH_SHORT)
+//                .show();
+        // ===========test=========
+            Intent intent = new Intent(this, PVPEndActivity.class);
+            startActivity(intent);
+        // =========================
     }
 
     public void goIeltsPK(View view) {
