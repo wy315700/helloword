@@ -139,16 +139,22 @@
                 android:layout_height="40dp"
                 android:layout_alignLeft="@id/login_pass_area"
                 android:layout_alignRight="@id/login_pass_area"
-                android:layout_below="@id/login_pass_area" >
+                android:layout_below="@id/login_pass_area"
+                android:gravity="center" >
 
                 <CheckBox
                     android:id="@+id/login_auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
                     android:button="@drawable/checkbox"
-                    android:checked="false"
-                    android:paddingLeft="10dp"
+                    android:checked="false" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/login_auto"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/login_auto"
                     android:text="@string/auto_login"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
