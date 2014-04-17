@@ -3,6 +3,7 @@ package com.helloword.protocolTransmission;
 import java.util.List;
 
 import com.google.gson.Gson;
+import com.helloword.gsonObject.UserAnswer;
 import com.helloword.gsonObject.requestProtocol.gameProtocol.AnswersRequestProtocol;
 import com.helloword.gsonObject.requestProtocol.gameProtocol.DroppedOutRequestProtocol;
 import com.helloword.gsonObject.requestProtocol.gameProtocol.PKAnswersRequestProtocol;
@@ -13,7 +14,7 @@ import com.helloword.gsonObject.requestProtocol.gameProtocol.RankRequestProtocol
 public class SerializeGameRequest {
 
     public String answersRequest(String sessionID, 
-            String gameID, String logout, List<AnswersRequestProtocol.UserAnswer> userAnswer) {
+            String gameID, String logout, List<UserAnswer> userAnswer) {
         String request = "/helloword/upload_result.json";
         AnswersRequestProtocol answersRequest = new AnswersRequestProtocol();
         
@@ -81,7 +82,7 @@ public class SerializeGameRequest {
     }
     
     public String pkAnswersRequest(String sessionID, String gameID, 
-            List<PKAnswersRequestProtocol.UserAnswer> userAnswer) {
+            List<UserAnswer> userAnswer) {
 
         String request = "/helloword/upload_pk_result.json";
         PKAnswersRequestProtocol pkAnswersRequest = new PKAnswersRequestProtocol();
