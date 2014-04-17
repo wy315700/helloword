@@ -1,17 +1,10 @@
 package com.helloword.activity;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.os.Build;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
-import android.widget.ProgressBar;
 
 public abstract class BaseActivity extends Activity {
 

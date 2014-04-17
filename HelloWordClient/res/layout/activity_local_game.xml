@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_green_cloud"
+    android:gravity="center_horizontal" >
+    
+    <ImageView
+        android:id="@+id/pvc_game_title"
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:paddingBottom="10dp"
+        android:contentDescription="@string/content_description"
+        android:scaleType="centerInside"
+        android:src="@drawable/img_tixiao_word" />
+    
+<!--     挑战者和进度 -->
+    <ImageView 
+        android:id="@+id/pvc_game_user_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/content_description"
+        android:layout_alignParentLeft="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="5dp"
+        android:layout_below="@id/pvc_game_title"
+        android:src="@drawable/pvp_game_ic_girl"/>
+
+    <ImageView 
+        android:id="@+id/pvc_game_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/content_description"
+        android:layout_alignParentRight="true"
+        android:paddingRight="20dp"
+        android:paddingLeft="5dp"
+        android:layout_alignBottom="@id/pvc_game_user_img"
+        android:src="@drawable/pvp_game_ic_message"/>
+
+    <ProgressBar
+        android:id="@+id/pvc_game_user_score"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_height="10dp"
+        android:layout_width="wrap_content"
+        android:layout_toRightOf="@id/pvc_game_user_img"
+        android:layout_toLeftOf="@id/pvc_game_message"
+        android:layout_alignBottom="@id/pvc_game_user_img"
+        android:background="@drawable/rectangle"
+        android:progressDrawable="@drawable/progress_bar" />
+    
+    <TextView 
+        android:id="@+id/pvc_game_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/pvc_game_user_img"
+        android:layout_above="@id/pvc_game_user_score"
+        android:textColor="@color/black"
+        android:textSize="20sp"/>
+    
+    <TextView 
+        android:id="@+id/pvc_game_answer_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/pvc_game_message"
+        android:layout_above="@id/pvc_game_user_score"
+        android:textColor="@color/red"
+        android:textSize="20sp"/>
+    <!-- puzzles -->
+
+    <RelativeLayout
+        android:id="@+id/pvc_game_puzzle_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pvc_game_user_score"
+        android:gravity="center_horizontal" >
+
+        <Button
+            android:id="@+id/pvc_game_btnA"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/blue_button"
+            android:gravity="center" />
+
+        <Button
+            android:id="@+id/pvc_game_btnB"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_alignTop="@+id/pvc_game_btnA"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@+id/pvc_game_btnA"
+            android:background="@drawable/blue_button"
+            android:gravity="center" />
+
+        <Button
+            android:id="@+id/pvc_game_btnC"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/pvc_game_btnA"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/blue_button"
+            android:gravity="center" />
+
+        <Button
+            android:id="@+id/pvc_game_btnD"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_alignTop="@+id/pvc_game_btnC"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@+id/pvc_game_btnC"
+            android:background="@drawable/blue_button"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/pvc_game_word"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/pvc_game_btnA"
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/pvc_game_btnB"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="@string/temp_english"
+            android:textColor="#0000FF"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+    
+    <Button 
+        android:id="@+id/pvc_game_lastword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pvc_game_puzzle_area"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/grey_button"/>
+    
+    <Button 
+        android:id="@+id/pvc_game_nextword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pvc_game_puzzle_area"
+        android:layout_marginTop="5dp"
+        android:layout_alignBottom="@id/pvc_game_lastword"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/red_button"/>
+    
+    <TextView
+        android:id="@+id/pvc_game_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@color/red"
+        android:textSize="50sp"
+        android:visibility="gone" />
+</RelativeLayout>
