@@ -1,50 +1,105 @@
 package com.helloword.database.beans;
 
 public class NewWord {
-	public int word_id;
-	public String word_content;
-	public String word_meaning;
-	public int word_type;
-	
+	public int pro_id;
+	public String pro_description;
+	public String pro_ans_a;
+	public String pro_ans_b;
+	public String pro_ans_c;
+	public String pro_ans_d;
+	public int pro_point;
+	public int pro_time;
+	public int pro_type;
 	
 	
 	public NewWord() {
 	}
 	
-	
-	
-	public NewWord(int word_id, String word_content, String word_meaning,
-			int word_type) {
-		this.word_id = word_id;
-		this.word_content = word_content;
-		this.word_meaning = word_meaning;
-		this.word_type = word_type;
+
+	public NewWord(String pro_description, String pro_ans_a,
+			String pro_ans_b, String pro_ans_c, String pro_ans_d,
+			int pro_point, int pro_time, int pro_type) {
+		super();
+		this.pro_description = pro_description;
+		this.pro_ans_a = pro_ans_a;
+		this.pro_ans_b = pro_ans_b;
+		this.pro_ans_c = pro_ans_c;
+		this.pro_ans_d = pro_ans_d;
+		this.pro_point = pro_point;
+		this.pro_time = pro_time;
+		this.pro_type = pro_type;
 	}
 
+	public int getPro_id() {
+		return pro_id;
+	}
 
+	public void setPro_id(int pro_id) {
+		this.pro_id = pro_id;
+	}
 
-	public int getWord_id() {
-		return word_id;
+	public String getPro_description() {
+		return pro_description;
 	}
-	public void setWord_id(int word_id) {
-		this.word_id = word_id;
+
+	public void setPro_description(String pro_description) {
+		this.pro_description = pro_description;
 	}
-	public String getWord_content() {
-		return word_content;
+
+	public String getPro_ans_a() {
+		return pro_ans_a;
 	}
-	public void setWord_content(String word_content) {
-		this.word_content = word_content;
+
+	public void setPro_ans_a(String pro_ans_a) {
+		this.pro_ans_a = pro_ans_a;
 	}
-	public String getWord_meaning() {
-		return word_meaning;
+
+	public String getPro_ans_b() {
+		return pro_ans_b;
 	}
-	public void setWord_meaning(String word_meaning) {
-		this.word_meaning = word_meaning;
+
+	public void setPro_ans_b(String pro_ans_b) {
+		this.pro_ans_b = pro_ans_b;
 	}
-	public int getWord_type() {
-		return word_type;
+
+	public String getPro_ans_c() {
+		return pro_ans_c;
 	}
-	public void setWord_type(int word_type) {
-		this.word_type = word_type;
+
+	public void setPro_ans_c(String pro_ans_c) {
+		this.pro_ans_c = pro_ans_c;
 	}
+
+	public String getPro_ans_d() {
+		return pro_ans_d;
+	}
+
+	public void setPro_ans_d(String pro_ans_d) {
+		this.pro_ans_d = pro_ans_d;
+	}
+
+	public int getPro_point() {
+		return pro_point;
+	}
+
+	public void setPro_point(int pro_point) {
+		this.pro_point = pro_point;
+	}
+
+	public int getPro_time() {
+		return pro_time;
+	}
+
+	public void setPro_time(int pro_time) {
+		this.pro_time = pro_time;
+	}
+
+	public int getPro_type() {
+		return pro_type;
+	}
+
+	public void setPro_type(int pro_type) {
+		this.pro_type = pro_type;
+	}
+
 }
