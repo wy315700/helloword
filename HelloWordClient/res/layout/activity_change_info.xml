@@ -51,15 +51,16 @@
         android:src="@drawable/bg_modify"/>
     
     <Button
-        android:id="@+id/pvp_modify_btn"
+        android:id="@+id/change_info_btn_modify"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/pvp_modify_bluebar_down"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
         android:background="@drawable/blue_button"
+        android:text="@string/modify_info"
         android:textSize="14sp" 
-        android:onClick="beginModify"/>
+        android:onClick="confirmModify"/>
 
 
     
@@ -74,7 +75,7 @@
         android:layout_marginTop="10dp"
         android:contentDescription="@string/content_description"
         android:src="@drawable/photo_girl1"
-        android:onClick="goChoosePhoto"/>
+        android:onClick="goChangePhoto"/>
     
     <TextView 
         android:id="@+id/pvp_modify_photo_hint"
@@ -100,7 +101,7 @@
         android:id="@+id/pvp_modify_account_area"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@id/pvp_modify_btn"
+        android:layout_alignRight="@id/change_info_btn_modify"
         android:layout_below="@+id/pvp_modify_tixiao"
         android:layout_marginLeft="75dp"
         android:layout_marginRight="75dp"
@@ -138,7 +139,7 @@
         android:id="@+id/pvp_nickname_area"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/pvp_modify_btn"
+        android:layout_alignLeft="@+id/change_info_btn_modify"
         android:layout_alignTop="@id/pvp_modify_account_area"
         android:layout_marginLeft="75dp"
         android:layout_marginRight="75dp"

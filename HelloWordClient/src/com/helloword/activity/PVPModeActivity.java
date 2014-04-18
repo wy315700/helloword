@@ -11,20 +11,27 @@ import com.helloword.service.GameService;
 import com.helloword.service.NetworkService;
 
 public class PVPModeActivity extends BaseActivity {
+    private NetworkService networkService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pvp_mode);
+        
+        networkService = new NetworkService(this);
     }
 
-    public void goPVPGame() {
+    public void goPickPlayer() {
         Intent intent = new Intent(this, PVPGameActivity.class);
+        startActivity(intent);
+    }
+    
+    public void goChangeInfo(View view) {
+        Intent intent = new Intent(this, ChangeInfoActivity.class);
         startActivity(intent);
     }
 
     public void goCet4PK(View view) {
-        NetworkService networkService = new NetworkService(this);
         if (networkService.isConnected()) {
             new GetPKGamesInBackground().execute("1");
         } else {
@@ -33,7 +40,7 @@ public class PVPModeActivity extends BaseActivity {
                     .show();
         }
     }
-
+    
     public void goCet6PK(View view) {
 //        Toast.makeText(getApplicationContext(), "你就不能点四级的？", Toast.LENGTH_SHORT)
 //                .show();
@@ -76,7 +83,7 @@ public class PVPModeActivity extends BaseActivity {
         @Override
         protected void onPostExecute(String result) {
             if (result.equals("success")) {
-                goPVPGame();
+                goPickPlayer();
             } else {
                 Toast.makeText(getApplicationContext(), result,
                         Toast.LENGTH_SHORT).show();

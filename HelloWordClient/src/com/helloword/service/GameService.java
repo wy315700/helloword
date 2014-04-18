@@ -1,11 +1,9 @@
 package com.helloword.service;
 
 import android.app.Application;
-import android.util.Log;
 
-import com.helloword.gsonObject.responseProtocol.gameProtocol.PKPuzzlesResponseProtocol;
-import com.helloword.protocolTransmission.DeserializeGameResponse;
-import com.helloword.protocolTransmission.SerializeGameRequest;
+import com.helloword.gsonHelper.GameProtocol;
+import com.helloword.gsonObject.game.PKPuzzlesResponse;
 import com.helloword.util.HttpLinker;
 import com.helloword.util.UsersApplication;
 
@@ -17,9 +15,13 @@ import com.helloword.util.UsersApplication;
 public class GameService {
 
     private UsersApplication user;
+    private GameProtocol gameProtocol;
+    private HttpLinker httpLinker;
 
     public GameService(Application application) {
         user = (UsersApplication) application;
+        gameProtocol = new GameProtocol();
+        httpLinker = new HttpLinker();
     }
 
     public String getPKPuzzles(String gameType) {
@@ -27,23 +29,20 @@ public class GameService {
     }
 
     public String getPKPuzzles(String sessionID, String gameType) {
-        SerializeGameRequest gameRequest = new SerializeGameRequest();
-        String stringUpload = gameRequest.pkPuzzlesRequest(sessionID, gameType);
+        String uploadString = gameProtocol
+                .requestPKPuzzles(sessionID, gameType);
         String httpUrl = "http://halloword.sinaapp.com/helloword/request_pk_game.json";
-        HttpLinker httpLinker = new HttpLinker();
-        String stringDownload = httpLinker.stringPost(httpUrl, stringUpload);
-        Log.d("pkgame", stringDownload);
-        
-        DeserializeGameResponse gameResponse = new DeserializeGameResponse();
-        if (stringDownload != null) {
-            PKPuzzlesResponseProtocol pkPuzzlesResponse = gameResponse
-                    .pkPuzzlesResponse(stringDownload);
+        String downloadString = httpLinker.postString(httpUrl, uploadString);
+        // Log.d("pkgame", stringDownload);
+
+        if (downloadString != null) {
+            PKPuzzlesResponse pkPuzzlesResponse = gameProtocol
+                    .responsePKPuzzles(downloadString);
             String result = pkPuzzlesResponse.getResult();
             if (result.equals("success")) {
                 user.setGameID(pkPuzzlesResponse.getDetails().getGameID());
                 user.setPKPuzzles(pkPuzzlesResponse.getDetails().getGames());
-            }
-            else {
+            } else {
                 result = pkPuzzlesResponse.getDetails().getError();
             }
             return result;

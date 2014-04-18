@@ -74,11 +74,10 @@ public class UsersApplication extends Application {
     
     @Override
     public void onCreate() { 
-        // TODO Auto-generated method stub 
         super.onCreate(); 
         setSessionID("123456");
-        setUserName("Ling");
-        setUserNickname("喵喵");
+        setUserName("unKnown");
+        setUserNickname("未登录");
         setGameID("54321");
         setUserAvatarType("id");
         setUserAvatar("1");

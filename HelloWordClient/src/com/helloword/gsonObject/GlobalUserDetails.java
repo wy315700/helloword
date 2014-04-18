@@ -1,7 +1,7 @@
 package com.helloword.gsonObject;
 
 public class GlobalUserDetails extends GlobalDetails {
-    
+
     UserFullInfo userInfo;
 
     public UserFullInfo getUserInfo() {
@@ -11,5 +11,5 @@ public class GlobalUserDetails extends GlobalDetails {
     public void setUserInfo(UserFullInfo userInfo) {
         this.userInfo = userInfo;
     }
-    
+
 }

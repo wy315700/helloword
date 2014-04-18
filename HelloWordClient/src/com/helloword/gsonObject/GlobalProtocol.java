@@ -1,13 +1,13 @@
 package com.helloword.gsonObject;
 
 public class GlobalProtocol {
-    private String request = null;
-    
+    private String request;
+
     public String getRequest() {
-    	return request;
+        return request;
     }
-    public void setRequest(String string) {
-        this.request = string;
+
+    public void setRequest(String request) {
+        this.request = request;
     }
-    
 }
