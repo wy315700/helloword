@@ -53,11 +53,11 @@
     <string name="change_opponent">换个对手</string>
     <string name="view_rank">查看排行</string>
     <string name="hero_profile">英雄档案</string>
-    <string name="college">大学</string> 
+    <string name="college">学校</string>
     <string name="modify_college">请输入学校名称</string>
-    <string name="modify_photo">点击头像，选择自己喜欢的头像吧</string>
+    <string name="click_and_modify_photo">点击头像，选择自己喜欢的头像吧</string>
     <string name="choose_photo">请选择头像</string>
-    <string name="modify">修改</string>
-    
+    <string name="modify_info">修改信息</string>
+    <string name="modify_photo">修改头像</string>
 
 </resources>

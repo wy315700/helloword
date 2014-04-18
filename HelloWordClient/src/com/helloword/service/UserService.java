@@ -5,27 +5,29 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.helloword.gsonObject.responseProtocol.ChangeUserInfoResponseProtocol;
-import com.helloword.gsonObject.responseProtocol.GetMessageResponseProtocol;
-import com.helloword.gsonObject.responseProtocol.LoginResponseProtocol;
-import com.helloword.gsonObject.responseProtocol.LogoutResponseProtocol;
-import com.helloword.gsonObject.responseProtocol.RegisterResponseProtocol;
-import com.helloword.gsonObject.responseProtocol.UpdateTokenResponseProtocol;
-import com.helloword.protocolTransmission.DeserializeResponse;
-import com.helloword.protocolTransmission.SerializeRequest;
+import com.helloword.gsonHelper.UserProtocol;
+import com.helloword.gsonObject.user.ChangeUserInfoResponse;
+import com.helloword.gsonObject.user.GetMessageResponse;
+import com.helloword.gsonObject.user.LoginResponse;
+import com.helloword.gsonObject.user.LogoutResponse;
+import com.helloword.gsonObject.user.RegisterResponse;
+import com.helloword.gsonObject.user.UpdateTokenResponse;
 import com.helloword.util.HttpLinker;
 import com.helloword.util.UsersApplication;
 
 /**
- * wrap the function of login, register and logout, etc
+ * wrap the function of user deeds like login, register and logout, etc
  * 
  */
 public class UserService {
-
     private UsersApplication user;
+    private UserProtocol userProtocol;
+    private HttpLinker httpLinker;
 
     public UserService(Application application) {
         user = (UsersApplication) application;
+        userProtocol = new UserProtocol();
+        httpLinker = new HttpLinker();
     }
 
     // not completed
@@ -36,16 +38,13 @@ public class UserService {
      * @return the login result if fails return error string
      */
     public String login(String userName, String password) {
-        SerializeRequest request = new SerializeRequest();
-        String stringUpload = request.loginRequest(userName, password);
+        String uploadString = userProtocol.requestLogin(userName, password);
         String httpUrl = "http://halloword.sinaapp.com/user/login.json";
 
-        HttpLinker httpLinker = new HttpLinker();
-        String stringDownload = httpLinker.stringPost(httpUrl, stringUpload);
-        if (stringDownload != null) {
-            DeserializeResponse response = new DeserializeResponse();
-            LoginResponseProtocol loginResponse = response
-                    .loginResponse(stringDownload);
+        String downloadString = httpLinker.postString(httpUrl, uploadString);
+        if (downloadString != null) {
+            LoginResponse loginResponse = userProtocol
+                    .responseLogin(downloadString);
             if (loginResponse.getResult().equals("success")) {
                 user.setSessionID(loginResponse.getDetails().getSessionID());
                 user.setUserName(loginResponse.getDetails().getUserInfo()
@@ -69,16 +68,13 @@ public class UserService {
     }
 
     public String logout(String sessionID, String userName) {
-        SerializeRequest request = new SerializeRequest();
-        String stringUpload = request.logoutRequest(sessionID, userName);
+        String uploadString = userProtocol.requestLogout(sessionID, userName);
         String httpUrl = "http://halloword.sinaapp.com/user/logout.json";
 
-        HttpLinker httpLinker = new HttpLinker();
-        String stringDownload = httpLinker.stringPost(httpUrl, stringUpload);
-        if (stringDownload != null) {
-            DeserializeResponse response = new DeserializeResponse();
-            LogoutResponseProtocol logoutResponse = response
-                    .logoutResponse(stringDownload);
+        String downloadString = httpLinker.postString(httpUrl, uploadString);
+        if (downloadString != null) {
+            LogoutResponse logoutResponse = userProtocol
+                    .responseLogout(downloadString);
             if (logoutResponse.getResult().equals("success"))
                 return "success";
             else
@@ -89,17 +85,14 @@ public class UserService {
 
     public String register(String userName, String password,
             String userNickname, String userAvatarType, String userAvatar) {
-        SerializeRequest request = new SerializeRequest();
-        String stringUpload = request.registerRequest(userName, userNickname,
-                password, userAvatarType, userAvatar);
+        String uploadString = userProtocol.requestRegister(userName,
+                userNickname, password, userAvatarType, userAvatar);
         String httpUrl = "http://halloword.sinaapp.com/user/register.json";
 
-        HttpLinker httpLinker = new HttpLinker();
-        String stringDownload = httpLinker.stringPost(httpUrl, stringUpload);
-        if (stringDownload != null) {
-            DeserializeResponse response = new DeserializeResponse();
-            RegisterResponseProtocol registerResponse = response
-                    .registerResponse(stringDownload);
+        String downloadString = httpLinker.postString(httpUrl, uploadString);
+        if (downloadString != null) {
+            RegisterResponse registerResponse = userProtocol
+                    .responseRegister(downloadString);
             if (registerResponse.getResult().equals("success")) {
                 user.setSessionID(registerResponse.getDetails().getSessionID());
                 user.setUserName(registerResponse.getDetails().getUserInfo()
@@ -129,18 +122,16 @@ public class UserService {
             String userNickname, String oldPassword, String newPassword,
             String userAvatarType, String userAvatar) {
 
-        SerializeRequest request = new SerializeRequest();
-        String stringUpload = request.changeUserInfoRequest(sessionID,
+        String uploadString = userProtocol.requestChangeUserInfo(sessionID,
                 userName, userNickname, oldPassword, newPassword,
                 userAvatarType, userAvatar);
         String httpUrl = "http://halloword.sinaapp.com/user/change_userinfo.json";
 
         HttpLinker httpLinker = new HttpLinker();
-        String stringDownload = httpLinker.stringPost(httpUrl, stringUpload);
-        if (stringDownload != null) {
-            DeserializeResponse response = new DeserializeResponse();
-            ChangeUserInfoResponseProtocol changeUserInfoResponse = response
-                    .changeUserInfoResponse(stringDownload);
+        String downloadString = httpLinker.postString(httpUrl, uploadString);
+        if (downloadString != null) {
+            ChangeUserInfoResponse changeUserInfoResponse = userProtocol
+                    .responseChangeUserInfo(downloadString);
             if (changeUserInfoResponse.getResult().equals("success")) {
                 user.setUserName(changeUserInfoResponse.getDetails()
                         .getUserInfo().getUserName());
@@ -148,8 +139,8 @@ public class UserService {
                         .getUserInfo().getUserNickname());
                 user.setUserAvatarType(changeUserInfoResponse.getDetails()
                         .getUserInfo().getUserAvatarType());
-                user.setUserAvatar(changeUserInfoResponse.getDetails().getUserInfo()
-                        .getUserAvatar());
+                user.setUserAvatar(changeUserInfoResponse.getDetails()
+                        .getUserInfo().getUserAvatar());
                 return "success";
             } else
                 return changeUserInfoResponse.getDetails().getError();
@@ -158,16 +149,13 @@ public class UserService {
     }
 
     public String updateToken(String sessionID) {
-        SerializeRequest request = new SerializeRequest();
-        String stringUpload = request.updateTokenRequest(sessionID);
+        String uploadString = userProtocol.requestUpdateToken(sessionID);
         String httpUrl = "http://halloword.sinaapp.com/user/update_token.json";
 
-        HttpLinker httpLinker = new HttpLinker();
-        String stringDownload = httpLinker.stringPost(httpUrl, stringUpload);
-        if (stringDownload != null) {
-            DeserializeResponse response = new DeserializeResponse();
-            UpdateTokenResponseProtocol updateTokenResponse = response
-                    .updateTokenResponse(stringDownload);
+        String downloadString = httpLinker.postString(httpUrl, uploadString);
+        if (downloadString != null) {
+            UpdateTokenResponse updateTokenResponse = userProtocol
+                    .responseUpdateToken(downloadString);
             if (updateTokenResponse.getResult().equals("success")) {
                 user.setSessionID(updateTokenResponse.getDetails()
                         .getSessionID());
@@ -183,16 +171,13 @@ public class UserService {
     }
 
     public String getMessage(String sessionID) {
-        SerializeRequest request = new SerializeRequest();
-        String stringUpload = request.getMessageRequest(sessionID);
+        String uploadString = userProtocol.requestGetMessage(sessionID);
         String httpUrl = "http://halloword.sinaapp.com/helloword/get_message.json";
 
-        HttpLinker httpLinker = new HttpLinker();
-        String stringDownload = httpLinker.stringPost(httpUrl, stringUpload, 1);
-        if (stringDownload != null) {
-            DeserializeResponse response = new DeserializeResponse();
-            GetMessageResponseProtocol getMessageResponse = response
-                    .getMessageResponse(stringDownload);
+        String downloadString = httpLinker.postString(httpUrl, uploadString, 1);
+        if (downloadString != null) {
+            GetMessageResponse getMessageResponse = userProtocol
+                    .responseGetMessage(downloadString);
             if (getMessageResponse.getResult().equals("success"))
                 return "success";
             else

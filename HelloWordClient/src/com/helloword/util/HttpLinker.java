@@ -16,109 +16,85 @@ import java.net.URL;
  * @author Liletta
  */
 public class HttpLinker {
-    
-//    private static final String DEBUG_TAG = "Http Connection";
-    
+
+    //    private static final String DEBUG_TAG = "Http Connection";
+
     /**
      * @param httpUrl
-     * @param stringUpload
+     * @param uploadString
      * @return the outputstream data wraped in string
      */
-    public String stringPost(String httpUrl, String stringUpload) {
-        return stringPost(httpUrl, stringUpload, 0);
+    public String postString(String httpUrl, String uploadString) {
+        return postString(httpUrl, uploadString, 0);
     }
-    
-    public String stringPost(String httpUrl, String stringUpload, int flag) {
-        String stringDownload = null;
+
+    public String postString(String httpUrl, String uploadString, int flag) {
+        String downloadString = null;
         try {
             URL url = new URL(httpUrl);
-            stringUpload = "params=" + stringUpload;
-            
-            byte[] bytesUpload = stringUpload.getBytes();
-            
-//            Log.e("http link", "" + bytesUpload);
-            
-            byte[] bytesDownload = byteArrayPost(url, bytesUpload, flag);
-            
-//            Log.e("http link", "" + bytesDownload);
-            
-            stringDownload = new String(bytesDownload);
-            
-//            Log.e("http link", stringDownload);
-            
-        }
-        catch (MalformedURLException e) {
+            uploadString = "params=" + uploadString;
+            byte[] uploadBytes = uploadString.getBytes();
+            byte[] downloadBytes = postByteArray(url, uploadBytes, flag);
+            downloadString = new String(downloadBytes);
+        } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        
-        return stringDownload;
+        return downloadString;
     }
 
-    public byte[] byteArrayPost(URL url, byte[] bytesUpload, int flag) {
+    public byte[] postByteArray(URL url, byte[] uploadBytes, int flag) {
         // if flag = 0 (default), short connection, if flag = 1 long connection
         final int TIMELIMIT = 250;
-        
+        HttpURLConnection urlConnection = null;
+
         try {
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            try {
-                urlConnection.setRequestMethod("POST");
-                urlConnection.setDoOutput(true);
-                urlConnection.setDoInput(true);
-                
-                urlConnection.setUseCaches(false);
-                
-                if (flag == 0)
-                    urlConnection.setConnectTimeout(15000);
-                else
-                    urlConnection.setConnectTimeout(TIMELIMIT * 1000);
-                
-                urlConnection.connect();
-                
-                // ==================output data==================================
+            urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("POST");
+            urlConnection.setDoOutput(true);
+            urlConnection.setDoInput(true);
+            urlConnection.setUseCaches(false);
 
-                BufferedOutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
+            if (flag == 0)
+                urlConnection.setConnectTimeout(15000);
+            else
+                urlConnection.setConnectTimeout(TIMELIMIT * 1000);
 
-                out.write(bytesUpload);
-                out.flush();
-                out.close();
-                
-                // =======================read input data=================================
-                
-                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-                
-                int size = 1024;
-                int len;
-                byte[] bytesDownload;
-                
-                if (in instanceof ByteArrayInputStream) {
-                    size = in.available();
-                    bytesDownload = new byte[size];
-                    len = in.read(bytesDownload, 0, size);
-                  } else {
-                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                    bytesDownload = new byte[size];
-                    while ((len = in.read(bytesDownload, 0, size)) != -1)
-                      bos.write(bytesDownload, 0, len);
-                    bytesDownload = bos.toByteArray();
-                  }
-               
-                in.close();
-                
-                return bytesDownload;
-                
+            urlConnection.connect();
+
+            // ==================output data==================================
+
+            BufferedOutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
+
+            out.write(uploadBytes);
+            out.flush();
+            out.close();
+
+            // =======================read input data=================================
+
+            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+
+            int size = 1024;
+            int len;
+            byte[] downloadBytes;
+
+            if (in instanceof ByteArrayInputStream) {
+                size = in.available();
+                downloadBytes = new byte[size];
+                len = in.read(downloadBytes, 0, size);
+            } else {
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                downloadBytes = new byte[size];
+                while ((len = in.read(downloadBytes, 0, size)) != -1)
+                    bos.write(downloadBytes, 0, len);
+                downloadBytes = bos.toByteArray();
             }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
-            finally {
-                urlConnection.disconnect();
-            }
-        }
-        catch (IOException e) {
+            in.close();
+            return downloadBytes;
+        } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            urlConnection.disconnect();
         }
-    
         return null;
     }
-    
-} 
+}

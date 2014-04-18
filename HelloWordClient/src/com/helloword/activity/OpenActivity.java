@@ -24,23 +24,11 @@ public class OpenActivity extends BaseActivity {
 	@Override
 	protected void onStart() {
 	    super.onStart();		
-		AnimationListener animEnd = new AnimationListener() {
+		AnimationListenerAdapter animEnd = new AnimationListenerAdapter() {
             @Override
             public void onAnimationEnd(Animation animation) {
                 // TODO Auto-generated method stub
                 goMainInterfaceActivity();
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-                // TODO Auto-generated method stub
-                
-            }
-
-            @Override
-            public void onAnimationStart(Animation animation) {
-                // TODO Auto-generated method stub
-                
             }
 		};
 		fadeIn(background, OPEN_DURATION, animEnd);

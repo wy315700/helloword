@@ -2,28 +2,28 @@ package com.helloword.gsonObject;
 
 public class PKPuzzles extends Puzzles {
     
-    String ans = null;
-    String enemyTime = null;
-    String enemyAns = null;
+    String ans;
+    String enemyTime;
+    String enemyAns;
 
     public String getAns() {
         return ans;
     }
-    public void setAns(String string) {
-        this.ans = string;
+    public void setAns(String ans) {
+        this.ans = ans;
     }
     
     public String getEnemyTime() {
         return enemyTime;
     }
-    public void setEnemyTime(String string) {
-        this.enemyTime = string;
+    public void setEnemyTime(String enemyTime) {
+        this.enemyTime = enemyTime;
     }
 
     public String getEnemyAns() {
         return enemyAns;
     }
-    public void setEnemyAns(String string) {
-        this.enemyAns = string;
+    public void setEnemyAns(String enemyAns) {
+        this.enemyAns = enemyAns;
     }
 }

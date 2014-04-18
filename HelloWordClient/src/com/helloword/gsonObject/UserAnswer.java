@@ -1,22 +1,21 @@
 package com.helloword.gsonObject;
 
 public class UserAnswer {
-    
-    String chosen = null;
-    String time = null;
-    
-    public String getChosen() {
-        return chosen;
+    String ans;
+    String time;
+
+    public String getAns() {
+        return ans;
     }
-    public void setChosen(String string) {
-        this.chosen = string;
+    public void setAns(String ans) {
+        this.ans = ans;
     }
-    
+
     public String getTime() {
         return time;
     }
-    public void setTime(String string) {
-        this.time = string;
+    public void setTime(String time) {
+        this.time = time;
     }
 
 }
