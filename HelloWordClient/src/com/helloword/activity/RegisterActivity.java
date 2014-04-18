@@ -36,6 +36,8 @@ private static final String DEBUG = "register activity";
 	private String password;
 	private String passwordConfirm;
 	private String userNickname;
+	private String userAvatarType = "id";
+	private String userAvatar = "1";
 	
 
 	
@@ -115,7 +117,7 @@ private static final String DEBUG = "register activity";
         @Override
         protected String doInBackground(String... params) {
             UserService userService = new UserService(getApplication());
-            return userService.register(params[0], params[1], params[2]);
+            return userService.register(params[0], params[1], params[2], params[3], params[4]);
             
         }
         // onPostExecute displays the results of the AsyncTask.
