@@ -18,106 +18,141 @@ import com.helloword.util.UsersApplication;
 
 /**
  * wrap the function of login, register and logout, etc
- *
+ * 
  */
 public class UserService {
-    
+
     private UsersApplication user;
-    
+
     public UserService(Application application) {
         user = (UsersApplication) application;
     }
-    
+
     // not completed
-        
-	/**
-	 * @param userName
-	 * @param password
-	 * @return the login result if fails return error string
-	 */
-	public String login(String userName,String password) {
-		SerializeRequest request = new SerializeRequest();
-		String stringUpload = request.loginRequest(userName, password);
-		String httpUrl = "http://halloword.sinaapp.com/user/login.json";
-		
-		HttpLinker httpLinker = new HttpLinker();
-		String stringDownload = httpLinker.stringPost(httpUrl, stringUpload);
-		if (stringDownload != null) {
-		    DeserializeResponse response = new DeserializeResponse();
-	        LoginResponseProtocol loginResponse = response.loginResponse(stringDownload);
-	        if (loginResponse.getResult().equals("success")) {
-	            user.setSessionID(loginResponse.getDetails().getSessionID());
-	            user.setUserName(loginResponse.getDetails().getUserInfo().getUserName());
-	            user.setUserNickname(loginResponse.getDetails().getUserInfo().getUserNickname());
-	            return "success";
-	        }
-	        else return loginResponse.getDetails().getError();
-		}
-		return "cannot receive data";
-	}
-	
-	public String logout() {
-	    return logout(user.getSessionID(), user.getUserName());
-	}
-	
-	public String logout(String sessionID, String userName) {
-	    SerializeRequest request = new SerializeRequest();
+
+    /**
+     * @param userName
+     * @param password
+     * @return the login result if fails return error string
+     */
+    public String login(String userName, String password) {
+        SerializeRequest request = new SerializeRequest();
+        String stringUpload = request.loginRequest(userName, password);
+        String httpUrl = "http://halloword.sinaapp.com/user/login.json";
+
+        HttpLinker httpLinker = new HttpLinker();
+        String stringDownload = httpLinker.stringPost(httpUrl, stringUpload);
+        if (stringDownload != null) {
+            DeserializeResponse response = new DeserializeResponse();
+            LoginResponseProtocol loginResponse = response
+                    .loginResponse(stringDownload);
+            if (loginResponse.getResult().equals("success")) {
+                user.setSessionID(loginResponse.getDetails().getSessionID());
+                user.setUserName(loginResponse.getDetails().getUserInfo()
+                        .getUserName());
+                user.setUserNickname(loginResponse.getDetails().getUserInfo()
+                        .getUserNickname());
+                user.setUserAvatarType(loginResponse.getDetails().getUserInfo()
+                        .getUserAvatarType());
+                user.setUserAvatar(loginResponse.getDetails().getUserInfo()
+                        .getUserAvatar());
+
+                return "success";
+            } else
+                return loginResponse.getDetails().getError();
+        }
+        return "cannot receive data";
+    }
+
+    public String logout() {
+        return logout(user.getSessionID(), user.getUserName());
+    }
+
+    public String logout(String sessionID, String userName) {
+        SerializeRequest request = new SerializeRequest();
         String stringUpload = request.logoutRequest(sessionID, userName);
         String httpUrl = "http://halloword.sinaapp.com/user/logout.json";
-        
+
         HttpLinker httpLinker = new HttpLinker();
         String stringDownload = httpLinker.stringPost(httpUrl, stringUpload);
         if (stringDownload != null) {
             DeserializeResponse response = new DeserializeResponse();
-            LogoutResponseProtocol logoutResponse = response.logoutResponse(stringDownload);
-            if (logoutResponse.getResult().equals("success")) return "success";
-            else return logoutResponse.getDetails().getError();
+            LogoutResponseProtocol logoutResponse = response
+                    .logoutResponse(stringDownload);
+            if (logoutResponse.getResult().equals("success"))
+                return "success";
+            else
+                return logoutResponse.getDetails().getError();
         }
         return "cannot receive data";
-	}
-	
-	public String register(String userName, String password, String userNickname) {
-	    SerializeRequest request = new SerializeRequest();
-	    String stringUpload = request.registerRequest(userName, userNickname, password);
-	    String httpUrl = "http://halloword.sinaapp.com/user/register.json";
-	    
-	    HttpLinker httpLinker = new HttpLinker();
-	    String stringDownload = httpLinker.stringPost(httpUrl, stringUpload);
-	    if (stringDownload != null) {
+    }
+
+    public String register(String userName, String password,
+            String userNickname, String userAvatarType, String userAvatar) {
+        SerializeRequest request = new SerializeRequest();
+        String stringUpload = request.registerRequest(userName, userNickname,
+                password, userAvatarType, userAvatar);
+        String httpUrl = "http://halloword.sinaapp.com/user/register.json";
+
+        HttpLinker httpLinker = new HttpLinker();
+        String stringDownload = httpLinker.stringPost(httpUrl, stringUpload);
+        if (stringDownload != null) {
             DeserializeResponse response = new DeserializeResponse();
-            RegisterResponseProtocol registerResponse = response.registerResponse(stringDownload);
-            if (registerResponse.getResult().equals("success")) return "success";
-            else return registerResponse.getDetails().getError();
+            RegisterResponseProtocol registerResponse = response
+                    .registerResponse(stringDownload);
+            if (registerResponse.getResult().equals("success")) {
+                user.setSessionID(registerResponse.getDetails().getSessionID());
+                user.setUserName(registerResponse.getDetails().getUserInfo()
+                        .getUserName());
+                user.setUserNickname(registerResponse.getDetails()
+                        .getUserInfo().getUserNickname());
+                user.setUserAvatarType(registerResponse.getDetails()
+                        .getUserInfo().getUserAvatarType());
+                user.setUserAvatar(registerResponse.getDetails().getUserInfo()
+                        .getUserAvatar());
+                return "success";
+            } else
+                return registerResponse.getDetails().getError();
         }
         return "cannot receive data";
-	}
-	
-	public String changeUserInfo(String userName, String userNickname, 
-	        String oldPassword, String newPassword) {
-	    
-	    return changeUserInfo(user.getSessionID(), userName,
-	            userNickname, oldPassword, newPassword);
-	}
-	
-	public String changeUserInfo(String sessionID, String userName,
-        String userNickname, String oldPassword, String newPassword) {
+    }
+
+    public String changeUserInfo(String userName, String userNickname,
+            String oldPassword, String newPassword, String userAvatarType,
+            String userAvatar) {
+
+        return changeUserInfo(user.getSessionID(), userName, userNickname,
+                oldPassword, newPassword, userAvatarType, userAvatar);
+    }
+
+    public String changeUserInfo(String sessionID, String userName,
+            String userNickname, String oldPassword, String newPassword,
+            String userAvatarType, String userAvatar) {
 
         SerializeRequest request = new SerializeRequest();
-        String stringUpload = request.changeUserInfoRequest(sessionID, userName,
-            userNickname, oldPassword, newPassword);
+        String stringUpload = request.changeUserInfoRequest(sessionID,
+                userName, userNickname, oldPassword, newPassword,
+                userAvatarType, userAvatar);
         String httpUrl = "http://halloword.sinaapp.com/user/change_userinfo.json";
-        
+
         HttpLinker httpLinker = new HttpLinker();
         String stringDownload = httpLinker.stringPost(httpUrl, stringUpload);
         if (stringDownload != null) {
             DeserializeResponse response = new DeserializeResponse();
-            ChangeUserInfoResponseProtocol changeUserInfoResponse = response.changeUserInfoResponse(stringDownload);
+            ChangeUserInfoResponseProtocol changeUserInfoResponse = response
+                    .changeUserInfoResponse(stringDownload);
             if (changeUserInfoResponse.getResult().equals("success")) {
-                user.setUserName(changeUserInfoResponse.getDetails().getUserInfo().getUserName());
-                user.setUserNickname(changeUserInfoResponse.getDetails().getUserInfo().getUserNickname());
+                user.setUserName(changeUserInfoResponse.getDetails()
+                        .getUserInfo().getUserName());
+                user.setUserNickname(changeUserInfoResponse.getDetails()
+                        .getUserInfo().getUserNickname());
+                user.setUserAvatarType(changeUserInfoResponse.getDetails()
+                        .getUserInfo().getUserAvatarType());
+                user.setUserAvatar(changeUserInfoResponse.getDetails().getUserInfo()
+                        .getUserAvatar());
                 return "success";
-            }
-            else return changeUserInfoResponse.getDetails().getError();
+            } else
+                return changeUserInfoResponse.getDetails().getError();
         }
         return "cannot receive data";
     }
@@ -126,85 +161,94 @@ public class UserService {
         SerializeRequest request = new SerializeRequest();
         String stringUpload = request.updateTokenRequest(sessionID);
         String httpUrl = "http://halloword.sinaapp.com/user/update_token.json";
-        
+
         HttpLinker httpLinker = new HttpLinker();
         String stringDownload = httpLinker.stringPost(httpUrl, stringUpload);
         if (stringDownload != null) {
             DeserializeResponse response = new DeserializeResponse();
-            UpdateTokenResponseProtocol updateTokenResponse = response.updateTokenResponse(stringDownload);
+            UpdateTokenResponseProtocol updateTokenResponse = response
+                    .updateTokenResponse(stringDownload);
             if (updateTokenResponse.getResult().equals("success")) {
-                user.setSessionID(updateTokenResponse.getDetails().getSessionID());
+                user.setSessionID(updateTokenResponse.getDetails()
+                        .getSessionID());
                 return "success";
-            }
-            else return updateTokenResponse.getDetails().getError();
+            } else
+                return updateTokenResponse.getDetails().getError();
         }
         return "cannot receive data";
     }
-    
+
     public String getMessage() {
         return getMessage(user.getSessionID());
     }
-    
+
     public String getMessage(String sessionID) {
         SerializeRequest request = new SerializeRequest();
         String stringUpload = request.getMessageRequest(sessionID);
         String httpUrl = "http://halloword.sinaapp.com/helloword/get_message.json";
-        
+
         HttpLinker httpLinker = new HttpLinker();
         String stringDownload = httpLinker.stringPost(httpUrl, stringUpload, 1);
         if (stringDownload != null) {
             DeserializeResponse response = new DeserializeResponse();
-            GetMessageResponseProtocol getMessageResponse = response.getMessageResponse(stringDownload);
-            if (getMessageResponse.getResult().equals("success")) return "success";
-            else return getMessageResponse.getDetails().getError();
+            GetMessageResponseProtocol getMessageResponse = response
+                    .getMessageResponse(stringDownload);
+            if (getMessageResponse.getResult().equals("success"))
+                return "success";
+            else
+                return getMessageResponse.getDetails().getError();
         }
         return "cannot receive data";
-        
+
     }
-    
+
     @SuppressLint("NewApi")
     public void turnAutoLoginOn() {
         String STORE_NAME = "Settings";
-        SharedPreferences settings = user.getSharedPreferences(STORE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences settings = user.getSharedPreferences(STORE_NAME,
+                Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
-            editor.putBoolean("autoLogin", true);
-        try{
+        editor.putBoolean("autoLogin", true);
+        try {
             editor.apply();
-        }catch(Exception e){
+        } catch (Exception e) {
             editor.commit();
         }
     }
-    
+
     public boolean isAutoLoginOn() {
         String STORE_NAME = "Settings";
-        SharedPreferences settings = user.getSharedPreferences(STORE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences settings = user.getSharedPreferences(STORE_NAME,
+                Context.MODE_PRIVATE);
         boolean autoLogin = settings.getBoolean("autoLogin", false);
         return autoLogin;
     }
-    
+
     @SuppressLint("NewApi")
-	public boolean saveUserInfo(String userName, String password){
+    public boolean saveUserInfo(String userName, String password) {
         // XXX try to find out the mean of boolean return
         String STORE_NAME = "Settings";
-        SharedPreferences settings = user.getSharedPreferences(STORE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences settings = user.getSharedPreferences(STORE_NAME,
+                Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
-        if(userName !=null && password != null){
-        	editor.putString("userName", userName);
-        	editor.putString("password", password);
+        if (userName != null && password != null) {
+            editor.putString("userName", userName);
+            editor.putString("password", password);
         }
-        try{
-        	editor.apply();
-        }catch(Exception e){
-        	editor.commit();
+        try {
+            editor.apply();
+        } catch (Exception e) {
+            editor.commit();
         }
-	    return true;
+        return true;
     }
-    
-    public String[] getUserInfo(){
+
+    public String[] getUserInfo() {
         String STORE_NAME = "Settings";
-        SharedPreferences settings = user.getSharedPreferences(STORE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences settings = user.getSharedPreferences(STORE_NAME,
+                Context.MODE_PRIVATE);
         String userName = settings.getString("userName", null);
         String password = settings.getString("password", null);
-		return new String[] {userName,password};
+        return new String[] { userName, password };
     }
 }

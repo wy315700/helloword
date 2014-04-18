@@ -12,17 +12,14 @@ import com.helloword.gsonObject.requestProtocol.RegisterRequestProtocol;
 import com.helloword.gsonObject.requestProtocol.UpdateTokenRequestProtocol;
 
 public class SerializeRequest {
-    
+
     public String loginRequest(String userName, String password) {
-       /*Serialize the login request as the following format:
-        {
-            "loginInfo" : {
-                "userName" : "userName",
-                "password" : "password"
-            },
-            "request" : "/user/login.json"
-        }*/
-    Gson gson = new Gson();
+        /*
+         * Serialize the login request as the following format: { "loginInfo" :
+         * { "userName" : "userName", "password" : "password" }, "request" :
+         * "/user/login.json" }
+         */
+        Gson gson = new Gson();
         LoginRequestProtocol requestData = new LoginRequestProtocol();
         UserInfo loginInfo = new UserInfo();
 
@@ -30,19 +27,16 @@ public class SerializeRequest {
         loginInfo.setPassword(password);
         requestData.setRequest("/user/login.json");
         requestData.setLoginInfo(loginInfo);
-        String requestJson = gson.toJson(requestData); 
+        String requestJson = gson.toJson(requestData);
         return requestJson;
     }
-    
+
     public String logoutRequest(String sessionID, String userName) {
-        /*Serialize the logout request as the following format:
-        {
-            "logoutInfo": {
-                "userName" : "username"
-            },
-            "request" : "/user/logout.json",
-            "sessionID" : "sessionID"
-        }*/
+        /*
+         * Serialize the logout request as the following format: { "logoutInfo":
+         * { "userName" : "username" }, "request" : "/user/logout.json",
+         * "sessionID" : "sessionID" }
+         */
         Gson gson = new Gson();
         UserFullInfo logoutInfo = new UserFullInfo();
         LogoutRequestProtocol requestData = new LogoutRequestProtocol();
@@ -52,24 +46,23 @@ public class SerializeRequest {
         requestData.setSessionID(sessionID);
         requestData.setLogoutInfo(logoutInfo);
 
-   	    String requestJson = gson.toJson(requestData);
-   	    return requestJson;
+        String requestJson = gson.toJson(requestData);
+        return requestJson;
     }
 
-    public String registerRequest(String userName, String userNickname, String password) {
-        /*Serialize the register request as the following format:
-        {
-            "userInfo" : {
-                "userName" : "userName",
-                "userNickname" : "userNickname",
-                "password" : "password"
-            },
-            "request" : "/user/register.json"
-        }*/
+    public String registerRequest(String userName, String userNickname,
+            String password, String userAvatarType, String userAvatar) {
+        /*
+         * Serialize the register request as the following format: { "userInfo"
+         * : { "userName" : "userName", "userNickname" : "userNickname",
+         * "password" : "password" }, "request" : "/user/register.json" }
+         */
         UserFullInfo userInfo = new UserFullInfo();
         userInfo.setUserName(userName);
         userInfo.setUserNickname(userNickname);
         userInfo.setPassword(password);
+        userInfo.setUserAvatarType(userAvatarType);
+        userInfo.setUserAvatar(userAvatar);
 
         RegisterRequestProtocol requestData = new RegisterRequestProtocol();
         requestData.setUserInfo(userInfo);
@@ -80,18 +73,16 @@ public class SerializeRequest {
         return requestJson;
     }
 
-    public String changeUserInfoRequest(String sessionID, String userName, String userNickname, String oldPassword, String newPassword) {
-        /*Serialize the logout request as the following format:
-        {
-            "userInfo" : {
-                "userName" : "userName",
-                "userNickname" : "userNickname",
-                "oldPassword" : "oldPassword"
-                "newPassword" : "newPassword"
-            },
-            "request" : "/user/change_userinfo.json",
-            "sessionID" : "sessionID"
-        }*/
+    public String changeUserInfoRequest(String sessionID, String userName,
+            String userNickname, String oldPassword, String newPassword,
+            String userAvatarType, String userAvatar) {
+        /*
+         * Serialize the logout request as the following format: { "userInfo" :
+         * { "userName" : "userName", "userNickname" : "userNickname",
+         * "oldPassword" : "oldPassword" "newPassword" : "newPassword" },
+         * "request" : "/user/change_userinfo.json", "sessionID" : "sessionID" }
+         */
+        // FIXME Seperate the password and other info
 
         ChangeUserInfoRequestProtocol requestData = new ChangeUserInfoRequestProtocol();
         ChangeUserInfoRequestProtocol.NewUserInfo userInfo = new NewUserInfo();
@@ -99,7 +90,9 @@ public class SerializeRequest {
         userInfo.setUserNickname(userNickname);
         userInfo.setOldPassword(oldPassword);
         userInfo.setNewPassword(newPassword);
-        
+        userInfo.setUserAvatarType(userAvatarType);
+        userInfo.setUserAvatar(userAvatar);
+
         requestData.setUserInfo(userInfo);
         requestData.setRequest("/user/change_userinfo.json");
         requestData.setSessionID(sessionID);
@@ -127,6 +120,6 @@ public class SerializeRequest {
 
         Gson gson = new Gson();
         String requestJson = gson.toJson(requestData);
-        return requestJson;        
+        return requestJson;
     }
 }
