@@ -16,15 +16,15 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 	
 	private static final String CREATE_TABLE_NEW_WORD = "CREATE TABLE " + TABLE_NEW_WORD + 
 					"(" +
-					 "`pro_id` int(10) unsigned NOT NULL AUTO_INCREMENT,"+
-					 "`pro_description` varchar(50) DEFAULT NULL,"+
-					 "`pro_ans_a` varchar(10) DEFAULT NULL,"+
-					 "`pro_ans_b` varchar(10) DEFAULT NULL,"+
-					 "`pro_ans_c` varchar(10) DEFAULT NULL,"+
-					 "`pro_ans_d` varchar(10) DEFAULT NULL,"+
-					 "`pro_point` tinyint(4) DEFAULT '5',"+
-					 "`pro_time` tinyint(4) DEFAULT '5',"+
-					 "`pro_type` tinyint(4) DEFAULT '0',"+
+					 "pro_id INTEGER AUTO_INCREMENT,"+
+					 "pro_description varchar(50) DEFAULT NULL,"+
+					 "pro_ans_a varchar(10) DEFAULT NULL,"+
+					 "pro_ans_b varchar(10) DEFAULT NULL,"+
+					 "pro_ans_c varchar(10) DEFAULT NULL,"+
+					 "pro_ans_d varchar(10) DEFAULT NULL,"+
+					 "pro_point tinyint(4) DEFAULT '5',"+
+					 "pro_time tinyint(4) DEFAULT '5',"+
+					 "pro_type tinyint(4) DEFAULT '0',"+
 					 "PRIMARY KEY (`pro_id`)"+
 					") ";
 	
