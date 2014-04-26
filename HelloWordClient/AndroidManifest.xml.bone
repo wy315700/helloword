@@ -6,8 +6,8 @@
 
     <uses-sdk
         android:maxSdkVersion="19"
-        android:minSdkVersion="8"
-        android:targetSdkVersion="17" />
+        android:minSdkVersion="5"
+        android:targetSdkVersion="19" /><!-- min:8 target:17 change by bone-->
 
     <uses-permission android:name="android.permission.READ" />
     <uses-permission android:name="android.permission.VIBRATE" />

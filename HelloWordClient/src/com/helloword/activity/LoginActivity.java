@@ -67,8 +67,8 @@ public class LoginActivity extends BaseActivity {
             if (networkService.isConnected()) {
                 new LoginInBackground().execute(userName, password);
             } else {
-                Toast.makeText(getApplicationContext(),
-                        "Please connect to the internet", Toast.LENGTH_SHORT)
+                Toast.makeText(getApplicationContext(),R.string.connect_to_network,
+                        Toast.LENGTH_SHORT)
                         .show();
             }
         }

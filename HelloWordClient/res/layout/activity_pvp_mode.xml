@@ -232,7 +232,7 @@
                 android:layout_below="@+id/pvp_mode_ic_gre"
                 android:background="@drawable/blue_button"
                 android:gravity="center"
-                android:onClick="goMorePK"
+                android:onClick="goIeltsPK"
                 android:text="@string/ielts_pk"
                 android:textColor="#1d1d1d" />
 
@@ -243,7 +243,7 @@
                 android:layout_alignTop="@id/pvp_mode_ic_more"
                 android:layout_toLeftOf="@+id/pvp_mode_ielts"
                 android:contentDescription="@string/content_description"
-                android:onClick="goMorePK"
+                android:onClick="goIeltsPK"
                 android:src="@drawable/img_books_dark" />
         </RelativeLayout>
     </LinearLayout>
