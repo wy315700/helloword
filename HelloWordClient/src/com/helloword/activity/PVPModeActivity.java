@@ -50,63 +50,41 @@ public class PVPModeActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    
-    
     public void goCet4PK(View view) {
-        if (networkService.isConnected()) {
-            new GetPKGamesInBackground().execute(QuestionLibType.CET4.toString());
-        } else {
-            Toast.makeText(getApplicationContext(),
-            		R.string.connect_to_network, Toast.LENGTH_SHORT)
-                    .show();
-        }
+    	 BeginPK(QuestionLibType.CET4);
     }
     
     public void goCet6PK(View view) {
-    	if (networkService.isConnected()) {
-            new GetPKGamesInBackground().execute(QuestionLibType.CET6.toString());
-        } else {
-            Toast.makeText(getApplicationContext(),
-            		R.string.connect_to_network, Toast.LENGTH_SHORT)
-                    .show();
-        }
+    	BeginPK(QuestionLibType.CET6);
     }
 
     public void goIeltsPK(View view) {
-    	if (networkService.isConnected()) {
-            new GetPKGamesInBackground().execute(QuestionLibType.IELTS.toString());
-        } else {
-            Toast.makeText(getApplicationContext(),
-            		R.string.connect_to_network, Toast.LENGTH_SHORT)
-                    .show();
-        }
+    	BeginPK(QuestionLibType.IELTS);
     }
 
     public void goToeflPK(View view) {
-    	if (networkService.isConnected()) {
-            new GetPKGamesInBackground().execute(QuestionLibType.TOEFL.toString());
-        } else {
-            Toast.makeText(getApplicationContext(),
-            		R.string.connect_to_network, Toast.LENGTH_SHORT)
-                    .show();
-        }
+    	BeginPK(QuestionLibType.TOEFL);
     }
 
     public void goGrePK(View view) {
-    	if (networkService.isConnected()) {
-            new GetPKGamesInBackground().execute(QuestionLibType.GRE.toString());
-        } else {
-            Toast.makeText(getApplicationContext(),
-            		R.string.connect_to_network, Toast.LENGTH_SHORT)
-                    .show();
-        }
+    	BeginPK(QuestionLibType.GRE);
     }
-
+    
     public void goMorePK(View view) {
         Toast.makeText(getApplicationContext(), R.string.more_question_lib, Toast.LENGTH_SHORT)
                 .show();
     }
-
+    
+    private void BeginPK(QuestionLibType questionLibType){
+   	 if (networkService.isConnected()) {
+            new GetPKGamesInBackground().execute(questionLibType.toString());
+        } else {
+            Toast.makeText(getApplicationContext(),
+            		R.string.connect_to_network, Toast.LENGTH_SHORT)
+                    .show();
+        }
+    }
+    
     private class GetPKGamesInBackground extends
             AsyncTask<String, Void, String> {
         @Override
