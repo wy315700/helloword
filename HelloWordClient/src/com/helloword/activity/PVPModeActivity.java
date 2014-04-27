@@ -13,25 +13,6 @@ import com.helloword.service.NetworkService;
 public class PVPModeActivity extends BaseActivity {
     private NetworkService networkService;
 
-    /**
-     * 题库标识
-     * @author bone-lee
-     *
-     */
-    private enum QuestionLibType{
-        CET4("1"), CET6("3"), GRE("5"),IELTS("7"),TOEFL("9");
-        private String typeID;
-
-        private QuestionLibType(String typeID) {
-            this.typeID=typeID;
-        }
-
-        @Override
-        public String toString() {
-            return typeID;
-        } 
-    }
-    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,46 +32,51 @@ public class PVPModeActivity extends BaseActivity {
     }
 
     public void goCet4PK(View view) {
-    	 BeginPK(QuestionLibType.CET4);
-    }
-    
-    public void goCet6PK(View view) {
-    	BeginPK(QuestionLibType.CET6);
-    }
-
-    public void goIeltsPK(View view) {
-    	BeginPK(QuestionLibType.IELTS);
-    }
-
-    public void goToeflPK(View view) {
-    	BeginPK(QuestionLibType.TOEFL);
-    }
-
-    public void goGrePK(View view) {
-    	BeginPK(QuestionLibType.GRE);
-    }
-    
-    public void goMorePK(View view) {
-        Toast.makeText(getApplicationContext(), R.string.more_question_lib, Toast.LENGTH_SHORT)
-                .show();
-    }
-    
-    private void BeginPK(QuestionLibType questionLibType){
-   	 if (networkService.isConnected()) {
-            new GetPKGamesInBackground().execute(questionLibType.toString());
+        if (networkService.isConnected()) {
+            new GetPKGamesInBackground().execute("1");
         } else {
             Toast.makeText(getApplicationContext(),
-            		R.string.connect_to_network, Toast.LENGTH_SHORT)
+                    "Please connect to the internet", Toast.LENGTH_SHORT)
                     .show();
         }
     }
     
+    public void goCet6PK(View view) {
+//        Toast.makeText(getApplicationContext(), "你就不能点四级的？", Toast.LENGTH_SHORT)
+//                .show();
+        // ===========test=========
+            Intent intent = new Intent(this, PVPEndActivity.class);
+            startActivity(intent);
+        // =========================
+    }
+
+    public void goIeltsPK(View view) {
+        Toast.makeText(getApplicationContext(), "你就不能点四级的？", Toast.LENGTH_SHORT)
+                .show();
+    }
+
+    public void goToeflPK(View view) {
+        Toast.makeText(getApplicationContext(), "你就不能点四级的？", Toast.LENGTH_SHORT)
+                .show();
+    }
+
+    public void goGrePK(View view) {
+        Toast.makeText(getApplicationContext(), "你就不能点四级的？", Toast.LENGTH_SHORT)
+                .show();
+    }
+
+    public void goMorePK(View view) {
+        Toast.makeText(getApplicationContext(), "你就不能点四级的？", Toast.LENGTH_SHORT)
+                .show();
+    }
+
     private class GetPKGamesInBackground extends
             AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
             GameService gameService = new GameService(getApplication());
             return gameService.getPKPuzzles(params[0]);
+
         }
 
         // onPostExecute displays the results of the AsyncTask.
