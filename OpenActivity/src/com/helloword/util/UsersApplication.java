@@ -13,6 +13,8 @@ public class UsersApplication extends Application {
     private String userNickname;
     private String gameID;
     private List<PKPuzzles> pkPuzzles;
+    private String userAvatarType;
+    private String userAvatar;
 
     public String getSessionID() {
         return sessionID;
@@ -45,6 +47,22 @@ public class UsersApplication extends Application {
     public void setGameID(String string) {
         this.gameID = string;
     }
+    
+    public String getUserAvatarType() {
+        return userAvatarType;
+    }
+
+    public void setUserAvatarType(String string) {
+        this.userAvatarType = string;
+    }
+
+    public String getUserAvatar() {
+        return userAvatar;
+    }
+
+    public void setUserAvatar(String string) {
+        this.userAvatar = string;
+    }
 
     public List<PKPuzzles> getPKPuzzles() {
         return pkPuzzles;
@@ -56,12 +74,13 @@ public class UsersApplication extends Application {
     
     @Override
     public void onCreate() { 
-        // TODO Auto-generated method stub 
         super.onCreate(); 
         setSessionID("123456");
-        setUserName("Ling");
-        setUserNickname("喵喵");
+        setUserName("unKnown");
+        setUserNickname("未登录");
         setGameID("54321");
+        setUserAvatarType("id");
+        setUserAvatar("1");
     }  
 
 }

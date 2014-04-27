@@ -30,13 +30,13 @@ public class NewWordManager {
 		
 		SQLiteDatabase db = helper.getWritableDatabase();
 		
-		String insertQuery = "INSERT INTO " + TABLE_NEW_WORD + " (word_id, word_content , word_meaning , word_type ) VALUES (?,?,?,?)";
+		String insertQuery = "INSERT INTO " + TABLE_NEW_WORD + " (pro_description , pro_ans_a , pro_ans_b , pro_ans_c , pro_ans_d , pro_point , pro_time , pro_type) VALUES (?,?,?,?,?,?,?,?)";
 		
 		db.beginTransaction();
 		try {
 
 			db.execSQL(insertQuery, new Object[]{
-					word.word_id, word.word_content,word.word_meaning,word.word_type
+					word.pro_description,word.pro_ans_a,word.pro_ans_b,word.pro_ans_c,word.pro_ans_d,word.pro_point,word.pro_time,word.pro_type
 					}
 				);
 			db.setTransactionSuccessful();
@@ -48,17 +48,17 @@ public class NewWordManager {
 		return true;
 	}
 	
-	public boolean delNewWordFromList(int word_id){
+	public boolean delNewWordFromList(int pro_id){
 		
 		SQLiteDatabase db = helper.getWritableDatabase();
 		
-		String deleteQuery = "DELETE FROM " + TABLE_NEW_WORD + " WHERE word_id = ?";
+		String deleteQuery = "DELETE FROM " + TABLE_NEW_WORD + " WHERE pro_id = ?";
 		
 		db.beginTransaction();
 		try {
 
 			db.execSQL(deleteQuery, new Object[]{
-					word_id
+					pro_id
 					}
 				);
 			db.setTransactionSuccessful();
@@ -102,11 +102,18 @@ public class NewWordManager {
 			while(c.moveToNext()){
 			
 				NewWord word = new NewWord();
-				word.setWord_id(c.getInt(c.getColumnIndex("word_id")));
-				word.setWord_content(c.getString(c.getColumnIndex("word_content")));
-				word.setWord_meaning(c.getString(c.getColumnIndex("word_meaning")));
-				word.setWord_type(c.getInt(c.getColumnIndex("word_type")));
-			
+				
+				word.setPro_id(c.getInt(c.getColumnIndex("pro_id")));
+				word.setPro_description(c.getString(c.getColumnIndex("pro_description")));
+				word.setPro_ans_a(c.getString(c.getColumnIndex("pro_ans_a")));
+				word.setPro_ans_b(c.getString(c.getColumnIndex("pro_ans_b")));
+				word.setPro_ans_c(c.getString(c.getColumnIndex("pro_ans_c")));
+				word.setPro_ans_d(c.getString(c.getColumnIndex("pro_ans_d")));
+				word.setPro_point(c.getInt(c.getColumnIndex("pro_point")));
+				word.setPro_time(c.getInt(c.getColumnIndex("pro_time")));
+				word.setPro_type(c.getInt(c.getColumnIndex("pro_type")));
+				
+				
 				wordList.add(word);
 			}
 		}
@@ -116,25 +123,31 @@ public class NewWordManager {
 		return wordList;
 	}
 	
-	public NewWord GetNewWordFromListById(int word_id){
+	public NewWord GetNewWordFromListById(int pro_id){
 		
 		SQLiteDatabase db = helper.getWritableDatabase();
 	
-		String selectQuery = "SELECT * FROM " + TABLE_NEW_WORD + " WHERE word_id = ? ";
+		String selectQuery = "SELECT * FROM " + TABLE_NEW_WORD + " WHERE pro_id = ? ";
 	
 		NewWord word = null;
 		try {
 			Cursor c = db.rawQuery(selectQuery,new String[]{
-					Integer.toString(word_id)
+					Integer.toString(pro_id)
 					});
 		
 			if(c.moveToFirst()){
 			
 				word = new NewWord();
-				word.setWord_id(c.getInt(c.getColumnIndex("word_id")));
-				word.setWord_content(c.getString(c.getColumnIndex("word_content")));
-				word.setWord_meaning(c.getString(c.getColumnIndex("word_meaning")));
-				word.setWord_type(c.getInt(c.getColumnIndex("word_type")));
+				
+				word.setPro_id(c.getInt(c.getColumnIndex("pro_id")));
+				word.setPro_description(c.getString(c.getColumnIndex("pro_description")));
+				word.setPro_ans_a(c.getString(c.getColumnIndex("pro_ans_a")));
+				word.setPro_ans_b(c.getString(c.getColumnIndex("pro_ans_b")));
+				word.setPro_ans_c(c.getString(c.getColumnIndex("pro_ans_c")));
+				word.setPro_ans_d(c.getString(c.getColumnIndex("pro_ans_d")));
+				word.setPro_point(c.getInt(c.getColumnIndex("pro_point")));
+				word.setPro_time(c.getInt(c.getColumnIndex("pro_time")));
+				word.setPro_type(c.getInt(c.getColumnIndex("pro_type")));
 			
 			}
 		}

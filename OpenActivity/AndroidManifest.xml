@@ -97,18 +97,31 @@
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
-        <activity android:name="com.helloword.activity.PVCGameActivity" 
-            android:screenOrientation="landscape" 
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" /> 
-        <activity android:name="com.helloword.activity.PVCEndActivity" 
-            android:screenOrientation="landscape" 
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" /> 
-        <activity android:name="com.helloword.activity.PVPModifyActivity" 
-            android:screenOrientation="landscape" 
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" /> 
-        <activity android:name="com.helloword.activity.PVPModifyPhotoActivity" 
-            android:screenOrientation="landscape" 
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" /> 
+        <activity
+            android:name="com.helloword.activity.ChangeInfoActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name="com.helloword.activity.ChangePhotoActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name="com.helloword.activity.LocalGameActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name="com.helloword.activity.LocalEndActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name="com.helloword.activity.PickPlayerActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="landscape" >
+        </activity>
     </application>
 
 </manifest>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white" >
+
+    <!-- blue bar up and down -->
+
+    <ImageView
+        android:id="@+id/change_photo_bluebar_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:contentDescription="@string/content_description"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_bluebar" />
+
+    <ImageView
+        android:id="@+id/change_photo_bluebar_down"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:contentDescription="@string/content_description"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_bluebar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/change_photo_bluebar_up"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="@string/choose_photo"
+        android:textColor="@color/white" />
+
+    <TableLayout
+        android:id="@+id/change_photo_photos_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/change_photo_bluebar_down"
+        android:layout_below="@id/change_photo_bluebar_up"
+        android:padding="15dp" >
+
+        <TableRow>
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/content_description"
+                android:src="@drawable/ic_photo1" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/content_description"
+                android:src="@drawable/ic_photo2" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/content_description"
+                android:src="@drawable/ic_photo3" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/content_description"
+                android:src="@drawable/ic_photo4" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/content_description"
+                android:src="@drawable/ic_photo5" />
+
+        </TableRow>
+
+        <TableRow>
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/content_description"
+                android:src="@drawable/ic_photo6" />
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/content_description"
+                android:src="@drawable/ic_photo7" />
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/content_description"
+                android:src="@drawable/ic_photo8" />
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/content_description"
+                android:src="@drawable/ic_photo9" />
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/content_description"
+                android:src="@drawable/ic_photo10" />
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:id="@+id/change_photo_photo_btn"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/change_photo_bluebar_down"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/change_photo_bluebar_down"
+        android:layout_margin="3dp"
+        android:background="@drawable/round_rectangle"
+        android:onClick="confirmChangePhoto"
+        android:text="@string/modify_photo"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+
+</RelativeLayout>

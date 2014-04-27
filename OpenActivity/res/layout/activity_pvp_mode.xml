@@ -15,21 +15,6 @@
         android:scaleType="fitXY"
         android:src="@drawable/bg_bluebar" />
 
-    <Button 
-        android:id="@+id/pvp_mode_modify"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignBottom="@id/pvp_mode_bluebar_up"
-        android:background="@drawable/round_rectangle"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:text="@string/modify"
-        android:textColor="@color/white"
-        android:onClick="goPVPModify"/>
-    
     <ImageView
         android:id="@+id/pvp_mode_bluebar_down"
         android:layout_width="match_parent"
@@ -53,12 +38,26 @@
             android:layout_weight="1" >
 
             <ImageView
+                android:id="@+id/pvp_mode_img_hero"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:contentDescription="@string/content_description"
                 android:src="@drawable/pvp_mode_img_warrior" />
+
+            <Button
+                android:id="@+id/pvp_mode_change_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/pvp_mode_img_hero"
+                android:layout_below="@+id/pvp_mode_img_hero"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/round_rectangle"
+                android:onClick="goChangeInfo"
+                android:padding="5dp"
+                android:text="@string/hero_profile"
+                android:textColor="@color/white" />
         </RelativeLayout>
 
         <!-- List Right -->
@@ -233,7 +232,7 @@
                 android:layout_below="@+id/pvp_mode_ic_gre"
                 android:background="@drawable/blue_button"
                 android:gravity="center"
-                android:onClick="goMorePK"
+                android:onClick="goIeltsPK"
                 android:text="@string/ielts_pk"
                 android:textColor="#1d1d1d" />
 
@@ -244,7 +243,7 @@
                 android:layout_alignTop="@id/pvp_mode_ic_more"
                 android:layout_toLeftOf="@+id/pvp_mode_ielts"
                 android:contentDescription="@string/content_description"
-                android:onClick="goMorePK"
+                android:onClick="goIeltsPK"
                 android:src="@drawable/img_books_dark" />
         </RelativeLayout>
     </LinearLayout>

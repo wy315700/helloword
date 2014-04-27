@@ -3,7 +3,6 @@ package com.helloword.activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -28,9 +27,6 @@ public class LoginActivity extends BaseActivity {
     UserService userService;
     String userName;
     String password;
-
-    // private Dialog dialog;
-    // private SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +67,8 @@ public class LoginActivity extends BaseActivity {
             if (networkService.isConnected()) {
                 new LoginInBackground().execute(userName, password);
             } else {
-                Toast.makeText(getApplicationContext(),
-                        "Please connect to the internet", Toast.LENGTH_SHORT)
+                Toast.makeText(getApplicationContext(),R.string.connect_to_network,
+                        Toast.LENGTH_SHORT)
                         .show();
             }
         }

@@ -22,7 +22,8 @@
        android:layout_height="wrap_content"
        android:layout_below="@id/offline_bluebar_up"
        android:paddingTop="5dp"
-       android:layout_centerHorizontal="true"
+       android:layout_alignParentRight="true"
+       android:layout_marginRight="10dp"
        android:src="@drawable/bg_offline_taichi"/>
        
     <!--     闯关介绍 -->
@@ -33,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/offline_bluebar_up"
-        android:layout_centerHorizontal="true"
+        android:layout_toLeftOf="@id/offline_taichi"
         
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
@@ -58,7 +59,7 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_alignParentLeft="true"
-           android:src="@drawable/ic_offline_people_round1"
+           android:src="@drawable/ic_offline_people_round1_black"
            android:paddingLeft="5dp"
            android:paddingRight="5dp"/>
 
@@ -70,7 +71,7 @@
            android:layout_height="wrap_content"
            android:layout_centerHorizontal="true"
            android:layout_alignBottom="@id/offline_people_round1"
-           android:src="@drawable/ic_offline_people_round3"
+           android:src="@drawable/ic_offline_people_round3_grey"
            android:paddingLeft="5dp"
            android:paddingRight="5dp"/>
        
@@ -93,7 +94,7 @@
            android:layout_height="wrap_content"
            android:layout_alignBottom="@id/offline_people_round3"
            android:layout_alignParentRight="true"
-           android:src="@drawable/ic_offline_people_round5"
+           android:src="@drawable/ic_offline_people_round5_grey"
            android:paddingLeft="5dp"
            android:paddingRight="5dp"/>
        
@@ -105,7 +106,7 @@
            android:layout_toLeftOf="@id/offline_people_round5"
            android:layout_alignBottom="@id/offline_people_round3"
            android:layout_toRightOf="@id/offline_people_round3"
-           android:src="@drawable/ic_offline_people_round4"
+           android:src="@drawable/ic_offline_people_round4_grey"
            android:paddingLeft="5dp"
            android:paddingRight="5dp"/>       
    </RelativeLayout>
@@ -115,8 +116,10 @@
         android:contentDescription="@string/content_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/offline_people_round_layout"
-        android:layout_centerHorizontal="true"
+        android:layout_below="@id/offline_taichi"
+        android:layout_alignRight="@id/offline_taichi"
+        android:layout_toRightOf="@id/offline_introduction_round"
+        android:layout_marginTop="10dp"
         android:text="@string/startup"
         android:textColor="@color/white"
         android:textSize="25sp"
@@ -134,7 +137,7 @@
        <ImageView 
            android:id="@+id/offline_progress_white"
            android:contentDescription="@string/content_description"
-           android:layout_width="wrap_content"
+           android:layout_width="fill_parent"
            android:layout_height="wrap_content"
            android:paddingBottom="5dp"
            android:src="@drawable/ic_offline_progress_white"/>

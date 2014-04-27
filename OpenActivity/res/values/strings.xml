@@ -3,6 +3,8 @@
 
     <string name="app_name">单词江湖</string>
     <string name="action_settings">设置</string>
+    <string name="connect_to_network">无法连接网络，请开启网络连接后重试！</string>
+    <string name="more_question_lib">更多题库还在开发中，期待你的关注！</string>
     <string name="content_description">图片描述</string>
     <string name="account">账户</string>
     <string name="enter_username">请输入邮箱地址</string>
@@ -31,22 +33,33 @@
     <string name="temp_mode">我是模式，点我</string>
     <string name="temp_english">hello</string>
     <string name="temp_chinese">你好</string>
-    <string name="auto_login">允许自动登录</string>
+    <string name="auto_login">自动登录</string>
     <string name="cet4_pk">四级对战</string>
     <string name="cet6_pk">六级对战</string>
     <string name="ielts_pk">雅思对战</string>
     <string name="toefl_pk">托福对战</string>
     <string name="gre_pk">GRE对战</string>
     <string name="more_pk">更多对战</string>
-    <string name="startup">开始答题</string> 
-    <string name="modify">修改名片</string> 
-    <string name="hero_file">英雄档案</string> 
-    <string name="choose_photo">请选择头像</string>
-    <string name="modify_">修改</string> 
-    <string name="college">大学</string> 
-    <string name="modify_college">请输入学校名称</string>
-    <string name="modify_photo">点击头像，选择自己喜欢的头像吧</string>  
     <string name="title_activity_pvpend">PVPEndActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="startup">开始答题</string>
+    <string name="vs">VS</string>
+    <string name="temp_name1">小鱼儿</string>
+    <string name="temp_name2">花无缺</string>
+    <string name="pvpend_sentence1">小鱼儿世界排名+23，当前世界排名第12位！</string>
+    <string name="pvpend_sentence2">恭喜，您比对手提前完成本轮答题用时152秒，获得时间积分奖励+2。等待对手完成答题…</string>
+    <string name="pvpend_sentence3">本轮比赛江小鱼共获得29分，花儿共获得26分江小鱼获胜！获得胜利积分加成+5</string>
+    <string name="win">胜</string>
+    <string name="invite_continue">邀请继续</string>
+    <string name="share_record">分享战绩</string>
+    <string name="change_opponent">换个对手</string>
+    <string name="view_rank">查看排行</string>
+    <string name="hero_profile">英雄档案</string>
+    <string name="college">学校</string>
+    <string name="modify_college">请输入学校名称</string>
+    <string name="click_and_modify_photo">点击头像，选择自己喜欢的头像吧</string>
+    <string name="choose_photo">请选择头像</string>
+    <string name="modify_info">修改信息</string>
+    <string name="modify_photo">修改头像</string>
 
 </resources>

@@ -31,10 +31,6 @@ public class MainInterfaceActivity extends BaseActivity {
             firstBackTime = System.currentTimeMillis();
 
         } else {
-            // TODO add cache clean code
-            // FIXME quit error with the activitymanager
-//            ActivityManager activityManager = (ActivityManager) this.getSystemService(Context.ACTIVITY_SERVICE);
-//            activityManager.killBackgroundProcesses(getPackageName());
             System.exit(0);
         }
     }
@@ -49,7 +45,7 @@ public class MainInterfaceActivity extends BaseActivity {
                 new LoginInBackground().execute(userLoginInfo);
             } else {
                 Toast.makeText(getApplicationContext(),
-                        "Please connect to the internet", Toast.LENGTH_SHORT)
+                		R.string.connect_to_network, Toast.LENGTH_SHORT)
                         .show();
             }
 	    } else {

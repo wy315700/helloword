@@ -1,0 +1,53 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white" >
+    
+    <!-- blue bar up and down -->
+
+    <ImageView
+        android:id="@+id/pick_player_bluebar_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:contentDescription="@string/content_description"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_bluebar" />
+
+    <ImageView
+        android:id="@+id/pick_player_bluebar_down"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:contentDescription="@string/content_description"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_bluebar" />
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/pick_player_bluebar_down"
+        android:layout_below="@+id/pick_player_bluebar_up"
+        android:gravity="center">
+        
+        <TextView
+            android:id="@+id/pick_player_tx_vs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/vs"
+            android:textColor="@color/red"
+            android:textSize="30sp" />
+        
+        <ImageView
+            android:id="@+id/pick_player_ic_left"
+            android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_toLeftOf="@+id/pick_player_tx_vs"
+        	android:src="@drawable/ic_photo1"
+        	android:contentDescription="@string/content_description"/>
+        
+    </RelativeLayout>
+
+
+</RelativeLayout>
