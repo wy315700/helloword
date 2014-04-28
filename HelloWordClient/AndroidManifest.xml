@@ -122,6 +122,14 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:screenOrientation="landscape" >
         </activity>
+        
+        <activity android:name="com.helloword.activity.PVCGameActivity" 
+            android:screenOrientation="landscape" 
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" /> 
+            
+        <activity android:name="com.helloword.activity.PVCEndActivity" 
+            android:screenOrientation="landscape" 
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />      
     </application>
 
 </manifest>

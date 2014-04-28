@@ -131,7 +131,7 @@
    
    <RelativeLayout
            android:id="@+id/offline_progress_layout"
-           android:layout_width="match_parent"
+           android:layout_width="fill_parent"
            android:layout_height="wrap_content"
            android:layout_below="@id/offline_people_round_layout">
        <ImageView 
