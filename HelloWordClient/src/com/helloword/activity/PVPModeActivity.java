@@ -1,7 +1,7 @@
 package com.helloword.activity;
 
+import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -13,8 +13,6 @@ import com.helloword.service.NetworkService;
 public class PVPModeActivity extends BaseActivity {
     private NetworkService networkService;
 
-    private MyProgressDialog myProgressDialog;
-	private boolean isReady=false;
     /**
      * 题库标识
      * @author bone-lee
@@ -40,7 +38,6 @@ public class PVPModeActivity extends BaseActivity {
         setContentView(R.layout.activity_pvp_mode);
         
         networkService = new NetworkService(this);
-        myProgressDialog = new MyProgressDialog(PVPModeActivity.this);
     }
 
     public void goPickPlayer() {
@@ -78,30 +75,30 @@ public class PVPModeActivity extends BaseActivity {
                 .show();
     }
     
-    private void BeginPK(QuestionLibType questionLibType){
-    	myProgressDialog.initDialog();
-    	while(isReady){
-    			if (networkService.isConnected()) {
-    				new GetPKGamesInBackground().execute(questionLibType.toString());
-    			} else {
-    				Toast.makeText(getApplicationContext(),
-            		R.string.connect_to_network, Toast.LENGTH_SHORT)
-                    .show();
-    			}
-    	}
-    }
-    
-    private class GetPKGamesInBackground extends
-            AsyncTask<String, Void, String> {
+	private void BeginPK(QuestionLibType questionLibType) {
+		if (networkService.isConnected()) {
+			new GetPKGamesInBackground(PVPModeActivity.this).execute(questionLibType.toString());
+		} else {
+			Toast.makeText(getApplicationContext(),
+					R.string.connect_to_network, Toast.LENGTH_SHORT).show();
+		}
+	}
+   
+    private class GetPKGamesInBackground extends AsyncTaskWithProgressDialog{
+    	
+    	public GetPKGamesInBackground(Context progressDialogContext) {
+			super(progressDialogContext);
+		}
+
         @Override
-        protected String doInBackground(String... params) {
-            GameService gameService = new GameService(getApplication());
+        protected String doInBackground2(String... params) {
+        	GameService gameService = new GameService(getApplication());
             return gameService.getPKPuzzles(params[0]);
         }
 
         // onPostExecute displays the results of the AsyncTask.
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute2(String result) {
             if (result.equals("success")) {
                 goPickPlayer();
             } else {

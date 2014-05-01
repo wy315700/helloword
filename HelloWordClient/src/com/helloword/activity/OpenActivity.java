@@ -3,7 +3,6 @@ package com.helloword.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
 import android.widget.ImageView;
 
 import com.helloword.R;

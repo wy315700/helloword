@@ -63,5 +63,5 @@
     <string name="modify_photo">修改头像</string>
 	<string name="pvcend_sentence">您本轮共答错5道，答对15道</string>
 	<string name="pvcend_continue">继续答题</string>
-	<string name="progressdialog_title">正在加载</string>
+	<string name="progressdialog_title">努力加载中</string>
 </resources>

@@ -1,7 +1,7 @@
 package com.helloword.activity;
 
+import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -65,7 +65,7 @@ public class LoginActivity extends BaseActivity {
             // Log.d(DEBUGTAG, userName + " " + password);
             NetworkService networkService = new NetworkService(this);
             if (networkService.isConnected()) {
-                new LoginInBackground().execute(userName, password);
+                new LoginInBackground(LoginActivity.this).execute(userName, password);
             } else {
                 Toast.makeText(getApplicationContext(),R.string.connect_to_network,
                         Toast.LENGTH_SHORT)
@@ -79,23 +79,25 @@ public class LoginActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    private class LoginInBackground extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... params) {
+    private class LoginInBackground extends AsyncTaskWithProgressDialog {
+        public LoginInBackground(Context progressDialogContext) {
+			super(progressDialogContext);
+		}
+
+		@Override
+        protected String doInBackground2(String... params) {
             UserService userService = new UserService(getApplication());
             if (isRemembered) {
                 userService.turnAutoLoginOn();
                 userService.saveUserInfo(params[0], params[1]);
             }
             return userService.login(params[0], params[1]);
-
         }
 
         // onPostExecute displays the results of the AsyncTask.
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute2(String result) {
             if (result.equals("success")) {
-                
                 Intent intent = new Intent(getApplicationContext(),
                         PVPModeActivity.class);
                 startActivity(intent);

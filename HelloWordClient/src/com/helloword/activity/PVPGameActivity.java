@@ -20,8 +20,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.helloword.R;
 import com.helloword.gsonObject.PKPuzzles;
 import com.helloword.util.UsersApplication;

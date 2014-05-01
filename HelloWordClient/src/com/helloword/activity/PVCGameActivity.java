@@ -1,12 +1,7 @@
 package com.helloword.activity;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.helloword.R;
-import com.helloword.gsonObject.PKPuzzles;
-
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;

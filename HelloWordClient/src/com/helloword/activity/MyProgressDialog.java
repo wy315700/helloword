@@ -27,15 +27,24 @@ public class MyProgressDialog {
 	int i=1;
 	
 	 public MyProgressDialog(Context context) {
-				// TODO Auto-generated constructor stub
 		 this.context=context;
 		 flags=true;
 		 dialog=new Dialog(context,R.style.dialog);
 		 dialog.setOnCancelListener(onCancelListener);
 	 }
 	 
+	 /**
+	  * 添加用户点击back按键，进度条对话框dismiss的其他回调函数
+	  * @param context 上下文
+	  * @param onDismissListener 上层回调函数包含在这里面
+	  * add by bone-lee
+	  */
+	 public MyProgressDialog(Context context,DialogInterface.OnDismissListener onDismissListener){
+		 this(context);
+		 dialog.setOnDismissListener(onDismissListener);
+	 }
+	 
 	 public void initDialog(){
-		 
 		 LayoutInflater inflater=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		 View view=inflater.inflate(R.layout.myprogressdialog, null);
 		 dialog.setContentView(view);
@@ -49,12 +58,9 @@ public class MyProgressDialog {
 			
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
-				
 				try {
 					Thread.sleep(200);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				while(flags){
@@ -62,7 +68,6 @@ public class MyProgressDialog {
 					try {
 						Thread.sleep(300);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -73,10 +78,8 @@ public class MyProgressDialog {
 	 }
 	 
 	 Handler handler=new Handler(){
-
 			@Override
 			public void handleMessage(Message msg) {
-				// TODO Auto-generated method stub
 				imageView[i].setImageDrawable(context.getResources().getDrawable(R.drawable.progress_image2));
 				imageView[(i+5-1)%5].setImageDrawable(context.getResources().getDrawable(R.drawable.progress_image1));
 				i++;
@@ -85,10 +88,12 @@ public class MyProgressDialog {
 			}
 			 
 		 };
-	public void colseDialog(){
+		 
+	public void closeDialog(){
 		flags=false;
 		dialog.dismiss();
 	}
+	
 	public boolean isShowing(){
 		if(dialog.isShowing()){
 			return true;
@@ -97,11 +102,11 @@ public class MyProgressDialog {
 			return false;
 		}
 	}
+	
 	OnCancelListener onCancelListener=new OnCancelListener() {
 		
 		@Override
 		public void onCancel(DialogInterface dialog) {
-			// TODO Auto-generated method stub
 			flags=false;
 			dialog.dismiss();
 		}

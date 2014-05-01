@@ -23,7 +23,7 @@ public class OffLineActivity extends BaseActivity {
     	myProgressDialog.initDialog();
     	while(isReady){
     		if (myProgressDialog.isShowing()) {
-    			myProgressDialog.colseDialog();
+    			myProgressDialog.closeDialog();
     		}
     		Intent intent = new Intent(this, PVCGameActivity.class);
     		startActivity(intent);

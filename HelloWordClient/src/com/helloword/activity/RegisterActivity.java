@@ -1,7 +1,7 @@
 package com.helloword.activity;
 
+import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -53,7 +53,7 @@ public class RegisterActivity extends BaseActivity {
             // ======================
 
             if (networkService.isConnected()) {
-                new RegisterInBackground().execute(userName, password,
+                new RegisterInBackground(RegisterActivity.this).execute(userName, password,
                         userNickname, userAvatarType, userAvatar);
             } else {
                 Toast.makeText(getApplicationContext(),
@@ -102,11 +102,15 @@ public class RegisterActivity extends BaseActivity {
 
         formatQuality = true;
         return formatQuality;
-    }
+    }    
+    
+    private class RegisterInBackground extends AsyncTaskWithProgressDialog {
+        public RegisterInBackground(Context progressDialogContext) {
+			super(progressDialogContext);
+		}
 
-    private class RegisterInBackground extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... params) {
+		@Override
+        protected String doInBackground2(String... params) {
             UserService userService = new UserService(getApplication());
             return userService.register(params[0], params[1], params[2],
                     params[3], params[4]);
@@ -115,7 +119,7 @@ public class RegisterActivity extends BaseActivity {
 
         // onPostExecute displays the results of the AsyncTask.
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute2(String result) {
             if (result.equals("success")) {
                 goOnline();
             } else {
@@ -124,5 +128,4 @@ public class RegisterActivity extends BaseActivity {
             }
         }
     }
-
 }
