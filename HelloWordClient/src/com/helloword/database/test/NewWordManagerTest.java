@@ -11,7 +11,6 @@ import com.helloword.database.NewWordManager;
 import com.helloword.database.beans.NewWord;
 
 import android.content.Context;
-import android.provider.UserDictionary.Words;
 import android.test.AndroidTestCase;
 import android.util.Log;
 

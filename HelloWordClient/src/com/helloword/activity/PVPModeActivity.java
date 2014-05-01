@@ -7,30 +7,14 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.helloword.R;
+import com.helloword.domain.QuestionLibType;
 import com.helloword.service.GameService;
 import com.helloword.service.NetworkService;
 
 public class PVPModeActivity extends BaseActivity {
-    private NetworkService networkService;
-
-    /**
-     * 题库标识
-     * @author bone-lee
-     *
-     */
-    private enum QuestionLibType{
-        CET4("1"), CET6("3"), GRE("5"),IELTS("7"),TOEFL("9");
-        private String typeID;
-
-        private QuestionLibType(String typeID) {
-            this.typeID=typeID;
-        }
-
-        @Override
-        public String toString() {
-            return typeID;
-        } 
-    }
+    public static final String USER_CHOOSED_QUESTION_LIB_TYPE = "USER_CHOOSED_QUESTION_LIB_TYPE";
+	private NetworkService networkService;
+	private QuestionLibType choosedQuestionLibType;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +26,7 @@ public class PVPModeActivity extends BaseActivity {
 
     public void goPickPlayer() {
         Intent intent = new Intent(this, PVPGameActivity.class);
+        intent.putExtra(USER_CHOOSED_QUESTION_LIB_TYPE, choosedQuestionLibType.getTypeID());
         startActivity(intent);
     }
     
@@ -51,22 +36,27 @@ public class PVPModeActivity extends BaseActivity {
     }
 
     public void goCet4PK(View view) {
-    	 BeginPK(QuestionLibType.CET4);
+    	choosedQuestionLibType=QuestionLibType.CET4;
+    	BeginPK(QuestionLibType.CET4);
     }
     
     public void goCet6PK(View view) {
+    	choosedQuestionLibType=QuestionLibType.CET6;
     	BeginPK(QuestionLibType.CET6);
     }
 
     public void goIeltsPK(View view) {
+    	choosedQuestionLibType=QuestionLibType.IELTS;
     	BeginPK(QuestionLibType.IELTS);
     }
 
     public void goToeflPK(View view) {
+    	choosedQuestionLibType=QuestionLibType.TOEFL;
     	BeginPK(QuestionLibType.TOEFL);
     }
 
     public void goGrePK(View view) {
+    	choosedQuestionLibType=QuestionLibType.GRE;
     	BeginPK(QuestionLibType.GRE);
     }
     

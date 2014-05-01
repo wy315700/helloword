@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/white" >
 
-    <!-- blue bar up-->
+    <!-- blue bar up -->
 
     <ImageView
         android:id="@+id/offline_bluebar_up"
@@ -14,213 +14,250 @@
         android:contentDescription="@string/content_description"
         android:scaleType="fitXY"
         android:src="@drawable/bg_bluebar" />
-    
-    <ImageView 
-       android:id="@+id/offline_taichi"
-       android:contentDescription="@string/content_description"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_below="@id/offline_bluebar_up"
-       android:paddingTop="5dp"
-       android:layout_alignParentRight="true"
-       android:layout_marginRight="10dp"
-       android:src="@drawable/bg_offline_taichi"/>
-       
-    <!--     闯关介绍 -->
-    
-    <ImageView 
-        android:id="@+id/offline_introduction_round"
+
+    <ImageView
+        android:id="@+id/offline_taichi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/offline_bluebar_up"
+        android:layout_marginRight="10dp"
         android:contentDescription="@string/content_description"
+        android:paddingTop="5dp"
+        android:src="@drawable/bg_offline_taichi" />
+
+    <!-- 闯关介绍 -->
+
+    <ImageView
+        android:id="@+id/offline_introduction_round"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/offline_bluebar_up"
         android:layout_toLeftOf="@id/offline_taichi"
-        
+        android:contentDescription="@string/content_description"
+        android:paddingBottom="10dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        
         android:scaleType="fitXY"
-        android:src="@drawable/bg_offline_introduction"/>
-    
+        android:src="@drawable/bg_offline_introduction" />
 
-   <!--    练功人物  -->
-   
-  <RelativeLayout 
-       android:id="@+id/offline_people_round_layout"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_below="@id/offline_introduction_round">
-       
-       <ImageView 
-           android:id="@+id/offline_people_round1"
-           android:contentDescription="@string/content_description"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_alignParentLeft="true"
-           android:src="@drawable/ic_offline_people_round1_black"
-           android:paddingLeft="5dp"
-           android:paddingRight="5dp"/>
+    <!-- 练功人物 -->
 
-       
-       <ImageView 
-           android:id="@+id/offline_people_round3"
-           android:contentDescription="@string/content_description"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_centerHorizontal="true"
-           android:layout_alignBottom="@id/offline_people_round1"
-           android:src="@drawable/ic_offline_people_round3_grey"
-           android:paddingLeft="5dp"
-           android:paddingRight="5dp"/>
-       
-       <ImageView 
-           android:id="@+id/offline_people_round2"
-           android:contentDescription="@string/content_description"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_toRightOf="@id/offline_people_round1"
-           android:layout_alignBottom="@id/offline_people_round1"
-           android:layout_toLeftOf="@id/offline_people_round3"
-           android:src="@drawable/ic_offline_people_round2"
-           android:paddingLeft="5dp"
-           android:paddingRight="5dp"/>
-       
-       <ImageView 
-           android:id="@+id/offline_people_round5"
-           android:contentDescription="@string/content_description"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_alignBottom="@id/offline_people_round3"
-           android:layout_alignParentRight="true"
-           android:src="@drawable/ic_offline_people_round5_grey"
-           android:paddingLeft="5dp"
-           android:paddingRight="5dp"/>
-       
-       <ImageView 
-           android:id="@+id/offline_people_round4"
-           android:contentDescription="@string/content_description"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_toLeftOf="@id/offline_people_round5"
-           android:layout_alignBottom="@id/offline_people_round3"
-           android:layout_toRightOf="@id/offline_people_round3"
-           android:src="@drawable/ic_offline_people_round4_grey"
-           android:paddingLeft="5dp"
-           android:paddingRight="5dp"/>       
-   </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/offline_people_round_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/offline_introduction_round" >
 
-   <Button 
+        <ImageView
+            android:id="@+id/offline_people_round1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:contentDescription="@string/content_description"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:src="@drawable/ic_offline_people_round1_black" />
+
+        <ImageView
+            android:id="@+id/offline_people_round3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/offline_people_round1"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/content_description"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:src="@drawable/ic_offline_people_round3_grey" />
+
+        <ImageView
+            android:id="@+id/offline_people_round2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/offline_people_round1"
+            android:layout_toLeftOf="@id/offline_people_round3"
+            android:layout_toRightOf="@id/offline_people_round1"
+            android:contentDescription="@string/content_description"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:src="@drawable/ic_offline_people_round2" />
+
+        <ImageView
+            android:id="@+id/offline_people_round5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/offline_people_round3"
+            android:layout_alignParentRight="true"
+            android:contentDescription="@string/content_description"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:src="@drawable/ic_offline_people_round5_grey" />
+
+        <ImageView
+            android:id="@+id/offline_people_round4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/offline_people_round3"
+            android:layout_toLeftOf="@id/offline_people_round5"
+            android:layout_toRightOf="@id/offline_people_round3"
+            android:contentDescription="@string/content_description"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:src="@drawable/ic_offline_people_round4_grey" />
+    </RelativeLayout>
+
+    <Button
         android:id="@+id/offline_startup"
-        android:contentDescription="@string/content_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/offline_taichi"
         android:layout_alignRight="@id/offline_taichi"
-        android:layout_toRightOf="@id/offline_introduction_round"
+        android:layout_below="@id/offline_taichi"
         android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/offline_introduction_round"
+        android:background="@drawable/round_rectangle"
+        android:contentDescription="@string/content_description"
+        android:onClick="goPVCGame"
         android:text="@string/startup"
         android:textColor="@color/white"
-        android:textSize="25sp"
-        android:background="@drawable/round_rectangle"
-        android:onClick="goPVCGame"/>
-      
-      
-   <!-- 进度条 -->
-   
-   <RelativeLayout
-           android:id="@+id/offline_progress_layout"
-           android:layout_width="fill_parent"
-           android:layout_height="wrap_content"
-           android:layout_below="@id/offline_people_round_layout">
-       <ImageView 
-           android:id="@+id/offline_progress_white"
-           android:contentDescription="@string/content_description"
-           android:layout_width="fill_parent"
-           android:layout_height="wrap_content"
-           android:paddingBottom="5dp"
-           android:src="@drawable/ic_offline_progress_white"/>
-       
-       <ImageView 
-           android:id="@+id/offline_progress_blue"
-           android:contentDescription="@string/content_description"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_alignParentLeft="true"
-           android:paddingBottom="5dp"
-           android:src="@drawable/ic_offline_progress_blue"/>
-       
-       <ImageView 
-           android:id="@+id/offline_progress_darkblue"
-           android:contentDescription="@string/content_description"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_toRightOf="@id/offline_progress_blue"
-           android:paddingBottom="5dp"
-           android:src="@drawable/ic_offline_progress_darkblue"/>
-           
-       <TextView 
-           android:id="@+id/offline_progress_left_number"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_alignParentLeft="true"
-           android:layout_below="@id/offline_progress_white"
-           android:text="100"
-           android:textSize="20sp"
-           android:textColor="@color/blue"/>
-       
-       <TextView 
-           android:id="@+id/offline_progress_right_number"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_alignParentRight="true"
-           android:layout_below="@id/offline_progress_white"
-           android:text="200"
-           android:textSize="20sp"
-           android:textColor="@color/blue"/>
-       
-       <ImageView 
-           android:id="@+id/offline_leftword_blueicon"
-           android:contentDescription="@string/content_description"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_toRightOf="@id/offline_progress_left_number"
-           android:layout_below="@id/offline_progress_white"
-           android:layout_alignBottom="@id/offline_progress_left_number"
-           android:paddingLeft="23dp"
-           android:src="@drawable/ic_offline_leftword"/>
-       
-       <TextView 
-           android:id="@+id/offline_leftword"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_toRightOf="@id/offline_leftword_blueicon"
-           android:layout_alignBottom="@id/offline_leftword_blueicon"
-           android:paddingLeft="3dp"
-           android:paddingRight="3dp"
-           android:text="剩余162个单词"
-           android:textColor="@color/black"/>
-       
-       <ImageView 
-           android:id="@+id/offline_newword_greyicon"
-           android:contentDescription="@string/content_description"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_toRightOf="@id/offline_leftword"
-           android:layout_alignBottom="@id/offline_leftword_blueicon"
-           android:src="@drawable/ic_offline_newword"/>
-       
-       <TextView 
-           android:id="@+id/offline_newword"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_toRightOf="@id/offline_newword_greyicon"
-           android:layout_alignBottom="@id/offline_newword_greyicon"
-           android:paddingLeft="3dp"
-           android:text="新增22个单词"
-           android:textColor="@color/black"/>
-   </RelativeLayout>
-   
-   
+        android:textSize="25sp" />
+
+    <!-- 进度条 -->
+    <!-- change by bone-lee
+    <RelativeLayout
+        android:id="@+id/offline_progress_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/offline_people_round_layout" >
+
+        <ImageView
+            android:id="@+id/offline_progress_white"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/content_description"
+            android:paddingBottom="5dp"
+            android:src="@drawable/ic_offline_progress_white" />
+
+        <ImageView
+            android:id="@+id/offline_progress_blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:contentDescription="@string/content_description"
+            android:paddingBottom="5dp"
+            android:src="@drawable/ic_offline_progress_blue" />
+
+        <ImageView
+            android:id="@+id/offline_progress_darkblue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/offline_progress_blue"
+            android:contentDescription="@string/content_description"
+            android:paddingBottom="5dp"
+            android:src="@drawable/ic_offline_progress_darkblue" />
+
+        <TextView
+            android:id="@+id/offline_progress_left_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/offline_progress_white"
+            android:text="100"
+            android:textColor="@color/blue"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/offline_progress_right_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/offline_progress_white"
+            android:text="200"
+            android:textColor="@color/blue"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/offline_leftword_blueicon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/offline_progress_left_number"
+            android:layout_below="@id/offline_progress_white"
+            android:layout_toRightOf="@id/offline_progress_left_number"
+            android:contentDescription="@string/content_description"
+            android:paddingLeft="23dp"
+            android:src="@drawable/ic_offline_leftword" />
+
+        <TextView
+            android:id="@+id/offline_leftword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/offline_leftword_blueicon"
+            android:layout_toRightOf="@id/offline_leftword_blueicon"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:text="剩余162个单词"
+            android:textColor="@color/black" />
+
+        <ImageView
+            android:id="@+id/offline_newword_greyicon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/offline_leftword_blueicon"
+            android:layout_toRightOf="@id/offline_leftword"
+            android:contentDescription="@string/content_description"
+            android:src="@drawable/ic_offline_newword" />
+
+        <TextView
+            android:id="@+id/offline_newword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/offline_newword_greyicon"
+            android:layout_toRightOf="@id/offline_newword_greyicon"
+            android:paddingLeft="3dp"
+            android:text="新增22个单词"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+    -->
+
+    <ImageView
+        android:id="@+id/offline_progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_below="@id/offline_people_round_layout"
+        android:background="#558ED5"
+        android:contentDescription="@string/content_description" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/offline_progress_bar"
+        android:padding="3dp" >
+
+        <ImageView
+            android:id="@+id/offline_leftword_blueicon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/centerPoint"
+            android:contentDescription="@string/content_description"
+            android:paddingLeft="23dp"
+            android:src="@drawable/ic_offline_leftword" />
+
+        <TextView
+            android:id="@+id/centerPoint"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/offline_leftword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/centerPoint"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:text="@string/remaining_words_cnt"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
 </RelativeLayout>

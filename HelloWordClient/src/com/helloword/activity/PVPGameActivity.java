@@ -21,7 +21,12 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.helloword.R;
+import com.helloword.database.NewWordManager;
+import com.helloword.database.beans.NewWord;
+import com.helloword.domain.QuestionLibType;
+import com.helloword.domain.PuzzleToDB;
 import com.helloword.gsonObject.PKPuzzles;
+import com.helloword.gsonObject.Puzzles;
 import com.helloword.util.UsersApplication;
 
 public class PVPGameActivity extends BaseActivity {
@@ -59,6 +64,9 @@ public class PVPGameActivity extends BaseActivity {
 
     Handler handler;
     Animator animStack;
+
+	private int userChoosedQuestionLibType = QuestionLibType.CET4.getTypeID();
+    private PKPuzzles currentPuzzle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,6 +134,9 @@ public class PVPGameActivity extends BaseActivity {
         buttonC.setOnClickListener(answerListener);
         buttonD.setOnClickListener(answerListener);
 
+        //由于需要将用户答错的题存储在数据库，而数据库中需要记录题库类型，所以需要记录用户选择的题库类别
+        userChoosedQuestionLibType = getIntent().getExtras().getInt(PVPModeActivity.USER_CHOOSED_QUESTION_LIB_TYPE);
+        
         setPuzzles();
     }
 
@@ -138,6 +149,7 @@ public class PVPGameActivity extends BaseActivity {
         if (scoreLeft > 0 && scoreRight > 0 && iterator.hasNext()) {
             PKPuzzles game = new PKPuzzles();
             game = iterator.next();
+            currentPuzzle=game;//需要将答错的题目记录到数据库
             if (puzzleNum > 1)
                 rightButton.setBackgroundResource(R.drawable.blue_button);
             // set right answer
@@ -180,7 +192,7 @@ public class PVPGameActivity extends BaseActivity {
         }
     }
 
-    public void displayFraction(TextView scoreText, int score) {
+	public void displayFraction(TextView scoreText, int score) {
         if (score >= 0)
             scoreText.setText(score + " / 50");
     }
@@ -225,7 +237,8 @@ public class PVPGameActivity extends BaseActivity {
 
     // Listen the answer pressed and respond accordingly
     View.OnClickListener answerListener = new View.OnClickListener() {
-        @Override
+
+		@Override
         public void onClick(View view) {
             switch (view.getId() - rightId) {
             case 0:
@@ -235,6 +248,8 @@ public class PVPGameActivity extends BaseActivity {
             default:
                 clearAnim(timeProgress);
                 displayBadResult();
+                //将答错的题目记录到数据库
+                new PuzzleToDB(getApplicationContext(),currentPuzzle,userChoosedQuestionLibType).execute();
             }
         }
     };
@@ -302,5 +317,4 @@ public class PVPGameActivity extends BaseActivity {
         anim.start();
         
     }
-
 }

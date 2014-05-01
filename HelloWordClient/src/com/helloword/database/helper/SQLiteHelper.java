@@ -1,7 +1,5 @@
 package com.helloword.database.helper;
 
-import com.helloword.database.beans.NewWord;
-
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;

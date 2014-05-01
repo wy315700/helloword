@@ -102,4 +102,20 @@ public class NewWord {
 		this.pro_type = pro_type;
 	}
 
+
+	@Override
+	public String toString() {
+		StringBuilder sb=new StringBuilder();
+		sb.append("id:"+pro_id);
+		sb.append(" description:"+pro_description);
+		sb.append("==> A(ans):"+pro_ans_a);
+		sb.append(" B:"+pro_ans_b);
+		sb.append(" C:"+pro_ans_c);
+		sb.append(" D:"+pro_ans_d);
+		sb.append(" point:"+pro_point);
+		sb.append(" time:"+pro_time);
+		sb.append(" type:"+pro_type);
+		sb.append("\n");
+		return sb.toString();
+	}
 }
