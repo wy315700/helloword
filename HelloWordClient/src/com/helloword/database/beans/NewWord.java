@@ -106,7 +106,7 @@ public class NewWord {
 	@Override
 	public String toString() {
 		StringBuilder sb=new StringBuilder();
-		sb.append("id:"+pro_id);
+		sb.append("word id:"+pro_id);
 		sb.append(" description:"+pro_description);
 		sb.append("==> A(ans):"+pro_ans_a);
 		sb.append(" B:"+pro_ans_b);

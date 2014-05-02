@@ -12,9 +12,10 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 	
 	private static final String TABLE_NEW_WORD = "new_word";//生词表
 	
-	private static final String CREATE_TABLE_NEW_WORD = "CREATE TABLE " + TABLE_NEW_WORD + 
+	public static final String CREATE_TABLE_NEW_WORD = "CREATE TABLE " + TABLE_NEW_WORD + 
 					"(" +
-					 "pro_id INTEGER AUTO_INCREMENT,"+
+					 //"pro_id INTEGER AUTO_INCREMENT,"+ //not work
+					 "_id INTEGER PRIMARY KEY,"+ //fixed by  bone-lee
 					 "pro_description varchar(50) DEFAULT NULL,"+
 					 "pro_ans_a varchar(10) DEFAULT NULL,"+
 					 "pro_ans_b varchar(10) DEFAULT NULL,"+
@@ -22,8 +23,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 					 "pro_ans_d varchar(10) DEFAULT NULL,"+
 					 "pro_point tinyint(4) DEFAULT '5',"+
 					 "pro_time tinyint(4) DEFAULT '5',"+
-					 "pro_type tinyint(4) DEFAULT '0',"+
-					 "PRIMARY KEY (`pro_id`)"+
+					 "pro_type tinyint(4) DEFAULT '0'"+
+					 //"PRIMARY KEY (`pro_id`)"+
 					") ";
 	
 	
@@ -42,7 +43,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 	
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		// TODO Auto-generated method stub
 		db.execSQL(CREATE_TABLE_NEW_WORD);
 	}
 	
@@ -58,5 +58,10 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 	 */
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 	
+	}
+
+	public void recreateNewWordTable(SQLiteDatabase db) {
+		db.execSQL("DROP TABLE IF EXISTS "+TABLE_NEW_WORD);
+		db.execSQL(CREATE_TABLE_NEW_WORD);
 	}
 }

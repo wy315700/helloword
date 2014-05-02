@@ -13,7 +13,6 @@ import android.database.sqlite.SQLiteDatabase;
 public class NewWordManager {
 	private SQLiteHelper helper;
 	private static final String TABLE_NEW_WORD = "new_word";//生词表
-	
 
 	public NewWordManager(Context context) {
 		helper = new SQLiteHelper(context);
@@ -52,7 +51,7 @@ public class NewWordManager {
 		
 		SQLiteDatabase db = helper.getWritableDatabase();
 		
-		String deleteQuery = "DELETE FROM " + TABLE_NEW_WORD + " WHERE pro_id = ?";
+		String deleteQuery = "DELETE FROM " + TABLE_NEW_WORD + " WHERE _id = ?";
 		
 		db.beginTransaction();
 		try {
@@ -88,6 +87,15 @@ public class NewWordManager {
 		}
 		return true;
 	}
+	
+	/**
+	 * recreate new word table
+	 * add by bone-lee
+	 */
+	public void recreateNewWordTable(){
+		SQLiteDatabase db = helper.getWritableDatabase();
+		helper.recreateNewWordTable(db);
+	}
 
 	public List<NewWord> ListNewWordFromList(int start, int end){
 	
@@ -103,7 +111,7 @@ public class NewWordManager {
 			
 				NewWord word = new NewWord();
 				
-				word.setPro_id(c.getInt(c.getColumnIndex("pro_id")));
+				word.setPro_id(c.getInt(c.getColumnIndex("_id")));
 				word.setPro_description(c.getString(c.getColumnIndex("pro_description")));
 				word.setPro_ans_a(c.getString(c.getColumnIndex("pro_ans_a")));
 				word.setPro_ans_b(c.getString(c.getColumnIndex("pro_ans_b")));
@@ -127,7 +135,7 @@ public class NewWordManager {
 		
 		SQLiteDatabase db = helper.getWritableDatabase();
 	
-		String selectQuery = "SELECT * FROM " + TABLE_NEW_WORD + " WHERE pro_id = ? ";
+		String selectQuery = "SELECT * FROM " + TABLE_NEW_WORD + " WHERE _id = ? ";
 	
 		NewWord word = null;
 		try {
@@ -139,7 +147,7 @@ public class NewWordManager {
 			
 				word = new NewWord();
 				
-				word.setPro_id(c.getInt(c.getColumnIndex("pro_id")));
+				word.setPro_id(c.getInt(c.getColumnIndex("_id")));
 				word.setPro_description(c.getString(c.getColumnIndex("pro_description")));
 				word.setPro_ans_a(c.getString(c.getColumnIndex("pro_ans_a")));
 				word.setPro_ans_b(c.getString(c.getColumnIndex("pro_ans_b")));
@@ -148,7 +156,6 @@ public class NewWordManager {
 				word.setPro_point(c.getInt(c.getColumnIndex("pro_point")));
 				word.setPro_time(c.getInt(c.getColumnIndex("pro_time")));
 				word.setPro_type(c.getInt(c.getColumnIndex("pro_type")));
-			
 			}
 		}
 		finally{
