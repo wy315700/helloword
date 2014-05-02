@@ -21,12 +21,9 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.helloword.R;
-import com.helloword.database.NewWordManager;
-import com.helloword.database.beans.NewWord;
+import com.helloword.domain.PuzzleDBInterface;
 import com.helloword.domain.QuestionLibType;
-import com.helloword.domain.PuzzleToDB;
 import com.helloword.gsonObject.PKPuzzles;
-import com.helloword.gsonObject.Puzzles;
 import com.helloword.util.UsersApplication;
 
 public class PVPGameActivity extends BaseActivity {
@@ -68,12 +65,15 @@ public class PVPGameActivity extends BaseActivity {
 	private int userChoosedQuestionLibType = QuestionLibType.CET4.getTypeID();
     private PKPuzzles currentPuzzle;
 
+	private PuzzleDBInterface puzzleDBInterface;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pvp_game);
 
         user = (UsersApplication) getApplication();
+        puzzleDBInterface=new PuzzleDBInterface(getApplicationContext());
 
         word = (TextView) findViewById(R.id.pvp_game_word);
         userLeftName = (TextView) findViewById(R.id.pvp_game_userleft_name);
@@ -234,7 +234,36 @@ public class PVPGameActivity extends BaseActivity {
             progressBar.setProgress(end);
         }
     }
+    
+    // FIXME find a way to solve the param transmission problem
+    public void progressAnim(ProgressBar progressBar, int start, int end,
+            int durationTime) {
+        progressAnim(progressBar, start, end, durationTime, 0);
+    }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public void progressAnim(ProgressBar progressBar, int start, int end,
+            int durationTime, int flag) {
+        ObjectAnimator anim = ObjectAnimator.ofInt(progressBar, "progress",
+                start, end);
+
+        anim.setDuration(durationTime);
+        if (flag == 1) {
+            if (puzzleNum > 2 && animStack.isRunning()) {
+                animStack.removeAllListeners();
+                animStack.cancel();
+            }
+            animStack = (Animator) anim;
+            AnimatorListenerAdapter animEnd = new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    displayBadResult();
+                }
+            };
+            anim.addListener(animEnd);
+        }
+        anim.start();
+    }
     // Listen the answer pressed and respond accordingly
     View.OnClickListener answerListener = new View.OnClickListener() {
 
@@ -249,7 +278,7 @@ public class PVPGameActivity extends BaseActivity {
                 clearAnim(timeProgress);
                 displayBadResult();
                 //将答错的题目记录到数据库
-                new PuzzleToDB(getApplicationContext(),currentPuzzle,userChoosedQuestionLibType).execute();
+                puzzleDBInterface.savePuzzleToDB(currentPuzzle,userChoosedQuestionLibType);
             }
         }
     };
@@ -287,34 +316,4 @@ public class PVPGameActivity extends BaseActivity {
         finish();
     }
 
-    // FIXME find a way to solve the param transmission problem
-    public void progressAnim(ProgressBar progressBar, int start, int end,
-            int durationTime) {
-        progressAnim(progressBar, start, end, durationTime, 0);
-    }
-
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public void progressAnim(ProgressBar progressBar, int start, int end,
-            int durationTime, int flag) {
-        ObjectAnimator anim = ObjectAnimator.ofInt(progressBar, "progress",
-                start, end);
-
-        anim.setDuration(durationTime);
-        if (flag == 1) {
-            if (puzzleNum > 2 && animStack.isRunning()) {
-                animStack.removeAllListeners();
-                animStack.cancel();
-            }
-            animStack = (Animator) anim;
-            AnimatorListenerAdapter animEnd = new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    displayBadResult();
-                }
-            };
-            anim.addListener(animEnd);
-        }
-        anim.start();
-        
-    }
 }

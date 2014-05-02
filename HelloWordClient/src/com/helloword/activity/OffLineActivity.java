@@ -1,56 +1,40 @@
 package com.helloword.activity;
 
-import java.util.Iterator;
 import java.util.List;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.helloword.R;
-import com.helloword.database.NewWordManager;
-import com.helloword.database.beans.NewWord;
+import com.helloword.domain.NewWord;
+import com.helloword.domain.PuzzleDBInterface;
 
 public class OffLineActivity extends BaseActivity {
-
-	//private MyProgressDialog myProgressDialog;
-	//private boolean isReady=false;
 	private TextView offlineLeftword;
+	private PuzzleDBInterface puzzleDBInterface;
+	
+	private List<NewWord> wordsList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offline);
+        puzzleDBInterface=new PuzzleDBInterface(getApplicationContext());
+        
         offlineLeftword=(TextView) findViewById(R.id.offline_leftword);
-        List<NewWord> wordsList=getAllWordsInDB(getApplicationContext());
+        wordsList=puzzleDBInterface.getAllWordsFromDB();
         offlineLeftword.setText(String.format(getResources().getString(R.string.remaining_words_cnt),wordsList.size()));
     }
 
     public void goPVCGame(View view) {
-    	//myProgressDialog.initDialog();
-    	//while(isReady){
-    		//if (myProgressDialog.isShowing()) {
-    		//	myProgressDialog.closeDialog();
-    		//}
+    	if(wordsList.size()>0){
     		Intent intent = new Intent(this, PVCGameActivity.class);
     		startActivity(intent);
     		finish();
-    		//listWords(getApplicationContext());
-    	//}
-	}
-    
-    private List<NewWord> getAllWordsInDB(Context context){
-    	NewWordManager man = new NewWordManager(context);
-    	List<NewWord> words = man.ListNewWordFromList(0,100);    	
-    	//Debug
-    	Log.i("**************************", "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-    	Iterator<NewWord> iter = words.iterator();
-    	while(iter.hasNext()){
-    		Log.i("DATA CHECK",iter.next().toString());
+    	}else{
+    		Toast.makeText(getApplicationContext(), R.string.no_words_list_in_db, Toast.LENGTH_SHORT).show();
     	}
-    	Log.i("**************************", "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-    	return words;
-    }
+	}
 }

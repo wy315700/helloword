@@ -3,8 +3,8 @@ package com.helloword.database;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.helloword.database.beans.NewWord;
 import com.helloword.database.helper.SQLiteHelper;
+import com.helloword.domain.NewWord;
 
 import android.content.Context;
 import android.database.Cursor;

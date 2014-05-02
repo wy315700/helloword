@@ -40,7 +40,7 @@
         android:src="@drawable/pvp_game_ic_message"/>
 
     <ProgressBar
-        android:id="@+id/pvc_game_user_score"
+        android:id="@+id/pvc_game_progressbar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_height="10dp"
         android:layout_width="wrap_content"
@@ -55,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/pvc_game_user_img"
-        android:layout_above="@id/pvc_game_user_score"
+        android:layout_above="@id/pvc_game_progressbar"
         android:textColor="@color/black"
         android:textSize="20sp"/>
     
@@ -64,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@id/pvc_game_message"
-        android:layout_above="@id/pvc_game_user_score"
+        android:layout_above="@id/pvc_game_progressbar"
         android:textColor="@color/red"
         android:textSize="20sp"/>
     <!-- puzzles -->
@@ -73,7 +73,7 @@
         android:id="@+id/pvc_game_puzzle_area"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/pvc_game_user_score"
+        android:layout_below="@id/pvc_game_progressbar"
         android:gravity="center_horizontal" >
 
         <Button

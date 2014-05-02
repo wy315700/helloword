@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.helloword.database.NewWordManager;
-import com.helloword.database.beans.NewWord;
+import com.helloword.domain.NewWord;
 
 import android.content.Context;
 import android.test.AndroidTestCase;
