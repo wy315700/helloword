@@ -129,7 +129,26 @@
             
         <activity android:name="com.helloword.activity.PVCEndActivity" 
             android:screenOrientation="landscape" 
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />      
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />  
+            
+        <activity
+            android:name="com.helloword.activity.PVPRankActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="landscape" >
+        </activity>
+        
+        <activity
+            android:name="com.helloword.activity.PVPRankMeActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="landscape" >
+        </activity>
+        
+        <activity
+            android:name="com.helloword.activity.PVPRankTotalActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="landscape" >
+        </activity>
+        
     </application>
 
 </manifest>

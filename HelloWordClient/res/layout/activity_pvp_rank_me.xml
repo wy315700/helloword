@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background="@color/white">
+    
+	<com.helloword.activity.HorizontalListView
+        android:id="@+id/pvp_rank_me_horizon_listview"
+        android:layout_width="match_parent"
+        android:layout_height="150dip"
+        android:layout_alignParentTop="true">
+    </com.helloword.activity.HorizontalListView>
+    
+    <TextView 
+        android:id="@+id/pvp_rank_me_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pvp_rank_me_horizon_listview"
+        android:layout_above="@id/pvp_rank_bluebar_down"
+        android:layout_centerInParent="true"
+     	android:textColor="@color/black"/>
+</RelativeLayout>

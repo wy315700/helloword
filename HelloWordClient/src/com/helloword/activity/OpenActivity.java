@@ -30,8 +30,7 @@ public class OpenActivity extends BaseActivity {
                 goMainInterfaceActivity();
             }
 		};
-		fadeIn(background, OPEN_DURATION, animEnd);
-		
+		fadeIn(background, OPEN_DURATION, animEnd);		
 	}
 	
 	@Override
