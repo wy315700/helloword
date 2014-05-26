@@ -34,7 +34,7 @@
             android:text="@string/pvcend_sentence"
             android:textColor="@color/red" />
 
-    <Button
+<!--     <Button
         android:id="@+id/pvc_end_continue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,5 +42,45 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/blue_button"
         android:text="@string/pvcend_continue" />
+    
+    <Button 
+        android:id="@+id/pvc_end_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pvc_end_continue"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/blue_button"
+        android:text="@string/return_main"
+        android:onClick="goOffline"/> -->
 
+	<RelativeLayout
+            android:id="@+id/pvp_end_buttons_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/pvc_end_s"
+            android:gravity="center" >
+            
+            <Button 
+                android:id="@+id/pvc_end_continue"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="@string/pvcend_continue"
+                android:background="@drawable/blue_button"/>
+            
+            <Button 
+                android:id="@+id/pvc_end_return"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/pvc_end_continue"
+                android:layout_marginLeft="10dp"
+                android:text="@string/return_main"
+                android:background="@drawable/blue_button"
+                android:onClick="goOffline"
+                />
+            
+
+            
+        </RelativeLayout>
+	
 </RelativeLayout>

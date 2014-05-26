@@ -43,5 +43,7 @@ public class OpenActivity extends BaseActivity {
 		Intent intent = new Intent(this, MainInterfaceActivity.class);
 		startActivity(intent);
 		finish();
+		/*Intent intent = new Intent(this, PVPRankActivity.class);
+		startActivity(intent);*/
 	}
 }

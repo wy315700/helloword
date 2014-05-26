@@ -30,4 +30,8 @@ public class PVCEndActivity extends BaseActivity {
 			}
 		});
 	}
+	public void goOffline(View view) {      
+        Intent intent = new Intent(this, OffLineActivity.class);
+		startActivity(intent);
+	}
 }
