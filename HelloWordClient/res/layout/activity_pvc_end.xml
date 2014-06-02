@@ -57,8 +57,8 @@
             android:id="@+id/pvp_end_buttons_area"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_below="@+id/pvc_end_s"
+            android:layout_marginTop="20dp"
             android:gravity="center" >
             
             <Button 
@@ -73,7 +73,7 @@
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/pvc_end_continue"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="40dp"
                 android:text="@string/return_main"
                 android:background="@drawable/blue_button"
                 android:onClick="goOffline"
