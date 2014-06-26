@@ -295,7 +295,8 @@ public class PVPGameActivity extends BaseActivity {
             timer.schedule(new TimerTask() {
                 public void run() {
                     intTimeProgress++;
-                    handler.post(new Runnable() {
+                    runOnUiThread(new Runnable() {
+                    	@Override
                         public void run() {
                             if (intTimeProgress >= 100) {
                                 timer.cancel();
