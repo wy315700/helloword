@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/pvp_modify_bluebar_up"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:contentDescription="@string/content_description"
         android:src="@drawable/photo_girl1"
         android:onClick="goChangePhoto"/>
@@ -94,7 +94,7 @@
         android:layout_height="60dp"
         android:layout_below="@id/pvp_modify_bluebar_up"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:contentDescription="@string/content_description" />
     
     <RelativeLayout
@@ -105,7 +105,7 @@
         android:layout_below="@+id/pvp_modify_tixiao"
         android:layout_marginLeft="75dp"
         android:layout_marginRight="75dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/round_rectangle"
         android:padding="10dp" >
 
@@ -179,7 +179,7 @@
         android:layout_alignLeft="@+id/pvp_modify_account_area"
         android:layout_alignRight="@+id/pvp_modify_account_area"
         android:layout_below="@+id/pvp_modify_account_area"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/round_rectangle"
         android:padding="10dp" >
 
@@ -188,7 +188,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="@string/password"
+            android:text="@string/oldpassword"
             android:textColor="#1d1d1d"
             android:textSize="14sp" />
 
@@ -244,5 +244,98 @@
             android:textColorHint="#666666"
             android:textSize="14sp" />
     </RelativeLayout>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <RelativeLayout
+        android:id="@+id/pvp_modify_newpass_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/pvp_modify_account_area"
+        android:layout_alignRight="@+id/pvp_modify_account_area"
+        android:layout_below="@+id/pvp_modify_pass_area"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_rectangle"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/pvp_modify_newpassword_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/newpassword"
+            android:textColor="#1d1d1d"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/pvp_modify_newpassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/pvp_modify_newpassword_textview"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/set_password"
+            android:inputType="textPassword"
+            android:maxLength="16"
+            android:maxLines="1"
+            android:textColor="#1d1d1d"
+            android:textColorHint="#666666"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/pvp_modify_confirmpass_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/pvp_nickname_area"
+        android:layout_alignRight="@+id/pvp_nickname_area"
+        android:layout_alignTop="@+id/pvp_modify_newpass_area"
+        android:background="@drawable/round_rectangle"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/pvp_modify_confirmpass_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/confirmpassword"
+            android:textColor="#1d1d1d"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/pvp_modify_confirmpass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/pvp_modify_confirmpass_textview"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/set_password"
+            android:inputType="textPassword"
+            android:maxLength="16"
+            android:maxLines="1"
+            android:textColor="#1d1d1d"
+            android:textColorHint="#666666"
+            android:textSize="14sp" />
+    </RelativeLayout>
+    
+    
+    
+    
+    
+    
+    
+    
     
 </RelativeLayout>

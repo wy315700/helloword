@@ -12,7 +12,7 @@
     <string name="enter_password">请输入密码</string>
     <string name="remember_info">记住登录信息</string>
     <string name="set_username">请输入常用邮箱地址</string>
-    <string name="set_password">请输入至少六位密码</string>
+    <string name="set_password">至少六位密码</string>
     <string name="confirm_password">请重新输入密码</string>
     <string name="nickname">昵称</string>
     <string name="set_nickname">起个名字吧</string>
@@ -68,4 +68,7 @@
 	<string name="nothing_tips">悟空，你又调皮了！</string>
 	<string name="return_main">返回主界面</string>
 	<string name="no_words_list_in_db">暂无错题库，先去征战江湖看看吧！</string>
+	<string name="oldpassword">旧密码</string>
+	<string name="newpassword">新密码</string>
+	<string name="confirmpassword">确认密码</string>
 </resources>
