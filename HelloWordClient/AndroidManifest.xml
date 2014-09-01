@@ -40,7 +40,7 @@
         <!--
             please add the following settings to every activity
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:screenOrientation="landscape"
+            android:screenOrientation="landscape"
         -->
 
         <activity
@@ -119,36 +119,50 @@
         </activity>
         <activity
             android:name="com.helloword.activity.PickPlayerActivity"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
-        
-        <activity android:name="com.helloword.activity.PVCGameActivity" 
-            android:screenOrientation="landscape" 
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" /> 
-            
-        <activity android:name="com.helloword.activity.PVCEndActivity" 
-            android:screenOrientation="landscape" 
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />  
-            
+        <activity
+            android:name="com.helloword.activity.PVCGameActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.helloword.activity.PVCEndActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
             android:name="com.helloword.activity.PVPRankActivity"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
-        
         <activity
             android:name="com.helloword.activity.PVPRankMeActivity"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
-        
         <activity
             android:name="com.helloword.activity.PVPRankTotalActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+
+        <activity
+            android:name="com.helloword.activity.PVPModifyPhotoActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:screenOrientation="landscape" >
         </activity>
-        
+
+        <activity
+            android:name="com.helloword.activity.ModifyPhotoActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.helloword.activity.PVPRankTotalActivityUpdate"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="landscape" >
+        </activity>
+
     </application>
 
 </manifest>

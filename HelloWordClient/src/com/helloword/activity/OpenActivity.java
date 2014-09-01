@@ -41,9 +41,9 @@ public class OpenActivity extends BaseActivity {
 	
 	public void goMainInterfaceActivity() {
 		Intent intent = new Intent(this, MainInterfaceActivity.class);
+		
 		startActivity(intent);
 		finish();
-		/*Intent intent = new Intent(this, PVCEndActivity.class);
-		startActivity(intent);*/
+
 	}
 }

@@ -3,10 +3,12 @@ package com.helloword.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 //import com.helloword.activity.LoginActivity.LoginInBackground;
@@ -23,6 +25,7 @@ public class ChangeInfoActivity extends Activity {
     private EditText collegeET;
     private EditText newpasswordET;
     private EditText confirmpasswordET;
+    private ImageView userAvatarET;
     
     private String userName;
     private String password;
@@ -32,7 +35,13 @@ public class ChangeInfoActivity extends Activity {
     private String confirmpassword;
     private String userAvatarType;
     private String userAvatar;
+    private int  REQUEST_CODE=1;
     private UsersApplication myApplication;
+    private int[] drawAvatar = {R.drawable.ic_photo1, R.drawable.ic_photo2,
+			R.drawable.ic_photo3, R.drawable.ic_photo4,
+			R.drawable.ic_photo5, R.drawable.ic_photo6,
+			R.drawable.ic_photo7, R.drawable.ic_photo8,
+			R.drawable.ic_photo9, R.drawable.ic_photo10};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
     	
@@ -43,6 +52,7 @@ public class ChangeInfoActivity extends Activity {
         userNameET = (EditText) findViewById(R.id.pvp_modify_username);
         passwordET = (EditText) findViewById(R.id.pvp_modify_password);
         nickNameET = (EditText) findViewById(R.id.pvp_modify_nickname);
+        userAvatarET = (ImageView) findViewById(R.id.pvp_modify_photo);
         //collegeET = (EditText) findViewById(R.id.pvp_modify_college);
         newpasswordET = (EditText) findViewById(R.id.pvp_modify_newpassword);
         confirmpasswordET = (EditText) findViewById(R.id.pvp_modify_confirmpass);
@@ -56,14 +66,52 @@ public class ChangeInfoActivity extends Activity {
         //college = myApplication.get
         userNameET.setText(userName);
         nickNameET.setText(nickName);
-       
+//        Toast.makeText(ChangeInfoActivity.this, userAvatar, Toast.LENGTH_LONG).show();
+        userAvatarET.setImageResource(ChoosePhoto(userAvatar));
     }
     
-    public void goChangePhoto(View view) {
+    
+  /*  public void goChangePhoto(View view) {
         Intent intent = new Intent(this, ChangePhotoActivity.class);
-        startActivity(intent);
-                
+        startActivity(intent);             
+    }*/
+    
+    
+    public int ChoosePhoto(String avatar){
+    	
+    	int resultdraw = R.drawable.ic_photo1;
+    	int intavatar = Integer.parseInt(avatar);
+    	
+    	if(intavatar>=1&&intavatar<=10){
+    		resultdraw = drawAvatar[intavatar-1];
+    	}
+    	    	   	
+        return resultdraw;
     }
+
+    public void goChangePhoto(View view){
+    	Intent intent = new Intent();
+    	intent.setClass(ChangeInfoActivity.this, PVPModifyPhotoActivity.class);
+    	intent.putExtra("userAvatarString", userAvatar);
+    	startActivityForResult(intent, REQUEST_CODE);
+    	
+    }
+    
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+    	if (requestCode==REQUEST_CODE)  
+        {  
+            if (resultCode==PVPModifyPhotoActivity.RESULT_CODE)  
+            {  
+                Bundle bundle=data.getExtras();  
+                userAvatar=bundle.getString("photo_avatar");  
+                System.out.println(userAvatar);
+                userAvatarET.setImageResource(ChoosePhoto(userAvatar));
+//                Toast.makeText(ChangeInfoActivity.this, userAvatar, Toast.LENGTH_LONG).show(); 
+                
+            }  
+        }  
+    }
+    
     
     public void confirmModify(View view){
     	 userName = userNameET.getText().toString().trim();
@@ -71,6 +119,7 @@ public class ChangeInfoActivity extends Activity {
          newpassword = newpasswordET .getText().toString().trim();
          confirmpassword = confirmpasswordET.getText().toString().trim();
          nickName = nickNameET.getText().toString().trim();
+
         boolean formatQuality = verifyFormat();
         if(formatQuality == false){
         	return;

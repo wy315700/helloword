@@ -61,14 +61,16 @@
     <string name="choose_photo">请选择头像</string>
     <string name="modify_info">修改信息</string>
     <string name="modify_photo">修改头像</string>
-	<string name="pvcend_sentence">恭喜你在本轮中去掉了%d个错题，继续加油吧！</string>
-	<string name="pvcend_continue">继续答题</string>
-	<string name="progressdialog_title">努力加载中</string>
-	<string name="remaining_words_cnt">剩余%d个单词</string>
-	<string name="nothing_tips">悟空，你又调皮了！</string>
-	<string name="return_main">返回主界面</string>
-	<string name="no_words_list_in_db">暂无错题库，先去征战江湖看看吧！</string>
-	<string name="oldpassword">旧密码</string>
-	<string name="newpassword">新密码</string>
-	<string name="confirmpassword">确认密码</string>
+    <string name="pvcend_sentence">恭喜你在本轮中去掉了%d个错题，继续加油吧！</string>
+    <string name="pvcend_continue">继续答题</string>
+    <string name="progressdialog_title">努力加载中</string>
+    <string name="remaining_words_cnt">剩余%d个单词</string>
+    <string name="nothing_tips">悟空，你又调皮了！</string>
+    <string name="return_main">返回主界面</string>
+    <string name="no_words_list_in_db">暂无错题库，先去征战江湖看看吧！</string>
+    <string name="oldpassword">旧密码</string>
+    <string name="newpassword">新密码</string>
+    <string name="confirmpassword">确认密码</string>
+    <string name="title_activity_pvpmodify_photo">PVPModifyPhotoActivity</string>
+
 </resources>

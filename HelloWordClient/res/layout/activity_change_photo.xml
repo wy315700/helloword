@@ -45,62 +45,82 @@
         <TableRow>
 
             <ImageView
+                android:id="@+id/choose_photo1"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:contentDescription="@string/content_description"
+                android:onClick="changephoto1"
                 android:src="@drawable/ic_photo1" />
 
             <ImageView
+                 android:id="@+id/choose_photo2"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:contentDescription="@string/content_description"
+                android:onClick="changephoto2"
                 android:src="@drawable/ic_photo2" />
 
             <ImageView
+                android:id="@+id/choose_photo3"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:contentDescription="@string/content_description"
+                android:onClick="changephoto3"
                 android:src="@drawable/ic_photo3" />
 
             <ImageView
+                android:id="@+id/choose_photo4"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:contentDescription="@string/content_description"
+                android:onClick="changephoto4"
                 android:src="@drawable/ic_photo4" />
 
             <ImageView
+                android:id="@+id/choose_photo5"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:contentDescription="@string/content_description"
+                android:onClick="changephoto5"
                 android:src="@drawable/ic_photo5" />
 
         </TableRow>
 
         <TableRow>
             <ImageView
+                android:id="@+id/choose_photo6"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:contentDescription="@string/content_description"
+                android:onClick="changephoto6"
                 android:src="@drawable/ic_photo6" />
             <ImageView
+                android:id="@+id/choose_photo7"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:contentDescription="@string/content_description"
+                android:onClick="changephoto7"
                 android:src="@drawable/ic_photo7" />
             <ImageView
+                android:id="@+id/choose_photo8"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:contentDescription="@string/content_description"
+                android:onClick="changephoto8"
                 android:src="@drawable/ic_photo8" />
             <ImageView
+                android:id="@+id/choose_photo9"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:contentDescription="@string/content_description"
+                android:onClick="changephoto9"
                 android:src="@drawable/ic_photo9" />
             <ImageView
+                android:id="@+id/choose_photo10"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:contentDescription="@string/content_description"
+                android:onClick="changephoto10"
                 android:src="@drawable/ic_photo10" />
         </TableRow>
     </TableLayout>

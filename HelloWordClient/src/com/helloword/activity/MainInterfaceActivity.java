@@ -50,6 +50,7 @@ public class MainInterfaceActivity extends BaseActivity {
             }
 	    } else {
 	        Intent intent = new Intent(this, LoginActivity.class);
+
             startActivity(intent);
 	    }
 	    
