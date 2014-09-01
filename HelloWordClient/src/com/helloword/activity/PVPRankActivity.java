@@ -25,7 +25,7 @@ public class PVPRankActivity extends TabActivity{
 		TabHost.TabSpec spec;
 		Intent intent;
 		
-		intent = new Intent().setClass(this, PVPRankTotalActivityUpdate.class);
+		intent = new Intent().setClass(this, PVPRankTotalActivity.class);
 		spec = tabHost
 				.newTabSpec("total")
 				.setIndicator("总榜排名")

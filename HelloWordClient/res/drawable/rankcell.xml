@@ -5,8 +5,12 @@
     android:orientation="horizontal" >
     
 	<ImageView 
-	    android:id="@+id/ivCell" 
+	    android:id="@+id/ItemCell" 
 	    android:layout_width="48dp" 
 	    android:layout_height="48dp"/>
-
+	<TextView   
+    	android:text="TextView01"   
+  		android:layout_height="wrap_content"   
+    	android:layout_width="fill_parent"   
+    	android:id="@+id/ItemTitle"  />  
 </LinearLayout>

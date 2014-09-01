@@ -41,8 +41,8 @@ public class PVPRankTotalActivityUpdate extends Activity{
 				list.add(cell);
 			}
 			SimpleAdapter simpleAdapter = new SimpleAdapter(PVPRankTotalActivityUpdate.this,
-					(List<Map<String, Object>>)list, R.drawable.cell, new String[] { "imageview","title" },
-					new int[] { R.id.ivCell, R.id.ItemTitle});
+					(List<Map<String, Object>>)list, R.drawable.rankcell, new String[] { "imageview","title" },
+					new int[] { R.id.ItemCell, R.id.ItemTitle});
 			gridView.setAdapter(simpleAdapter);
 	//		gridView.setOnItemClickListener(itemClick);
 		}
