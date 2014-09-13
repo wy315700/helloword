@@ -140,7 +140,8 @@
                 android:layout_toRightOf="@+id/pvp_end_btn_continue"
                 android:layout_marginLeft="10dp"
                 android:text="@string/share_record"
-                android:background="@drawable/blue_button"/>
+                android:background="@drawable/blue_button"
+                android:onClick="shareRecord"/>
             
             <Button 
                 android:id="@+id/pvp_end_btn_change"

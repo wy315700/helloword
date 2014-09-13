@@ -1,16 +1,21 @@
 package com.helloword.activity;
 
 import com.helloword.R;
+import com.helloword.service.GameService;
+import com.helloword.service.NetworkService;
 
 import android.os.Bundle;
 import android.app.TabActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabWidget;
 import android.widget.TextView;
+import android.widget.Toast;
 
 @SuppressWarnings("deprecation")
 public class PVPRankActivity extends TabActivity{
@@ -20,12 +25,14 @@ public class PVPRankActivity extends TabActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pvp_rank);
 		
+		PVPRank();
+		
 		final TabHost tabHost = getTabHost();
 		
 		TabHost.TabSpec spec;
 		Intent intent;
 		
-		intent = new Intent().setClass(this, PVPRankTotalActivity.class);
+		intent = new Intent().setClass(this, PVPRankTotalActivityUpdate.class);
 		spec = tabHost
 				.newTabSpec("total")
 				.setIndicator("总榜排名")
@@ -71,4 +78,46 @@ public class PVPRankActivity extends TabActivity{
 			}
 		});
 	}
+	
+	public void PVPRank(){
+		NetworkService networkService = new NetworkService(this);
+        if (networkService.isConnected()) {
+            new PVPRankTotalInBackground(PVPRankActivity.this).execute();
+        } else {
+            Toast.makeText(getApplicationContext(),R.string.connect_to_network,
+                    Toast.LENGTH_SHORT)
+                    .show();
+        }
+		
+		
+	}
+	
+	private class PVPRankTotalInBackground extends AsyncTaskWithProgressDialog {
+        public PVPRankTotalInBackground(Context progressDialogContext) {
+			super(progressDialogContext);
+		}
+
+		@Override
+        protected String doInBackground2(String... params) {
+            GameService gameService = new GameService(getApplication());
+         //   return gameService.getRank();
+            String result = gameService.getRank();          
+            Log.d("getRank: ", result);
+            return result;
+            
+        }
+
+        // onPostExecute displays the results of the AsyncTask.
+        @Override
+        protected void onPostExecute2(String result) {
+            if (result.equals("success")) {
+            	Toast.makeText(getApplicationContext(), result,
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), result,
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+	
 }

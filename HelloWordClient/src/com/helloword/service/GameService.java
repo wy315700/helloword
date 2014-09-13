@@ -1,9 +1,11 @@
 package com.helloword.service;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.helloword.gsonHelper.GameProtocol;
 import com.helloword.gsonObject.game.PKPuzzlesResponse;
+import com.helloword.gsonObject.game.RankResponse;
 import com.helloword.util.HttpLinker;
 import com.helloword.util.UsersApplication;
 
@@ -33,7 +35,7 @@ public class GameService {
                 .requestPKPuzzles(sessionID, gameType);
         String httpUrl = "http://halloword.sinaapp.com/helloword/request_pk_game.json";
         String downloadString = httpLinker.postString(httpUrl, uploadString);
-        // Log.d("pkgame", stringDownload);
+       // Log.d(sessionID, "This is the Session");
 
         if (downloadString != null) {
             PKPuzzlesResponse pkPuzzlesResponse = gameProtocol
@@ -48,5 +50,38 @@ public class GameService {
             return result;
         }
         return "cannot receive data";
+    }
+    
+    public String getRank(){
+    	return getRank(user.getSessionID());
+    }
+    
+    public String getRank(String sessionID){
+    	String uploadString = gameProtocol.requestRank(sessionID);
+    	String httpUrl = "http://halloword.sinaapp.com/helloword/request_rank.json";
+    	String downloadString = httpLinker.postString(httpUrl, uploadString);
+    	//System.out.println("test: " + downloadString);
+    	Log.d("This is the Session", sessionID);
+    	Log.d("This is the downString", downloadString);
+
+    	
+    	if(downloadString != null){
+    		RankResponse rankResponse = gameProtocol.responseRank(downloadString);
+    		String result = rankResponse.getResult();
+    		Log.d("result:fisrt", result);
+    		if(result.equals("success")){
+    			Log.d("result:", result);
+    			user.setTotalScore(rankResponse.getDetails().getTotalScore());
+    			user.setuserRank(rankResponse.getDetails().getUserRank());
+    			Log.d("totalScore", user.getTotalScore());
+    			Log.d("userRank", user.getuserRank());
+    	//		System.out.println("score: "+rankResponse.getDetails().getTotalScore());
+    	//		System.out.println("Rank: "+rankResponse.getDetails().getUserRank());
+    		} else {
+    			result = rankResponse.getDetails().getError();
+    		}
+    		return result;
+    	}
+    	return "cannot receive data";
     }
 }

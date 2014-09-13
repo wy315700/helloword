@@ -17,6 +17,6 @@ public class GlobalGameDetails extends GlobalDetails {
     }
 
     public void setUserRank(String userRank) {
-        this.userRank = null;
+        this.userRank = userRank;
     }
 }

@@ -6,13 +6,19 @@ import java.util.List;
 import java.util.Map;
 
 import com.helloword.R;
+import com.helloword.domain.QuestionLibType;
+import com.helloword.service.GameService;
+import com.helloword.service.NetworkService;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class PVPRankTotalActivityUpdate extends Activity{
@@ -44,6 +50,8 @@ public class PVPRankTotalActivityUpdate extends Activity{
 					(List<Map<String, Object>>)list, R.drawable.rankcell, new String[] { "imageview","title" },
 					new int[] { R.id.ItemCell, R.id.ItemTitle});
 			gridView.setAdapter(simpleAdapter);
+			//GameService gameService = new GameService(getApplication());
+			//gameService.getRank();
 	//		gridView.setOnItemClickListener(itemClick);
 		}
 		
@@ -57,4 +65,5 @@ public class PVPRankTotalActivityUpdate extends Activity{
 	//			imageView.setImageResource(photo_resIds[position]);
 			}
 		};*/
+	
 }

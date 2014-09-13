@@ -11,6 +11,9 @@ import android.view.animation.TranslateAnimation;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
+
 import com.helloword.R;
 
 public class PVPEndActivity extends BaseActivity {
@@ -57,4 +60,14 @@ public class PVPEndActivity extends BaseActivity {
 		startActivity(intent);
 	}
 
+	public void shareRecord(View view){
+		ShareSDK.initSDK(this);
+		OnekeyShare oks = new OnekeyShare();
+		oks.setNotification(R.drawable.ic_photo1, "demo");
+		oks.setTitle("文字分享");
+		oks.setText("weibo share");
+		oks.setSilent(true);
+		oks.show(this);		
+	}
+	
 }

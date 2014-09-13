@@ -15,6 +15,9 @@ public class UsersApplication extends Application {
     private List<PKPuzzles> pkPuzzles;
     private String userAvatarType;
     private String userAvatar;
+    
+    private String totalScore;
+    private String userRank;
 
     public String getSessionID() {
         return sessionID;
@@ -71,6 +74,23 @@ public class UsersApplication extends Application {
     public void setPKPuzzles(List<PKPuzzles> pkPuzzles) {
         this.pkPuzzles = pkPuzzles;
     }
+    
+    public String getTotalScore() {
+        return totalScore;
+    }
+
+    public void setTotalScore(String string) {
+        this.totalScore = string;
+    }
+    
+    public String getuserRank() {
+        return userRank;
+    }
+
+    public void setuserRank(String string) {
+        this.userRank = string;
+    }
+    
     
     @Override
     public void onCreate() { 
