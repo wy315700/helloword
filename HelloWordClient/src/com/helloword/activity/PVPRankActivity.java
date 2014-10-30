@@ -1,8 +1,13 @@
 package com.helloword.activity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.helloword.R;
+import com.helloword.database.MyScoreManager;
 import com.helloword.service.GameService;
 import com.helloword.service.NetworkService;
+import com.helloword.util.UsersApplication;
 
 import android.os.Bundle;
 import android.app.TabActivity;
@@ -20,17 +25,23 @@ import android.widget.Toast;
 @SuppressWarnings("deprecation")
 public class PVPRankActivity extends TabActivity{
 	private TabWidget tabWidget;
+	private UsersApplication user;
+	private ArrayList<Integer> myScore;
+	private MyScoreManager dbManager;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pvp_rank);
-		
-		PVPRank();
+		user = (UsersApplication) getApplication();
+//		user.setSessionID("6bbbb014-66ef-4b0e-a8f5-c2627e02198f");
+//		PVPRank();
+        downMyScoreRecord(user.getUserNickname());
+				
 		
 		final TabHost tabHost = getTabHost();
 		
 		TabHost.TabSpec spec;
-		Intent intent;
+		Intent intent;		
 		
 		intent = new Intent().setClass(this, PVPRankTotalActivityUpdate.class);
 		spec = tabHost
@@ -39,14 +50,14 @@ public class PVPRankActivity extends TabActivity{
 				.setContent(intent);
 		tabHost.addTab(spec);	
 		
-		intent = new Intent().setClass(this, PVPRankMeActivity.class);
+		intent = new Intent().setClass(this, PVPRankMeActivity.class);	
 		spec = tabHost
 				.newTabSpec("me")
 				.setIndicator("我的排名")
 				.setContent(intent);
 		tabHost.addTab(spec);
 		
-		tabHost.setCurrentTab(0);
+		tabHost.setCurrentTab(1);
 		View v;
 		tabWidget = tabHost.getTabWidget();
 		for (int i = 0; i < tabWidget.getChildCount(); i++){
@@ -79,6 +90,14 @@ public class PVPRankActivity extends TabActivity{
 		});
 	}
 	
+	public void downMyScoreRecord(String nickname){		
+		MyScoreManager db = new MyScoreManager(getApplication());
+		List<Integer> myscorelist = new ArrayList<Integer>();
+		myscorelist = db.QuerySQL(nickname);
+		user.setMyScoreAll(myscorelist);
+	}
+	
+	
 	public void PVPRank(){
 		NetworkService networkService = new NetworkService(this);
         if (networkService.isConnected()) {
@@ -87,9 +106,7 @@ public class PVPRankActivity extends TabActivity{
             Toast.makeText(getApplicationContext(),R.string.connect_to_network,
                     Toast.LENGTH_SHORT)
                     .show();
-        }
-		
-		
+        }				
 	}
 	
 	private class PVPRankTotalInBackground extends AsyncTaskWithProgressDialog {
@@ -101,20 +118,23 @@ public class PVPRankActivity extends TabActivity{
         protected String doInBackground2(String... params) {
             GameService gameService = new GameService(getApplication());
          //   return gameService.getRank();
+//            downMyScoreRecord(user.getUserNickname());
+            Log.d("nickname",user.getUserNickname());
             String result = gameService.getRank();          
             Log.d("getRank: ", result);
-            return result;
-            
+            //Log.d("total:",user.getTotalScore());
+            //Log.d("Rank:",user.getuserRank());
+            return result;            
         }
 
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute2(String result) {
             if (result.equals("success")) {
-            	Toast.makeText(getApplicationContext(), result,
+            	Toast.makeText(getApplicationContext(), "成功",
                         Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getApplicationContext(), result,
+                Toast.makeText(getApplicationContext(), "失败",
                         Toast.LENGTH_SHORT).show();
             }
         }

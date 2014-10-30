@@ -1,7 +1,9 @@
 package com.helloword.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -10,21 +12,27 @@ import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 
 import com.helloword.R;
+import com.helloword.service.GameService;
+import com.helloword.service.NetworkService;
+import com.helloword.util.UsersApplication;
 
 public class PVPEndActivity extends BaseActivity {
 
     private TextView win;
     private RelativeLayout buttonsArea;
+    private UsersApplication users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pvp_end);
+		users = (UsersApplication) getApplication();
 
         win = (TextView) findViewById(R.id.pvp_end_tx_win);
         buttonsArea = (RelativeLayout) findViewById(R.id.pvp_end_buttons_area);
@@ -60,14 +68,17 @@ public class PVPEndActivity extends BaseActivity {
 		startActivity(intent);
 	}
 
+	
 	public void shareRecord(View view){
 		ShareSDK.initSDK(this);
 		OnekeyShare oks = new OnekeyShare();
 		oks.setNotification(R.drawable.ic_photo1, "demo");
-		oks.setTitle("文字分享");
-		oks.setText("weibo share");
-		oks.setSilent(true);
+		String nickname = users.getUserNickname();
+		String shareContextString = "恭喜" + nickname +
+				"击败世界90%的参赛者，你敢来挑战？等你来！";
+		oks.setTitle("jianhu");
+		oks.setText(shareContextString);
+		oks.setSilent(false);
 		oks.show(this);		
-	}
-	
+	}	
 }

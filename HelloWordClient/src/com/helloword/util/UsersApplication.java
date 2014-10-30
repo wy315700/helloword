@@ -5,6 +5,7 @@ import java.util.List;
 import android.app.Application;
 
 import com.helloword.gsonObject.PKPuzzles;
+import com.helloword.gsonObject.RankTotal;
 
 public class UsersApplication extends Application {
     // store global variable of user's information to save IPC time
@@ -17,8 +18,11 @@ public class UsersApplication extends Application {
     private String userAvatar;
     
     private String totalScore;
+    private String totalRank;
     private String userRank;
-
+    private List<Integer> myScore;
+    private List<RankTotal> downRankTotal;
+ 
     public String getSessionID() {
         return sessionID;
     }
@@ -82,13 +86,31 @@ public class UsersApplication extends Application {
     public void setTotalScore(String string) {
         this.totalScore = string;
     }
-    
+      
     public String getuserRank() {
         return userRank;
     }
 
     public void setuserRank(String string) {
         this.userRank = string;
+    }
+ 
+    
+    public List<Integer> getMyScoreAll(){
+    	return myScore;
+    }
+    
+    
+    public void setMyScoreAll(List<Integer> myscore){
+    	this.myScore = myscore;
+    }
+    
+    public List<RankTotal> getRankTotal(){
+    	return downRankTotal;
+    }
+    
+    public void setRankTotal(List<RankTotal> downRankTotal){
+    	this.downRankTotal = downRankTotal;
     }
     
     

@@ -1,5 +1,6 @@
 package com.helloword.activity;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -9,10 +10,12 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.Button;
@@ -20,11 +23,19 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
 import com.helloword.R;
+import com.helloword.database.MyScoreManager;
 import com.helloword.domain.PuzzleDBInterface;
 import com.helloword.domain.QuestionLibType;
 import com.helloword.gsonObject.PKPuzzles;
+import com.helloword.gsonObject.UserAnswer;
+import com.helloword.service.GameService;
+import com.helloword.service.UserService;
 import com.helloword.util.UsersApplication;
+import java.util.List;
 
 public class PVPGameActivity extends BaseActivity {
     final int TIME_LIMIT = 10000; // milliseconds
@@ -66,11 +77,15 @@ public class PVPGameActivity extends BaseActivity {
     private PKPuzzles currentPuzzle;
 
 	private PuzzleDBInterface puzzleDBInterface;
-
+	private MyScoreManager myScoreManager;
+	private String nickname;
+	private List<UserAnswer> PKAnswers;
+	private int count;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pvp_game);
+
 
         user = (UsersApplication) getApplication();
         puzzleDBInterface=new PuzzleDBInterface(getApplicationContext());
@@ -94,10 +109,13 @@ public class PVPGameActivity extends BaseActivity {
 
         message = (ImageView) findViewById(R.id.pvp_game_message);
         puzzleArea = (RelativeLayout) findViewById(R.id.pvp_game_puzzle_area);
+        
+        PKAnswers = new ArrayList<UserAnswer>();
 
         puzzleNum = 1;
         scoreLeft = 0;
         scoreRight = 0;
+        count = 0;
 
         // ========fake puzzles for test========
         // List<PKPuzzles> fakePuzzles = new ArrayList<PKPuzzles>();
@@ -124,7 +142,7 @@ public class PVPGameActivity extends BaseActivity {
         userRightName.setText("藏剑");
         scoreLeft = 10;
         scoreRight = 10;
-        displayFraction(fractionLeft, scoreLeft);
+        displayFraction(fractionLeft, scoreLeft); 
         displayFraction(fractionRight, scoreRight);
 
         iterator = user.getPKPuzzles().iterator();
@@ -150,12 +168,12 @@ public class PVPGameActivity extends BaseActivity {
             PKPuzzles game = new PKPuzzles();
             game = iterator.next();
             currentPuzzle=game;//需要将答错的题目记录到数据库
-            if (puzzleNum > 1)
+             if (puzzleNum > 1)
                 rightButton.setBackgroundResource(R.drawable.blue_button);
             // set right answer
             String rightAnswer = game.getAns();
             if (rightAnswer.equalsIgnoreCase(game.getAns1())) {
-                rightId = R.id.pvp_game_btnA;
+                rightId = R.id.pvp_game_btnA; 
                 rightButton = (Button) findViewById(R.id.pvp_game_btnA);
             } else if (rightAnswer.equalsIgnoreCase(game.getAns2())) {
                 rightId = R.id.pvp_game_btnB;
@@ -188,7 +206,16 @@ public class PVPGameActivity extends BaseActivity {
             countDownTime();
         } else {
             // FIXME
-            goPVPEnd();
+        	//by zhf test score
+        //	Log.d("score", scoreLeft);
+//        	upMyScore(scoreLeft);
+        //	nickname = user.getUserNickname();
+         //   goPVPEnd();
+        	if(count == 0){
+        		new UpAnswerInBackground(PVPGameActivity.this).execute("1111");
+        		count = 1;
+        	}
+        	
         }
     }
 
@@ -257,6 +284,9 @@ public class PVPGameActivity extends BaseActivity {
             AnimatorListenerAdapter animEnd = new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
+             //   	Log.d(Integer.toString(timeProgress.getProgress()),"timeout");
+                	addPKAnswer(-1,
+                    		Integer.toString(timeProgress.getProgress()));
                     displayBadResult();
                 }
             };
@@ -272,10 +302,18 @@ public class PVPGameActivity extends BaseActivity {
             switch (view.getId() - rightId) {
             case 0:
                 clearAnim(timeProgress);
+           //     Log.d(Integer.toString(view.getId()),"right");
+           //     Log.d(Integer.toString(timeProgress.getProgress()),"time");
+                addPKAnswer(view.getId(),
+                		Integer.toString(timeProgress.getProgress()));
                 displayGoodResult();
                 break;
             default:
                 clearAnim(timeProgress);
+            //    Log.d(Integer.toString(view.getId()),"wrong");
+            //    Log.d(Integer.toString(timeProgress.getProgress()),"time:");
+                addPKAnswer(view.getId(),
+                		Integer.toString(timeProgress.getProgress()));
                 displayBadResult();
                 //将答错的题目记录到数据库
                 puzzleDBInterface.savePuzzleToDB(currentPuzzle,userChoosedQuestionLibType);
@@ -311,10 +349,122 @@ public class PVPGameActivity extends BaseActivity {
 
     }
 
-    public void goPVPEnd() {
+    public void goPVPEnd() { 
         Intent intent = new Intent(this, PVPEndActivity.class);
         startActivity(intent);
         finish();
     }
+    
+    public void goPVPMode(){
+    	Intent intent = new Intent(this, PVPModeActivity.class);
+        startActivity(intent);
+        finish();
+    }
+    
+    //test list answer
+    public void OutAnswer(){    	
+    	Log.d("outanswer","length");
+    	Log.d(Integer.toString(PKAnswers.size()),"length");
+    	Iterator<UserAnswer> iter = PKAnswers.iterator();
+    	while(iter.hasNext()){
+    		UserAnswer ans = iter.next();
+    		Log.d(ans.getAns(),"ANS");
+    		Log.d(ans.getTime(),"timeAnswer");
+    	}
+    }
+    
+    public void OutAnswer(List<UserAnswer> userans){    	
+    	Log.d("outanswer","length");
+    	Log.d(Integer.toString(userans.size()),"length");
+    	
+    	Iterator<UserAnswer> iter = userans.iterator();
+    	while(iter.hasNext()){
+    		UserAnswer ans = iter.next();
+    		Log.d(ans.getAns(),"ANS");
+    		Log.d(ans.getTime(),"timeAnswer");
+    	}
+    	
+    }
 
+    public void upMyScore(int myScore){
+    	myScoreManager = new MyScoreManager(getApplication());
+    	myScoreManager.AddScore(user.getUserNickname(), myScore);
+    }
+    
+    public void addPKAnswer(int ans, String time){
+    	UserAnswer newUserAnswer = new UserAnswer();
+    	switch(ans){
+    	case 2131296370:
+    		Log.d("A","A");
+    		newUserAnswer.setAns("a");
+    		break;
+    	case 2131296371:
+    		Log.d("B","B");
+    		newUserAnswer.setAns("b");
+    		break;
+    	case 2131296372:
+    		Log.d("C","C");
+    		newUserAnswer.setAns("c");
+    		break;
+    	case 2131296373:
+    		Log.d("D","D");
+    		newUserAnswer.setAns("d");
+    		break;
+    	default:
+    		Log.d("default","null");
+    		newUserAnswer.setAns("null");  		
+    	}
+    	
+    	float floatTime = Float.parseFloat(time)/10;
+    	newUserAnswer.setTime(String.valueOf(floatTime));
+    	
+    	if(PKAnswers.size()<10){
+    		PKAnswers.add(newUserAnswer);
+    	}
+    	
+    }
+    
+    private class UpAnswerInBackground extends AsyncTaskWithProgressDialog {
+        public UpAnswerInBackground(Context progressDialogContext) {
+			super(progressDialogContext);
+		}
+
+		@Override
+        protected String doInBackground2(String... params) {
+            GameService gameService = new GameService(getApplication());
+            String res =  gameService.getPKAnswers(params[0], PKAnswers);
+            String resRank = gameService.getRank();
+            Log.d("test_resPVP",res);
+            if(res.equals("success")){
+//				OutAnswer(PKAnswers);
+            	Log.d("resultANS",resRank);
+            	Log.d("res",res);
+            	if(resRank.equals(res)){
+            		upMyScore(Integer.parseInt(user.getTotalScore()));
+            		return res;
+            	} else {
+            		Log.d("test_res",res);
+            		Log.d("test_res",resRank);
+            		return resRank;				
+            	}
+            } else {
+            	return res;
+            }           
+        }
+
+        // onPostExecute displays the results of the AsyncTask.
+        @Override
+        protected void onPostExecute2(String result) {
+            if (result.equals("success")) {
+            	Toast.makeText(getApplicationContext(), "成功",
+                        Toast.LENGTH_SHORT).show();
+            	goPVPEnd();	
+            } else {
+                Toast.makeText(getApplicationContext(), "经验值不够,没答完题目，接着挑战哦！",
+                        Toast.LENGTH_SHORT).show();
+                goPVPMode();
+            }
+        }
+    }
+            
 }

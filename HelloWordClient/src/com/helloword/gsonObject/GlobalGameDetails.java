@@ -1,7 +1,7 @@
 package com.helloword.gsonObject;
 
 public class GlobalGameDetails extends GlobalDetails {
-    String totalScore;
+   /* String totalScore;
     String userRank;
 
     public String getTotalScore() {
@@ -18,5 +18,7 @@ public class GlobalGameDetails extends GlobalDetails {
 
     public void setUserRank(String userRank) {
         this.userRank = userRank;
-    }
+    } */
+    
+    
 }

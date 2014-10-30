@@ -1,10 +1,14 @@
 package com.helloword.gsonObject.game;
 
+import java.util.List;
+
 import com.helloword.gsonObject.GlobalGameDetails;
+import com.helloword.gsonObject.RankMe;
+import com.helloword.gsonObject.RankTotal;
 
 public class RankResponse extends GlobalGameResponse {
     
-    GlobalGameDetails details = new GlobalGameDetails();
+ /*   GlobalGameDetails details = new GlobalGameDetails();
   //  private GlobalGameDetails details;
     
     public GlobalGameDetails getDetails() {
@@ -12,9 +16,9 @@ public class RankResponse extends GlobalGameResponse {
     }
     public void setDetails(GlobalGameDetails details) {
         this.details = details;
-    }
+    }*/
     
-    /*
+    
      private RankGameDetails details;
      
      public RankGameDetails getDetails(){
@@ -25,14 +29,14 @@ public class RankResponse extends GlobalGameResponse {
      	this.details = details;
      }
      
-     public class RankGameDetails{
+     public class RankGameDetails extends GlobalGameDetails{
      	private List<RankTotal> topRank;
      	private RankMe myRank;
      	
      	public List<RankTotal> getTopRank(){
      		return topRank;
      	}
-     	public void setTopRank(List<RankTotal>){
+     	public void setTopRank(List<RankTotal> topRank){
      	    this.topRank = topRank;
      	}
      	
@@ -43,6 +47,6 @@ public class RankResponse extends GlobalGameResponse {
      		this.myRank = myRank;
      	}     
      }
-     */
+     
     
 }

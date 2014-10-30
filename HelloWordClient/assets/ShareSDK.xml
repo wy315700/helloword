@@ -99,7 +99,8 @@
     <WechatMoments
         Id="5"
         SortId="5"
-        AppId="wx4868b35061f87885"
+        AppId="wx64c2c42d08180be9"
+        AppKey="9a445b4375647e10356a6de59f06d449"
         BypassApproval="true"
         Enable="true" />
         

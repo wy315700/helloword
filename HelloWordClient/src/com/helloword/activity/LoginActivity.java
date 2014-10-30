@@ -100,10 +100,12 @@ public class LoginActivity extends BaseActivity {
             if (result.equals("success")) {
                 Intent intent = new Intent(getApplicationContext(),
                         PVPModeActivity.class);
+//            	Intent intent = new Intent(getApplicationContext(),
+//            			PVPEndActivity.class);
                 startActivity(intent);
                 finish();
             } else {
-                Toast.makeText(getApplicationContext(), result,
+                Toast.makeText(getApplicationContext(), "失败",
                         Toast.LENGTH_SHORT).show();
             }
         }

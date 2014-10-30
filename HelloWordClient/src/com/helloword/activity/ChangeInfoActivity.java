@@ -3,7 +3,6 @@ package com.helloword.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -53,7 +52,7 @@ public class ChangeInfoActivity extends Activity {
         passwordET = (EditText) findViewById(R.id.pvp_modify_password);
         nickNameET = (EditText) findViewById(R.id.pvp_modify_nickname);
         userAvatarET = (ImageView) findViewById(R.id.pvp_modify_photo);
-        //collegeET = (EditText) findViewById(R.id.pvp_modify_college);
+        collegeET = (EditText) findViewById(R.id.pvp_modify_college);
         newpasswordET = (EditText) findViewById(R.id.pvp_modify_newpassword);
         confirmpasswordET = (EditText) findViewById(R.id.pvp_modify_confirmpass);
         
@@ -63,7 +62,9 @@ public class ChangeInfoActivity extends Activity {
         userAvatar = myApplication.getUserAvatar();
         userAvatarType = myApplication.getUserAvatarType();
         //password = myApplication.getUserName();
-        //college = myApplication.get
+        //college = myApplication.gets
+        Log.d("userType",userAvatarType);
+        collegeET.setText(userAvatarType);
         userNameET.setText(userName);
         nickNameET.setText(nickName);
 //        Toast.makeText(ChangeInfoActivity.this, userAvatar, Toast.LENGTH_LONG).show();
@@ -119,6 +120,7 @@ public class ChangeInfoActivity extends Activity {
          newpassword = newpasswordET .getText().toString().trim();
          confirmpassword = confirmpasswordET.getText().toString().trim();
          nickName = nickNameET.getText().toString().trim();
+         userAvatarType = collegeET.getText().toString().trim();
 
         boolean formatQuality = verifyFormat();
         if(formatQuality == false){
@@ -150,10 +152,10 @@ public class ChangeInfoActivity extends Activity {
         @Override
         protected void onPostExecute2(String result) {
             if (result.equals("success")) {
-            	Toast.makeText(getApplicationContext(), result,
+            	Toast.makeText(getApplicationContext(), "成功",
                         Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getApplicationContext(), result,
+                Toast.makeText(getApplicationContext(), "失败",
                         Toast.LENGTH_SHORT).show();
             }
         }

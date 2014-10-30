@@ -7,6 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
+import cn.sharesdk.wechat.moments.WechatMoments;
+import cn.sharesdk.wechat.moments.WechatMoments.ShareParams;
+
 import com.helloword.R;
 import com.helloword.service.NetworkService;
 import com.helloword.service.UserService;
@@ -35,6 +40,19 @@ public class MainInterfaceActivity extends BaseActivity {
         }
     }
 	
+ /*   public void shareScore(){
+    	ShareSDK.initSDK(this);
+		OnekeyShare oks = new OnekeyShare();
+		//oks.setNotification(R.drawable.ic_photo1, "demo");
+		oks.setTitle("文字分享");
+		oks.setText("weibo share");
+		oks.setUrl("http://githut.com");
+		oks.setSilent(false);
+		oks.show(this);
+    } 
+ */
+    
+    
 	public void goOnline(View view) {
 	    UserService userService = new UserService(getApplication());
 	    
@@ -42,7 +60,7 @@ public class MainInterfaceActivity extends BaseActivity {
 	        String[] userLoginInfo = userService.getUserInfo();
 	        NetworkService networkService = new NetworkService(this);
             if (networkService.isConnected()) {
-                new LoginInBackground(MainInterfaceActivity.this).execute(userLoginInfo);
+            	new LoginInBackground(MainInterfaceActivity.this).execute(userLoginInfo);
             } else {
                 Toast.makeText(getApplicationContext(),
                 		R.string.connect_to_network, Toast.LENGTH_SHORT)
@@ -50,8 +68,8 @@ public class MainInterfaceActivity extends BaseActivity {
             }
 	    } else {
 	        Intent intent = new Intent(this, LoginActivity.class);
-
             startActivity(intent);
+	    //	shareScore();
 	    }
 	    
 	}

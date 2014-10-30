@@ -97,7 +97,7 @@ public class PVCGameActivity extends BaseActivity {
 
 		// ========fake users for test========
 		// FIXME
-		userName.setText("江小鱼");//TODO add user information to DB
+		userName.setText("江湖小虾");//TODO add user information to DB
 
 		final int MAX_PUZZLE_PER_ROUND = 20;
 		puzzlesCntPerRound = wordsList.size() < MAX_PUZZLE_PER_ROUND ? (wordsList
